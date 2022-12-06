@@ -56,18 +56,21 @@ const addToolItem = (tool: string, usedCount: string) => {
   try {
     const presetItem = document.getElementById("card-tools-item");
 
-    const img = toolsImageSources[tool.toLowerCase()];
-    if (img) {
+    const imgSrc = toolsImageSources[tool.toLowerCase()];
+    if (imgSrc) {
       const imgEl = presetItem.querySelector("img");
       imgEl.id = "";
+      imgEl.style.filter =
+        "invert(85%) sepia(100%) saturate(733%) hue-rotate(0deg) brightness(80%) contrast(100%)";
       if (imgEl) {
-        imgEl.src = img;
+        imgEl.src = "___IMG_SRC___";
       }
     }
 
     const nextInnerHtml = presetItem.innerHTML
       .replace("Grain", tool)
-      .replace("58", usedCount);
+      .replace("58", usedCount)
+      .replace("___IMG_SRC___", imgSrc);
 
     presetItem.getElementsByClassName;
     const clonedNode = presetItem.cloneNode(true);
@@ -183,4 +186,5 @@ export const mapToDom = (data: SearchParamKeyValue) => {
 
   // username
   replaceInnerText("tab-username", data.username);
+  replaceInnerText("username", data.username);
 };
