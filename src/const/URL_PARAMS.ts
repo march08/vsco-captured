@@ -1,0 +1,25 @@
+export const URL_PARAMS = [
+  "most_creative_day_of_week",
+  "most_creative_month",
+  "tool_1",
+  "tool_1_used",
+  "tool_2",
+  "tool_2_used",
+  "tool_3",
+  "tool_3_used",
+  "preset_1",
+  "preset_1_used",
+  "preset_2",
+  "preset_2_used",
+  "preset_3",
+  "preset_3_used",
+  "images_posted",
+  "number_of_favorites",
+  "number_of_reposts",
+  "spaces_created",
+  "spaces_joined",
+  "longest_session",
+  "username",
+] as const;
+
+export type UrlParam = typeof URL_PARAMS[number];
