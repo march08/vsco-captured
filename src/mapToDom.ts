@@ -137,13 +137,13 @@ export const mapToDom = (data: SearchParamKeyValue) => {
   if (data.spaces_joined || data.spaces_created) {
     const rootEl = document.getElementById("space-value");
     if (rootEl) {
-      if (data.spaces_joined) {
+      if (data.spaces_created) {
         const nextNode = rootEl.cloneNode(true);
         nextNode.textContent = data.spaces_created + " SPACES CREATED";
         (nextNode as any).id = "";
         rootEl.parentElement.appendChild(nextNode);
       }
-      if (data.spaces_created) {
+      if (data.spaces_joined) {
         const nextNode = rootEl.cloneNode(true);
         (nextNode as any).id = "";
         nextNode.textContent = data.spaces_joined + " SPACES JOINED";

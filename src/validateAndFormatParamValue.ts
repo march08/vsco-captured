@@ -40,7 +40,7 @@ const getPresetFormattedValue = (val: string) => {
   return PRESET_KEYS.includes(val.toLowerCase()) ? val : null;
 };
 const getToolsFormattedValue = (val: string) => {
-  return TOOLS.includes(val.toLowerCase()) ? val : null;
+  return TOOLS.includes(val.toLowerCase() as any) ? val : null;
 };
 
 export const getValidatedParamValue = (
