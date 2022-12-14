@@ -9,7 +9,7 @@ function b64_to_utf8(str: string) {
   return decodeURIComponent(escape(window.atob(str)));
 }
 
-export const getSearchParamValues = () => {
+export const getSearchParamValues = (shouldEncode = true) => {
   const allSearchParams = new URLSearchParams(window.location.search);
 
   const isEncoded = allSearchParams.get("capture_data");
@@ -39,11 +39,13 @@ export const getSearchParamValues = () => {
     return res;
   }, {} as Partial<{ [K in UrlParam]: string }>);
 
-  try {
-    const encoded = utf8_to_b64(JSON.stringify(result));
-    allSearchParams.set("capture_data", encoded);
-    window.location.search = allSearchParams.toString();
-  } catch {}
+  if (shouldEncode) {
+    try {
+      const encoded = utf8_to_b64(JSON.stringify(result));
+      allSearchParams.set("capture_data", encoded);
+      window.location.search = allSearchParams.toString();
+    } catch {}
+  }
 
   return result;
 };

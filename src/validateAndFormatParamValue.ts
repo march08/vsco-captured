@@ -56,9 +56,11 @@ export const getValidatedParamValue = (
     case "longest_session":
       return formatInteger(value);
     case "most_creative_day_of_week":
-      return weekdays.includes(value) ? value.toUpperCase() : null;
+      return weekdays.includes(value.toLocaleLowerCase())
+        ? value.toUpperCase()
+        : null;
     case "most_creative_month":
-      return months.includes(value) ? value.toUpperCase() : null;
+      return months.includes(value.toLowerCase()) ? value.toUpperCase() : null;
     case "number_of_favorites":
       return formatInteger(value);
     case "number_of_reposts":

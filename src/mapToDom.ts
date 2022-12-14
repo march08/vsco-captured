@@ -21,6 +21,7 @@ const replaceTextOrHide = (
   elementTextId: string,
   value: string
 ) => {
+  console.log("value", containerId, elementTextId, value);
   if (value) {
     replaceInnerText(elementTextId, value);
   } else {
