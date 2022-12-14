@@ -39,9 +39,11 @@ export const getSearchParamValues = () => {
     return res;
   }, {} as Partial<{ [K in UrlParam]: string }>);
 
-  const encoded = utf8_to_b64(JSON.stringify(result));
-  allSearchParams.set("capture_data", encoded);
-  window.location.search = allSearchParams.toString();
+  try {
+    const encoded = utf8_to_b64(JSON.stringify(result));
+    allSearchParams.set("capture_data", encoded);
+    window.location.search = allSearchParams.toString();
+  } catch {}
 
   return result;
 };
