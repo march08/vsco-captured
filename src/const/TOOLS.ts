@@ -26,6 +26,34 @@ export const TOOLS = [
   "dodge and burn",
 ];
 
+export const displayValueTools = {
+  "white balance": "wWhite Balance",
+  exposure: "Exposure",
+  grain: "Grain",
+  shadows: "Shadows",
+  border: "Border",
+  text: "Text",
+  blur: "Blur",
+  trim: "Trim",
+  remove: "Remove",
+  vignette: "Vignette",
+  volume: "Volume",
+  "magic wand": "Magic Wand",
+  skin: "Skin",
+  hsl: "HSL",
+  highlights: "Highlights",
+  clarity: "Clarity",
+  crop: "Crop",
+  straighten: "Straighten",
+  saturation: "Saturation",
+  speed: "Speed",
+  contrast: "Contrast",
+  fade: "Fade",
+  reverse: "Reverse",
+  sharpen: "Sharpen",
+  "dodge and burn": "Dodge and Burn",
+};
+
 export const toolsImageSources = {
   adjust:
     "https://uploads-ssl.webflow.com/624de812dd74b622858823f2/638f7fa059e09c4d668a1cb1_tool-adjust.svg",

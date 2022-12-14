@@ -1572,9 +1572,11 @@ const PRESETS = [
 
 export const getPresetConfigByKey = (key: string) => {
   return (
-    PRESETS.find((item) => item.key === key) || {
+    PRESETS.find(
+      (item) => `${item.key}`.toUpperCase() === key.toUpperCase()
+    ) || {
       key,
-      title: key,
+      title: key.toUpperCase(),
       background: "#333",
       color: "#FFFFFF",
     }

@@ -1,5 +1,5 @@
 import { getPresetConfigByKey } from "./const/PRESETS";
-import { toolsImageSources } from "./const/TOOLS";
+import { displayValueTools, toolsImageSources } from "./const/TOOLS";
 import type { SearchParamKeyValue } from "./getParamValues";
 
 const removeFromDomById = (id: string) => {
@@ -13,8 +13,7 @@ const replaceInnerText = (id: string, value: string) => {
   const el = document.getElementById(id);
   try {
     el.innerText = value;
-    console.log("Replace:", id);
-  } catch {}
+  } catch (e) {}
 };
 
 const replaceTextOrHide = (
@@ -49,7 +48,7 @@ const addPresetItem = (presetCode: string, usedCount: string) => {
     (clonedNode as any).innerHTML = nextInnerHtml;
 
     presetItem.parentElement.appendChild(clonedNode);
-  } catch {}
+  } catch (e) {}
 };
 
 const addToolItem = (tool: string, usedCount: string) => {
@@ -68,7 +67,7 @@ const addToolItem = (tool: string, usedCount: string) => {
     }
 
     const nextInnerHtml = presetItem.innerHTML
-      .replace("Grain", tool)
+      .replace("Grain", displayValueTools[tool] || tool)
       .replace("58", usedCount)
       .replace("___IMG_SRC___", imgSrc);
 
@@ -77,10 +76,22 @@ const addToolItem = (tool: string, usedCount: string) => {
     (clonedNode as any).id = "";
     (clonedNode as any).innerHTML = nextInnerHtml;
     presetItem.parentElement.appendChild(clonedNode);
-  } catch {}
+  } catch (e) {}
+};
+
+const hideTab = () => {
+  const tabUser = document.getElementById("tab-user");
+  if (tabUser) {
+    tabUser.style.display = "none";
+  }
 };
 
 export const mapToDom = (data: SearchParamKeyValue) => {
+  if (!data.username) {
+    hideTab();
+    return;
+  }
+
   // images posted
   replaceTextOrHide(
     "card-posted-images",
@@ -182,6 +193,12 @@ export const mapToDom = (data: SearchParamKeyValue) => {
   toolParent.removeChild(toolItem);
   if (toolParent.childElementCount === 0) {
     removeFromDomById("card-tools");
+  }
+
+  const swiperWrapperCardsEl = document.querySelector(".swiper-wrapper");
+
+  if (swiperWrapperCardsEl.childElementCount === 0) {
+    hideTab();
   }
 
   // username

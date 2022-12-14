@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0042)https://vsco-2022.webflow.io/2022-captured -->
+<!-- saved from url=(0159)https://vsco-2022.webflow.io/2022-captured?most_creative_day_of_week=Tuesday&most_creat%5B%E2%80%A6%5D3&spaces_joined=4&longest_session=19&username=neeeeeeeesh -->
 <html
   data-wf-domain="vsco-2022.webflow.io"
   data-wf-page="638e029a26be9b4d6bc12af1"
@@ -31,7 +31,7 @@
     />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link
-      href="./Capturedqweqwe_files/vsco-2022.ecd3a4d97.css"
+      href="./capt_files/vsco-2022.aa988a9c5.css"
       rel="stylesheet"
       type="text/css"
     />
@@ -44,15 +44,12 @@
     <script
       type="text/plain"
       async=""
-      src="./Capturedqweqwe_files/js"
-      class="optanon-category-C0002"
+      src="./capt_files/analytics.js"
+      class="optanon-category-C0002-C0004"
     ></script>
-    <script
-      type="text/javascript"
-      async=""
-      src="./Capturedqweqwe_files/analytics.js"
-    ></script>
-    <script async="" src="./Capturedqweqwe_files/gtm.js"></script>
+    <script type="text/javascript" async="" src="./capt_files/js"></script>
+    <script type="text/javascript" async="" src="./capt_files/js(1)"></script>
+    <script async="" src="./capt_files/gtm.js"></script>
     <script type="text/javascript">
       !(function (o, c) {
         var n = c.documentElement,
@@ -73,7 +70,7 @@
       rel="apple-touch-icon"
     />
     <link href="https://www.vsco.co/2022-captured" rel="canonical" />
-    <script async="" src="./Capturedqweqwe_files/js(1)"></script>
+    <script async="" src="./capt_files/js(2)"></script>
     <script type="text/javascript">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -101,12 +98,12 @@
     <!-- End Google Tag Manager -->
     <script
       defer=""
-      src="./Capturedqweqwe_files/OtAutoBlock.js"
+      src="./capt_files/OtAutoBlock.js"
       type="text/javascript"
     ></script>
     <script
       defer=""
-      src="./Capturedqweqwe_files/otSDKStub.js"
+      src="./capt_files/otSDKStub.js"
       type="text/javascript"
       charset="UTF-8"
       data-domain-script="f0d3fe3f-1d7d-49b1-8bf9-cd7865bf431c"
@@ -136,10 +133,7 @@
       }
     </style>
     <!-- swiper 8 CSS -->
-    <link
-      rel="stylesheet"
-      href="./Capturedqweqwe_files/swiper-bundle.min.css"
-    />
+    <link rel="stylesheet" href="./capt_files/swiper-bundle.min.css" />
 
     <style>
       .swiper-slide {
@@ -171,11 +165,46 @@
         pointer-events: none;
       }
       .swiper-vertical.swiper-autoheight .swiper-wrapper {
-        align-items: center;
+        align-items: stretch;
+      }
+    </style>
+
+    <style>
+      @media screen and (max-width: 767px) {
+        .swiper-holder {
+          padding: 0;
+          height: calc(100vh - 57px);
+          overflow: hidden;
+        }
+        .swiper-wrapper {
+          box-sizing: border-box;
+          padding: 0 40px;
+          height: 100% !important;
+        }
+        .tabs-content {
+          max-width: none;
+        }
+        .swiper.cards {
+          height: 100%;
+        }
+        .swiper-slide {
+          /* height: 100% !important; */
+          display: flex;
+          align-items: center;
+        }
+        .swiper-slide:first-child {
+          padding-top: 40px;
+        }
+        .swiper-slide:last-child {
+          padding-bottom: 40px;
+        }
+        .swiper {
+          pointer-events: none;
+        }
       }
     </style>
     <script
-      src="./Capturedqweqwe_files/otBannerSdk.js"
+      src="./capt_files/otBannerSdk.js"
       async=""
       type="text/javascript"
     ></script>
@@ -4644,7 +4673,7 @@
       }
       @keyframes slide-down-custom {
         0% {
-          bottom: 632px !important;
+          bottom: 997px !important;
         }
         100% {
           bottom: 0px;
@@ -4652,7 +4681,7 @@
       }
       @-webkit-keyframes slide-down-custom {
         0% {
-          bottom: 632px !important;
+          bottom: 997px !important;
         }
         100% {
           bottom: 0px;
@@ -4660,7 +4689,7 @@
       }
       @-moz-keyframes slide-down-custom {
         0% {
-          bottom: 632px !important;
+          bottom: 997px !important;
         }
         100% {
           bottom: 0px;
@@ -4669,8 +4698,9 @@
     </style>
   </head>
   <body>
-    <div class="css-global w-embed">
+    <div class="css-page-specific w-embed">
       <style>
+        /* Global */
         /* --- Basics --- */
         * {
           -webkit-box-sizing: border-box;
@@ -4690,6 +4720,12 @@
           color: inherit;
           text-decoration: none;
         }
+
+        /* REM Magic
+html { font-size: 0.75rem; }
+@media screen and (max-width:1920px) { html { font-size: calc(0.24999999999999994rem + 0.41666666666666674vw); } }
+@media screen and (max-width:1440px) { html { font-size: calc(0.42455456570155903rem + 0.22271714922048996vw); } }
+@media screen and (max-width:991px) { html { font-size: 0.625rem; } }*/
 
         /* REM Magic */
         html {
@@ -4725,10 +4761,8 @@
         .text-h2.stories__feed-title {
           color: inherit;
         }
-      </style>
-    </div>
-    <div class="css-page-specific w-embed">
-      <style>
+
+        /* Captured Specific */
         .cap__body-personal {
           background: #e7e5df;
         }
@@ -4817,7 +4851,7 @@
       ><a
         fs-copyclip-element="click"
         data-w-id="ec8626e9-0579-6307-07c5-ce57d5f6d4fc"
-        href="https://vsco-2022.webflow.io/2022-captured#"
+        href="https://vsco-2022.webflow.io/2022-captured?most_creative_day_of_week=Tuesday&amp;most_creat%5B%E2%80%A6%5D3&amp;spaces_joined=4&amp;longest_session=19&amp;username=neeeeeeeesh#"
         class="nav__share desktop w-inline-block"
         ><div>Share</div></a
       >
@@ -4825,11 +4859,11 @@
     <div class="section captured">
       <div class="wrap cap__content">
         <div
-          data-current="User Stats"
+          data-current="Global"
           data-easing="ease-out-cubic"
           data-duration-in="225"
           data-duration-out="225"
-          class="tabs w-tabs"
+          class="cap__tabs-wrapper w-tabs"
         >
           <div
             id="capture-tabs"
@@ -4841,36 +4875,36 @@
               id="tab-user"
               data-w-tab="User Stats"
               data-w-id="82f9ea16-db51-cf5e-ad14-61f1b97f0b1a"
-              class="cap__tab w-inline-block w-tab-link w--current"
-              href="https://vsco-2022.webflow.io/2022-captured#w-tabs-0-data-w-pane-0"
+              class="cap__tab w-inline-block w-tab-link"
+              tabindex="-1"
+              href="https://vsco-2022.webflow.io/2022-captured?most_creative_day_of_week=Tuesday&amp;most_creat%5B%E2%80%A6%5D3&amp;spaces_joined=4&amp;longest_session=19&amp;username=neeeeeeeesh#w-tabs-0-data-w-pane-0"
               role="tab"
               aria-controls="w-tabs-0-data-w-pane-0"
-              aria-selected="true"
-              ><div id="username">username</div></a
+              aria-selected="false"
+              ><div id="tab-username">neeeeeeeesh</div></a
             ><a
               id="tab-global"
               data-w-tab="Global"
               data-w-id="82f9ea16-db51-cf5e-ad14-61f1b97f0b1d"
-              class="cap__tab w-inline-block w-tab-link"
-              tabindex="-1"
-              href="https://vsco-2022.webflow.io/2022-captured#w-tabs-0-data-w-pane-1"
+              class="cap__tab w-inline-block w-tab-link w--current"
+              href="https://vsco-2022.webflow.io/2022-captured?most_creative_day_of_week=Tuesday&amp;most_creat%5B%E2%80%A6%5D3&amp;spaces_joined=4&amp;longest_session=19&amp;username=neeeeeeeesh#w-tabs-0-data-w-pane-1"
               role="tab"
               aria-controls="w-tabs-0-data-w-pane-1"
-              aria-selected="false"
+              aria-selected="true"
               ><div>Global</div></a
             ><a
               id="capture-mobile-share"
               fs-copyclip-element="click"
               data-w-id="840a4de3-0ff0-93ec-bbe3-0a1a8ca0cd0c"
-              href="https://vsco-2022.webflow.io/2022-captured#"
+              href="https://vsco-2022.webflow.io/2022-captured?most_creative_day_of_week=Tuesday&amp;most_creat%5B%E2%80%A6%5D3&amp;spaces_joined=4&amp;longest_session=19&amp;username=neeeeeeeesh#"
               class="nav__share mobile w-inline-block"
               ><div>Share</div></a
             >
           </div>
-          <div class="tabs-content w-tab-content">
+          <div class="cap__tabs-content w-tab-content">
             <div
               data-w-tab="User Stats"
-              class="tab-pane-user-stats w-tab-pane w--tab-active"
+              class="cap__tabs-user w-tab-pane"
               id="w-tabs-0-data-w-pane-0"
               role="tabpanel"
               aria-labelledby="tab-user"
@@ -4879,9 +4913,9 @@
                 <div
                   data-w-id="a4f4db70-7ac5-7e24-402c-4020c4196b68"
                   style="
-                    transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
+                    transform: translate3d(0px, 2.4rem, 0px) scale3d(1, 1, 1)
                       rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-                    opacity: 1;
+                    opacity: 0;
                     transform-style: preserve-3d;
                   "
                   class="text-xl cc-font-semibold"
@@ -4892,219 +4926,76 @@
                   <p
                     data-w-id="a4f4db70-7ac5-7e24-402c-4020c4196b6b"
                     style="
-                      transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
+                      transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
                         rotateX(0deg) rotateY(0deg) rotateZ(0deg)
                         skew(0deg, 0deg);
-                      opacity: 1;
+                      opacity: 0;
                       transform-style: preserve-3d;
                     "
                     class="cc-font-medium"
                   >
-                    It’s been a big year, <span id="username">username</span>.
-                    Let’s see what you captured this year on VSCO. Share yours
-                    with #VSCO
+                    Thanks for taking VSCO on your creative journey this year.
+                    Whether sharing your work with the world or making something
+                    just for yourself, here’s how you made your mark in 2022.<br /><br />Share
+                    your favorite moments of 2022 with #VSCO.
                   </p>
                 </div>
               </div>
               <div class="swiper-holder">
                 <div
-                  class="swiper cards cards-0 swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden"
+                  class="swiper cards cards-0 swiper-initialized swiper-horizontal swiper-pointer-events"
                 >
                   <div
                     class="swiper-wrapper"
-                    id="swiper-wrapper-3f35d46cb131a4da"
+                    id="swiper-wrapper-431974223135108e8"
                     aria-live="polite"
-                    style="transform: translate3d(0px, 0px, 0px)"
+                    style="transition-duration: 0ms"
                   >
-                    <div
-                      id="card-preset"
-                      class="swiper-slide swiper-slide-active"
-                      role="group"
-                      aria-label="1 / 8"
-                      style="margin-right: 40px"
-                    >
-                      <div class="cap__block us-most-presets">
-                        <div class="cap__label">MOST USED PRESETS</div>
-                        <div class="div-block-7">
-                          <div id="preset-item" class="div-block-4">
-                            <div class="div-block-6">
-                              <div class="cap__us-filter-code">
-                                <div>AL1</div>
-                              </div>
-                            </div>
-                            <div class="cap__card-head tiny">
-                              <div class="text-p2 cc-font-medium">
-                                Fluorescent Soften
-                              </div>
-                              <div class="text-p3">Used 22 times</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      id="card-active-day"
-                      class="swiper-slide swiper-slide-next"
-                      role="group"
-                      aria-label="2 / 8"
-                      style="margin-right: 40px"
-                    >
-                      <div class="cap__block us-active-day">
-                        <div class="cap__label">MOST ACTIVE DAY</div>
-                        <div id="active-day-value" class="text-block">
-                          WEDNESDAYS
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      id="card-tools"
-                      class="swiper-slide"
-                      role="group"
-                      aria-label="3 / 8"
-                      style="margin-right: 40px"
-                    >
-                      <div class="cap__block us-tools">
-                        <div class="div-block-8">
-                          <div class="cap__label">Most loved tools</div>
-                          <div>
-                            Out of a total of 19 tools, these are your favorite.
-                          </div>
-                        </div>
-                        <div class="div-block-7 tools">
-                          <div
-                            id="card-tools-item"
-                            class="cap__block-gl-tool-item"
-                          >
-                            <img
-                              id="w-node-_88a1e4a3-724c-5cd5-efa3-7e22ec93a904-6bc12af1"
-                              loading="lazy"
-                              src="./Capturedqweqwe_files/638e99fc3680e1e6cc0198d1_grain-icon.svg"
-                              alt=""
-                            />
-                            <div class="cap__tool-item-desc">
-                              <div class="text-p1 cc-font-medium">Grain</div>
-                              <div>Used 58 times</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      id="card-spaces"
-                      class="swiper-slide"
-                      role="group"
-                      aria-label="4 / 8"
-                      style="margin-right: 40px"
-                    >
-                      <div class="cap__block us-spaces">
+                    <div id="card-spaces" class="swiper-slide">
+                      <div
+                        style="
+                          opacity: 0;
+                          transform: translate3d(0px, 1.6rem, 0px)
+                            scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
+                            rotateZ(0deg) skew(0deg, 0deg);
+                          transform-style: preserve-3d;
+                        "
+                        class="cap__block us-spaces"
+                      >
                         <div>
-                          <div id="space-value" class="cap__label">
-                            2 spaces created
+                          <div id="" class="cap__label">
+                            undefined SPACES CREATED
                           </div>
                         </div>
                         <img
                           loading="lazy"
-                          src="./Capturedqweqwe_files/638e9d7c70e41236bb5abf9a_spaces-icon.svg"
+                          src="./capt_files/638e9d7c70e41236bb5abf9a_spaces-icon.svg"
                           alt=""
-                          class="image-9"
+                          class="cap__us-spaces-icon"
                         />
                       </div>
                     </div>
-                    <div
-                      id="card-posted-images"
-                      class="swiper-slide"
-                      role="group"
-                      aria-label="5 / 8"
-                      style="margin-right: 40px"
-                    >
-                      <div class="cap__block us-posted">
+                    <div id="card-longest-session" class="swiper-slide">
+                      <div
+                        style="
+                          opacity: 0;
+                          transform: translate3d(0px, 1.6rem, 0px)
+                            scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
+                            rotateZ(0deg) skew(0deg, 0deg);
+                          transform-style: preserve-3d;
+                        "
+                        class="cap__block us-session"
+                      >
                         <div class="cap__block-us-posted-inner">
                           <div class="cap__block-gl-rep-no-wrap">
                             <img
                               loading="lazy"
-                              src="./Capturedqweqwe_files/638e9f2bc36dc2ff10b491f7_post-icon-pink.svg"
-                              alt=""
-                              class="cap__block-gl-rep-icon"
-                            />
-                            <div
-                              id="posted-images-value"
-                              class="cap__block-gl-rep-text"
-                            >
-                              14
-                            </div>
-                          </div>
-                          <div class="cap__label narrow">
-                            IMAGES POSTED TO VSCO
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      id="card-images-stats"
-                      class="swiper-slide"
-                      role="group"
-                      aria-label="6 / 8"
-                      style="margin-right: 40px"
-                    >
-                      <div class="cap__block us-numbers">
-                        <div id="images-stats-favorite">
-                          <div class="cap__block-gl-rep-no-wrap">
-                            <img
-                              loading="lazy"
-                              src="./Capturedqweqwe_files/638ea1e70075af798c1e16e0_star-icon.svg"
-                              alt=""
-                              class="cap__block-gl-rep-icon"
-                            />
-                            <div class="cap__block-gl-rep-text">16</div>
-                          </div>
-                          <div class="cap__label">Favorited images</div>
-                        </div>
-                        <div id="images-stats-reposted">
-                          <div class="cap__block-gl-rep-no-wrap">
-                            <img
-                              loading="lazy"
-                              src="./Capturedqweqwe_files/638ea1e73aa5bb2a378762b0_report-icon.svg"
-                              alt=""
-                              class="cap__block-gl-rep-icon"
-                            />
-                            <div class="cap__block-gl-rep-text">20</div>
-                          </div>
-                          <div class="cap__label">REPOSTED images</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      id="card-creative-month"
-                      class="swiper-slide"
-                      role="group"
-                      aria-label="7 / 8"
-                      style="margin-right: 40px"
-                    >
-                      <div class="cap__block us-active-month">
-                        <div class="cap__label">MOST CREATIVE MONTH</div>
-                        <div id="creative-month-value" class="text-block month">
-                          NOVEMBER
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      id="card-longest-session"
-                      class="swiper-slide"
-                      role="group"
-                      aria-label="8 / 8"
-                      style="margin-right: 40px"
-                    >
-                      <div class="cap__block us-session">
-                        <div class="cap__block-us-posted-inner">
-                          <div class="cap__block-gl-rep-no-wrap">
-                            <img
-                              loading="lazy"
-                              src="./Capturedqweqwe_files/638ea1391ca57b16fa3edc91_speed-icon.svg"
+                              src="./capt_files/638ea1391ca57b16fa3edc91_speed-icon.svg"
                               alt=""
                               class="cap__block-gl-rep-icon"
                             />
                             <div class="cap__block-gl-rep-text">
-                              <span id="longest-session-value">16</span
+                              <span id="longest-session-value">19</span
                               ><span class="text-span"> min</span>
                             </div>
                           </div>
@@ -5124,16 +5015,16 @@
                 </div>
                 <div style="opacity: 1" class="slider-cards-arrows">
                   <div
-                    class="slider-cards-arrow-prev cards-arrow-prev-0 swiper-button-disabled"
-                    tabindex="-1"
+                    class="slider-cards-arrow-prev cards-arrow-prev-0"
+                    tabindex="0"
                     role="button"
                     aria-label="Previous slide"
-                    aria-controls="swiper-wrapper-3f35d46cb131a4da"
-                    aria-disabled="true"
+                    aria-controls="swiper-wrapper-431974223135108e8"
+                    aria-disabled="false"
                   >
                     <img
                       loading="lazy"
-                      src="./Capturedqweqwe_files/638e676bb588402cb73e5637_capture-arrow-left.svg"
+                      src="./capt_files/638e676bb588402cb73e5637_capture-arrow-left.svg"
                       alt=""
                       class="testimonials__arrow-img"
                     />
@@ -5143,12 +5034,12 @@
                     tabindex="0"
                     role="button"
                     aria-label="Next slide"
-                    aria-controls="swiper-wrapper-3f35d46cb131a4da"
+                    aria-controls="swiper-wrapper-431974223135108e8"
                     aria-disabled="false"
                   >
                     <img
                       loading="lazy"
-                      src="./Capturedqweqwe_files/638e676b91dfa76fe02e5309_capture-arrow-right.svg"
+                      src="./capt_files/638e676b91dfa76fe02e5309_capture-arrow-right.svg"
                       alt=""
                       class="testimonials__arrow-img"
                     />
@@ -5158,7 +5049,7 @@
             </div>
             <div
               data-w-tab="Global"
-              class="tab-pane-global w-tab-pane"
+              class="cap__tabs-global w-tab-pane w--tab-active"
               id="w-tabs-0-data-w-pane-1"
               role="tabpanel"
               aria-labelledby="tab-global"
@@ -5167,9 +5058,9 @@
                 <div
                   data-w-id="685f2629-c5d1-d455-c5ae-a6a056628a1f"
                   style="
-                    transform: translate3d(0px, 2.4rem, 0px) scale3d(1, 1, 1)
+                    transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
                       rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-                    opacity: 0;
+                    opacity: 1;
                     transform-style: preserve-3d;
                   "
                   class="text-xl cc-font-semibold"
@@ -5180,16 +5071,19 @@
                   <p
                     data-w-id="c422414a-f165-ec8d-6696-7d149efa247a"
                     style="
-                      transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+                      transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
                         rotateX(0deg) rotateY(0deg) rotateZ(0deg)
                         skew(0deg, 0deg);
-                      opacity: 0;
+                      opacity: 1;
                       transform-style: preserve-3d;
                     "
                     class="cc-font-medium cc-text-light-grey"
                   >
-                    It’s been a big year! 5.6M of you all have made an impact in
-                    VSCO. Take a look and see what we’ve done this year.
+                    Creativity is what brings our community together. Here are
+                    the top tools, presets, and features the VSCO community used
+                    to express themselves and connect with each other in
+                    2022.<br /><br />Share your favorite moments of 2022 with
+                    #VSCO.
                   </p>
                 </div>
               </div>
@@ -5199,17 +5093,22 @@
                 >
                   <div
                     class="swiper-wrapper"
-                    id="swiper-wrapper-c7ee76ac3afa40a4"
+                    id="swiper-wrapper-5bf7bc50dd4f6aeb"
                     aria-live="polite"
-                    style="transition-duration: 0ms"
+                    style="transform: translate3d(0px, 0px, 0px)"
                   >
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide swiper-slide-active"
+                      role="group"
+                      aria-label="1 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
-                          opacity: 0;
+                          opacity: 1;
                           transform-style: preserve-3d;
                         "
                         class="cap__block gl-first"
@@ -5222,13 +5121,18 @@
                         </div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide swiper-slide-next"
+                      role="group"
+                      aria-label="2 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
-                          opacity: 0;
+                          opacity: 1;
                           transform-style: preserve-3d;
                         "
                         class="cap__block gl-spaces"
@@ -5237,25 +5141,25 @@
                           <img
                             width="139"
                             loading="lazy"
-                            src="./Capturedqweqwe_files/638e53ba67fd8f5767697e06_global-space-1@2x.jpg"
+                            src="./capt_files/638e53ba67fd8f5767697e06_global-space-1@2x.jpg"
                             alt=""
                             class="cap__block-gl-space-img"
                           /><img
                             width="155"
                             loading="lazy"
-                            src="./Capturedqweqwe_files/638e53baee2e7c105a4e0892_global-space-2@2x.jpg"
+                            src="./capt_files/638e53baee2e7c105a4e0892_global-space-2@2x.jpg"
                             alt=""
                             class="cap__block-gl-space-img _2"
                           /><img
                             width="155"
                             loading="lazy"
-                            src="./Capturedqweqwe_files/638e53ba63c36ea7f1fbbc36_global-space-3@2x.jpg"
+                            src="./capt_files/638e53ba63c36ea7f1fbbc36_global-space-3@2x.jpg"
                             alt=""
                             class="cap__block-gl-space-img _3"
                           /><img
                             width="155"
                             loading="lazy"
-                            src="./Capturedqweqwe_files/638e53ba8791b7259d446286_global-space-4@2x.jpg"
+                            src="./capt_files/638e53ba8791b7259d446286_global-space-4@2x.jpg"
                             alt=""
                             class="cap__block-gl-space-img _4"
                           />
@@ -5263,13 +5167,18 @@
                         <div class="cap__label">15,200 spaces created</div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide"
+                      role="group"
+                      aria-label="3 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
-                          opacity: 0;
+                          opacity: 1;
                           transform-style: preserve-3d;
                         "
                         class="cap__block gl-most-used"
@@ -5284,54 +5193,20 @@
                           </div>
                         </div>
                         <div>yadookarii</div>
-                        <div
-                          style="
-                            transform: translate3d(0px, 1.6rem, 0px)
-                              scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
-                              rotateZ(0deg) skew(0deg, 0deg);
-                            opacity: 0;
-                            transform-style: preserve-3d;
-                          "
-                          class="cap__block gl-spaces"
-                        >
-                          <div class="cap__block-gl-spaces-inner">
-                            <img
-                              width="139"
-                              loading="lazy"
-                              src="./Capturedqweqwe_files/638e53ba67fd8f5767697e06_global-space-1@2x.jpg"
-                              alt=""
-                              class="cap__block-gl-space-img"
-                            /><img
-                              width="155"
-                              loading="lazy"
-                              src="./Capturedqweqwe_files/638e53baee2e7c105a4e0892_global-space-2@2x.jpg"
-                              alt=""
-                              class="cap__block-gl-space-img _2"
-                            /><img
-                              width="155"
-                              loading="lazy"
-                              src="./Capturedqweqwe_files/638e53ba63c36ea7f1fbbc36_global-space-3@2x.jpg"
-                              alt=""
-                              class="cap__block-gl-space-img _3"
-                            /><img
-                              width="155"
-                              loading="lazy"
-                              src="./Capturedqweqwe_files/638e53ba8791b7259d446286_global-space-4@2x.jpg"
-                              alt=""
-                              class="cap__block-gl-space-img _4"
-                            />
-                          </div>
-                          <div class="cap__label">15,200 spaces created</div>
-                        </div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide"
+                      role="group"
+                      aria-label="4 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
-                          opacity: 0;
+                          opacity: 1;
                           transform-style: preserve-3d;
                         "
                         class="cap__block gl-active-day"
@@ -5374,13 +5249,18 @@
                         </div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide"
+                      role="group"
+                      aria-label="5 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
-                          opacity: 0;
+                          opacity: 1;
                           transform-style: preserve-3d;
                         "
                         class="cap__block gl-second-most"
@@ -5397,13 +5277,18 @@
                         <div>giovigraf</div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide"
+                      role="group"
+                      aria-label="6 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
-                          opacity: 0;
+                          opacity: 1;
                           transform-style: preserve-3d;
                         "
                         class="cap__block gl-reposts"
@@ -5412,7 +5297,7 @@
                           <div class="cap__block-gl-rep-no-wrap">
                             <img
                               loading="lazy"
-                              src="./Capturedqweqwe_files/638e225691dfa7fe3129a9ee_post-icon.svg"
+                              src="./capt_files/638e225691dfa7fe3129a9ee_post-icon.svg"
                               alt=""
                               class="cap__block-gl-rep-icon"
                             />
@@ -5424,7 +5309,7 @@
                           <div class="cap__block-gl-rep-no-wrap">
                             <img
                               loading="lazy"
-                              src="./Capturedqweqwe_files/638e22568bb6c5325a511ee8_video-icon.svg"
+                              src="./capt_files/638e22568bb6c5325a511ee8_video-icon.svg"
                               alt=""
                               class="cap__block-gl-rep-icon"
                             />
@@ -5434,13 +5319,18 @@
                         </div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide"
+                      role="group"
+                      aria-label="7 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
-                          opacity: 0;
+                          opacity: 1;
                           transform-style: preserve-3d;
                         "
                         class="cap__block gl-loved-tools"
@@ -5455,7 +5345,7 @@
                               <img
                                 id="w-node-_81cbb864-7d25-472f-44c0-d2a3e132e2e6-6bc12af1"
                                 loading="lazy"
-                                src="./Capturedqweqwe_files/638e5c7a8ec38dc5506578fe_grain.svg"
+                                src="./capt_files/638e5c7a8ec38dc5506578fe_grain.svg"
                                 alt=""
                               />
                               <div class="cap__tool-item-desc">
@@ -5467,7 +5357,7 @@
                               <img
                                 id="w-node-_81cbb864-7d25-472f-44c0-d2a3e132e2ed-6bc12af1"
                                 loading="lazy"
-                                src="./Capturedqweqwe_files/638e5c7a370461b0bd8706e3_hsl.svg"
+                                src="./capt_files/638e5c7a370461b0bd8706e3_hsl.svg"
                                 alt=""
                               />
                               <div class="cap__tool-item-desc">
@@ -5479,7 +5369,7 @@
                               <img
                                 id="w-node-_81cbb864-7d25-472f-44c0-d2a3e132e2f4-6bc12af1"
                                 loading="lazy"
-                                src="./Capturedqweqwe_files/638e5c7afdd5338120c24c2d_dodge.svg"
+                                src="./capt_files/638e5c7afdd5338120c24c2d_dodge.svg"
                                 alt=""
                               />
                               <div class="cap__tool-item-desc">
@@ -5493,13 +5383,18 @@
                         </div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide"
+                      role="group"
+                      aria-label="8 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
-                          opacity: 0;
+                          opacity: 1;
                           transform-style: preserve-3d;
                         "
                         class="cap__block gl-favorited"
@@ -5507,7 +5402,7 @@
                         <div class="cap__block-icon-item">
                           <img
                             loading="lazy"
-                            src="./Capturedqweqwe_files/638e23b29fffbf26969577a8_star-icon.svg"
+                            src="./capt_files/638e23b29fffbf26969577a8_star-icon.svg"
                             alt=""
                             class="cap__block-item-icon"
                           />
@@ -5515,33 +5410,43 @@
                         </div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide"
+                      role="group"
+                      aria-label="9 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
-                          opacity: 0;
+                          opacity: 1;
                           transform-style: preserve-3d;
                         "
                         class="cap__block gl-sessions"
                       >
                         <img
                           loading="lazy"
-                          src="./Capturedqweqwe_files/638e5104f9c7b0356dcb7226_creator-graph.svg"
+                          src="./capt_files/638e5104f9c7b0356dcb7226_creator-graph.svg"
                           alt=""
                           class="cap__block-gl-creator-graph"
                         />
                         <div class="cap__label">13 Creator sessions HOSTED</div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide"
+                      role="group"
+                      aria-label="10 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
-                          opacity: 0;
+                          opacity: 1;
                           transform-style: preserve-3d;
                         "
                         class="cap__block gl-third-most"
@@ -5558,13 +5463,18 @@
                         <div>the5thstring</div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide"
+                      role="group"
+                      aria-label="11 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
-                          opacity: 0;
+                          opacity: 1;
                           transform-style: preserve-3d;
                         "
                         class="cap__block gl-most-loved"
@@ -5584,7 +5494,7 @@
                             <div class="cap__block-icon-item">
                               <img
                                 loading="lazy"
-                                src="./Capturedqweqwe_files/638e23b29fffbf26969577a8_star-icon.svg"
+                                src="./capt_files/638e23b29fffbf26969577a8_star-icon.svg"
                                 alt=""
                                 class="cap__block-item-icon"
                               />
@@ -5595,7 +5505,7 @@
                             <div class="cap__block-icon-item">
                               <img
                                 loading="lazy"
-                                src="./Capturedqweqwe_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
+                                src="./capt_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
                                 alt=""
                                 class="cap__block-item-icon"
                               />
@@ -5607,11 +5517,16 @@
                         </div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide"
+                      role="group"
+                      aria-label="12 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          opacity: 0;
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          opacity: 1;
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
                           transform-style: preserve-3d;
@@ -5621,7 +5536,7 @@
                         <div class="cap__block-icon-item">
                           <img
                             loading="lazy"
-                            src="./Capturedqweqwe_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
+                            src="./capt_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
                             alt=""
                             class="cap__block-item-icon"
                           />
@@ -5629,11 +5544,16 @@
                         </div>
                       </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div
+                      class="swiper-slide"
+                      role="group"
+                      aria-label="13 / 13"
+                      style="margin-right: 40px"
+                    >
                       <div
                         style="
-                          opacity: 0;
-                          transform: translate3d(0px, 1.6rem, 0px)
+                          opacity: 1;
+                          transform: translate3d(0px, 0rem, 0px)
                             scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)
                             rotateZ(0deg) skew(0deg, 0deg);
                           transform-style: preserve-3d;
@@ -5732,16 +5652,16 @@
                 </div>
                 <div style="opacity: 1" class="slider-cards-arrows">
                   <div
-                    class="slider-cards-arrow-prev cards-arrow-prev-1"
-                    tabindex="0"
+                    class="slider-cards-arrow-prev cards-arrow-prev-1 swiper-button-disabled"
+                    tabindex="-1"
                     role="button"
                     aria-label="Previous slide"
-                    aria-controls="swiper-wrapper-c7ee76ac3afa40a4"
-                    aria-disabled="false"
+                    aria-controls="swiper-wrapper-5bf7bc50dd4f6aeb"
+                    aria-disabled="true"
                   >
                     <img
                       loading="lazy"
-                      src="./Capturedqweqwe_files/638e676bb588402cb73e5637_capture-arrow-left.svg"
+                      src="./capt_files/638e676bb588402cb73e5637_capture-arrow-left.svg"
                       alt=""
                       class="testimonials__arrow-img"
                     />
@@ -5751,12 +5671,12 @@
                     tabindex="0"
                     role="button"
                     aria-label="Next slide"
-                    aria-controls="swiper-wrapper-c7ee76ac3afa40a4"
+                    aria-controls="swiper-wrapper-5bf7bc50dd4f6aeb"
                     aria-disabled="false"
                   >
                     <img
                       loading="lazy"
-                      src="./Capturedqweqwe_files/638e676b91dfa76fe02e5309_capture-arrow-right.svg"
+                      src="./capt_files/638e676b91dfa76fe02e5309_capture-arrow-right.svg"
                       alt=""
                       class="testimonials__arrow-img"
                     />
@@ -5770,9 +5690,9 @@
       <div class="cc-hidden">
         <div
           style="
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            opacity: 0;
+            opacity: 1;
             transform-style: preserve-3d;
           "
           class="cap__block gl-first"
@@ -5784,34 +5704,34 @@
         </div>
         <div
           style="
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            opacity: 0;
+            opacity: 1;
             transform-style: preserve-3d;
           "
           class="cap__block gl-spaces"
         >
           <div class="cap__block-gl-spaces-inner">
             <img
-              src="./Capturedqweqwe_files/638e53ba67fd8f5767697e06_global-space-1@2x.jpg"
+              src="./capt_files/638e53ba67fd8f5767697e06_global-space-1@2x.jpg"
               loading="lazy"
               width="139"
               alt=""
               class="cap__block-gl-space-img"
             /><img
-              src="./Capturedqweqwe_files/638e53baee2e7c105a4e0892_global-space-2@2x.jpg"
+              src="./capt_files/638e53baee2e7c105a4e0892_global-space-2@2x.jpg"
               loading="lazy"
               width="155"
               alt=""
               class="cap__block-gl-space-img _2"
             /><img
-              src="./Capturedqweqwe_files/638e53ba63c36ea7f1fbbc36_global-space-3@2x.jpg"
+              src="./capt_files/638e53ba63c36ea7f1fbbc36_global-space-3@2x.jpg"
               loading="lazy"
               width="155"
               alt=""
               class="cap__block-gl-space-img _3"
             /><img
-              src="./Capturedqweqwe_files/638e53ba8791b7259d446286_global-space-4@2x.jpg"
+              src="./capt_files/638e53ba8791b7259d446286_global-space-4@2x.jpg"
               loading="lazy"
               width="155"
               alt=""
@@ -5822,9 +5742,9 @@
         </div>
         <div
           style="
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            opacity: 0;
+            opacity: 1;
             transform-style: preserve-3d;
           "
           class="cap__block gl-most-used"
@@ -5840,9 +5760,9 @@
         </div>
         <div
           style="
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            opacity: 0;
+            opacity: 1;
             transform-style: preserve-3d;
           "
           class="cap__block gl-active-day"
@@ -5886,9 +5806,9 @@
         </div>
         <div
           style="
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            opacity: 0;
+            opacity: 1;
             transform-style: preserve-3d;
           "
           class="cap__block gl-second-most"
@@ -5904,9 +5824,9 @@
         </div>
         <div
           style="
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            opacity: 0;
+            opacity: 1;
             transform-style: preserve-3d;
           "
           class="cap__block gl-reposts"
@@ -5914,7 +5834,7 @@
           <div>
             <div class="cap__block-gl-rep-no-wrap">
               <img
-                src="./Capturedqweqwe_files/638e225691dfa7fe3129a9ee_post-icon.svg"
+                src="./capt_files/638e225691dfa7fe3129a9ee_post-icon.svg"
                 loading="lazy"
                 alt=""
                 class="cap__block-gl-rep-icon"
@@ -5926,7 +5846,7 @@
           <div>
             <div class="cap__block-gl-rep-no-wrap">
               <img
-                src="./Capturedqweqwe_files/638e22568bb6c5325a511ee8_video-icon.svg"
+                src="./capt_files/638e22568bb6c5325a511ee8_video-icon.svg"
                 loading="lazy"
                 alt=""
                 class="cap__block-gl-rep-icon"
@@ -5938,9 +5858,9 @@
         </div>
         <div
           style="
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            opacity: 0;
+            opacity: 1;
             transform-style: preserve-3d;
           "
           class="cap__block gl-loved-tools"
@@ -5951,7 +5871,7 @@
             <div class="cap__block-gl-tools-right">
               <div class="cap__block-gl-tool-item">
                 <img
-                  src="./Capturedqweqwe_files/638e5c7a8ec38dc5506578fe_grain.svg"
+                  src="./capt_files/638e5c7a8ec38dc5506578fe_grain.svg"
                   loading="lazy"
                   id="w-node-_76bc45d2-9b90-5550-ff31-4cc9830e151e-6bc12af1"
                   alt=""
@@ -5963,7 +5883,7 @@
               </div>
               <div class="cap__block-gl-tool-item">
                 <img
-                  src="./Capturedqweqwe_files/638e5c7a370461b0bd8706e3_hsl.svg"
+                  src="./capt_files/638e5c7a370461b0bd8706e3_hsl.svg"
                   loading="lazy"
                   id="w-node-f8ce66e4-d625-49c0-2da9-f5daa10f7df5-6bc12af1"
                   alt=""
@@ -5975,7 +5895,7 @@
               </div>
               <div class="cap__block-gl-tool-item">
                 <img
-                  src="./Capturedqweqwe_files/638e5c7afdd5338120c24c2d_dodge.svg"
+                  src="./capt_files/638e5c7afdd5338120c24c2d_dodge.svg"
                   loading="lazy"
                   id="w-node-d7e22794-dc96-5038-10c1-f19bb4224d98-6bc12af1"
                   alt=""
@@ -5990,16 +5910,16 @@
         </div>
         <div
           style="
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            opacity: 0;
+            opacity: 1;
             transform-style: preserve-3d;
           "
           class="cap__block gl-favorited"
         >
           <div class="cap__block-icon-item">
             <img
-              src="./Capturedqweqwe_files/638e23b29fffbf26969577a8_star-icon.svg"
+              src="./capt_files/638e23b29fffbf26969577a8_star-icon.svg"
               loading="lazy"
               alt=""
               class="cap__block-item-icon"
@@ -6009,15 +5929,15 @@
         </div>
         <div
           style="
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            opacity: 0;
+            opacity: 1;
             transform-style: preserve-3d;
           "
           class="cap__block gl-sessions"
         >
           <img
-            src="./Capturedqweqwe_files/638e5104f9c7b0356dcb7226_creator-graph.svg"
+            src="./capt_files/638e5104f9c7b0356dcb7226_creator-graph.svg"
             loading="lazy"
             alt=""
             class="cap__block-gl-creator-graph"
@@ -6026,9 +5946,9 @@
         </div>
         <div
           style="
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            opacity: 0;
+            opacity: 1;
             transform-style: preserve-3d;
           "
           class="cap__block gl-third-most"
@@ -6044,9 +5964,9 @@
         </div>
         <div
           style="
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            opacity: 0;
+            opacity: 1;
             transform-style: preserve-3d;
           "
           class="cap__block gl-most-loved"
@@ -6063,7 +5983,7 @@
             <div class="cap__block-gl-love-stats">
               <div class="cap__block-icon-item">
                 <img
-                  src="./Capturedqweqwe_files/638e23b29fffbf26969577a8_star-icon.svg"
+                  src="./capt_files/638e23b29fffbf26969577a8_star-icon.svg"
                   loading="lazy"
                   alt=""
                   class="cap__block-item-icon"
@@ -6072,7 +5992,7 @@
               </div>
               <div class="cap__block-icon-item">
                 <img
-                  src="./Capturedqweqwe_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
+                  src="./capt_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
                   loading="lazy"
                   alt=""
                   class="cap__block-item-icon"
@@ -6084,8 +6004,8 @@
         </div>
         <div
           style="
-            opacity: 0;
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            opacity: 1;
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
             transform-style: preserve-3d;
           "
@@ -6093,7 +6013,7 @@
         >
           <div class="cap__block-icon-item">
             <img
-              src="./Capturedqweqwe_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
+              src="./capt_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
               loading="lazy"
               alt=""
               class="cap__block-item-icon"
@@ -6103,8 +6023,8 @@
         </div>
         <div
           style="
-            opacity: 0;
-            transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            opacity: 1;
+            transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1)
               rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
             transform-style: preserve-3d;
           "
@@ -6206,34 +6126,42 @@
         <div>Link copied</div>
       </div>
       <div fs-copyclip-element="copy-this" class="url-link">
-        https://vsco-2022.webflow.io/2022-captured
+        https://vsco-2022.webflow.io/2022-captured?most_creative_day_of_week=Tuesday&amp;most_creat%5B%E2%80%A6%5D3&amp;spaces_joined=4&amp;longest_session=19&amp;username=neeeeeeeesh
       </div>
     </div>
     <div class="cap__grid cc-hidden">
-      <div class="cap__block us-most-presets">
+      <div
+        style="
+          opacity: 0;
+          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          transform-style: preserve-3d;
+        "
+        class="cap__block us-most-presets"
+      >
         <div class="cap__label">MOST USED PRESETS</div>
-        <div class="div-block-7">
-          <div class="div-block-4">
-            <div class="div-block-6">
-              <div class="div-block-5"><div>AL1</div></div>
+        <div class="cap__us-presets-inner">
+          <div class="cap__us-filter-item">
+            <div class="cap__us-filter-code-wrap">
+              <div class="cap__us-filter-code"><div>AL1</div></div>
             </div>
             <div class="cap__card-head tiny">
               <div class="text-p2 cc-font-medium">Fluorescent Soften</div>
               <div class="text-p3">Used 22 times</div>
             </div>
           </div>
-          <div class="div-block-4">
-            <div class="div-block-6">
-              <div class="div-block-5"><div>AL1</div></div>
+          <div class="cap__us-filter-item">
+            <div class="cap__us-filter-code-wrap">
+              <div class="cap__us-filter-code"><div>AL1</div></div>
             </div>
             <div class="cap__card-head tiny">
               <div class="text-p2 cc-font-medium">Fluorescent Soften</div>
               <div class="text-p3">Used 22 times</div>
             </div>
           </div>
-          <div class="div-block-4">
-            <div class="div-block-6">
-              <div class="div-block-5"><div>AL1</div></div>
+          <div class="cap__us-filter-item">
+            <div class="cap__us-filter-code-wrap">
+              <div class="cap__us-filter-code"><div>AL1</div></div>
             </div>
             <div class="cap__card-head tiny">
               <div class="text-p2 cc-font-medium">Fluorescent Soften</div>
@@ -6242,21 +6170,37 @@
           </div>
         </div>
       </div>
-      <div class="cap__block us-active-day">
+      <div
+        style="
+          opacity: 0;
+          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          transform-style: preserve-3d;
+        "
+        class="cap__block us-active-day"
+      >
         <div class="cap__label">MOST ACTIVE DAY</div>
         <div class="text-block">WEDNESDAYS</div>
       </div>
-      <div class="cap__block us-tools">
-        <div class="div-block-8">
+      <div
+        style="
+          opacity: 0;
+          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          transform-style: preserve-3d;
+        "
+        class="cap__block us-tools"
+      >
+        <div class="cap__us-tools-head">
           <div class="cap__label">Most loved tools</div>
           <div>Out of a total of 19 tools, these are your favorite.</div>
         </div>
-        <div class="div-block-7 tools">
+        <div class="cap__us-presets-inner tools">
           <div class="cap__block-gl-tool-item">
             <img
               id="w-node-eeab5a28-4f53-bf9c-1d4d-880fb04bb404-6bc12af1"
               loading="lazy"
-              src="./Capturedqweqwe_files/638e99fc3680e1e6cc0198d1_grain-icon.svg"
+              src="./capt_files/638e99fc3680e1e6cc0198d1_grain-icon.svg"
               alt=""
             />
             <div class="cap__tool-item-desc">
@@ -6268,7 +6212,7 @@
             <img
               id="w-node-eeab5a28-4f53-bf9c-1d4d-880fb04bb40b-6bc12af1"
               loading="lazy"
-              src="./Capturedqweqwe_files/638e99fc9dc69eeb3c361b93_exposure-icon.svg"
+              src="./capt_files/638e99fc9dc69eeb3c361b93_exposure-icon.svg"
               alt=""
             />
             <div class="cap__tool-item-desc">
@@ -6280,7 +6224,7 @@
             <img
               id="w-node-eeab5a28-4f53-bf9c-1d4d-880fb04bb412-6bc12af1"
               loading="lazy"
-              src="./Capturedqweqwe_files/638e99fc99a79930fc1df8f4_fade-icon.svg"
+              src="./capt_files/638e99fc99a79930fc1df8f4_fade-icon.svg"
               alt=""
             />
             <div class="cap__tool-item-desc">
@@ -6290,23 +6234,39 @@
           </div>
         </div>
       </div>
-      <div class="cap__block us-spaces">
+      <div
+        style="
+          opacity: 0;
+          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          transform-style: preserve-3d;
+        "
+        class="cap__block us-spaces"
+      >
         <div>
           <div class="cap__label">2 spaces created</div>
           <div class="cap__label">3 spaces joined</div>
         </div>
         <img
-          src="./Capturedqweqwe_files/638e9d7c70e41236bb5abf9a_spaces-icon.svg"
+          src="./capt_files/638e9d7c70e41236bb5abf9a_spaces-icon.svg"
           loading="lazy"
           alt=""
-          class="image-9"
+          class="cap__us-spaces-icon"
         />
       </div>
-      <div class="cap__block us-posted">
+      <div
+        style="
+          opacity: 0;
+          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          transform-style: preserve-3d;
+        "
+        class="cap__block us-posted"
+      >
         <div class="cap__block-us-posted-inner">
           <div class="cap__block-gl-rep-no-wrap">
             <img
-              src="./Capturedqweqwe_files/638e9f2bc36dc2ff10b491f7_post-icon-pink.svg"
+              src="./capt_files/638e9f2bc36dc2ff10b491f7_post-icon-pink.svg"
               loading="lazy"
               alt=""
               class="cap__block-gl-rep-icon"
@@ -6316,12 +6276,20 @@
           <div class="cap__label narrow">IMAGES POSTED TO VSCO</div>
         </div>
       </div>
-      <div class="cap__block us-numbers">
+      <div
+        style="
+          opacity: 0;
+          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          transform-style: preserve-3d;
+        "
+        class="cap__block us-numbers"
+      >
         <div>
           <div class="cap__block-gl-rep-no-wrap">
             <img
               loading="lazy"
-              src="./Capturedqweqwe_files/638ea1e70075af798c1e16e0_star-icon.svg"
+              src="./capt_files/638ea1e70075af798c1e16e0_star-icon.svg"
               alt=""
               class="cap__block-gl-rep-icon"
             />
@@ -6333,7 +6301,7 @@
           <div class="cap__block-gl-rep-no-wrap">
             <img
               loading="lazy"
-              src="./Capturedqweqwe_files/638ea1e73aa5bb2a378762b0_report-icon.svg"
+              src="./capt_files/638ea1e73aa5bb2a378762b0_report-icon.svg"
               alt=""
               class="cap__block-gl-rep-icon"
             />
@@ -6342,15 +6310,31 @@
           <div class="cap__label">REPOSTED images</div>
         </div>
       </div>
-      <div class="cap__block us-active-month">
+      <div
+        style="
+          opacity: 0;
+          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          transform-style: preserve-3d;
+        "
+        class="cap__block us-active-month"
+      >
         <div class="cap__label">MOST CREATIVE MONTH</div>
         <div class="text-block month">NOVEMBER</div>
       </div>
-      <div class="cap__block us-session">
+      <div
+        style="
+          opacity: 0;
+          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
+            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          transform-style: preserve-3d;
+        "
+        class="cap__block us-session"
+      >
         <div class="cap__block-us-posted-inner">
           <div class="cap__block-gl-rep-no-wrap">
             <img
-              src="./Capturedqweqwe_files/638ea1391ca57b16fa3edc91_speed-icon.svg"
+              src="./capt_files/638ea1391ca57b16fa3edc91_speed-icon.svg"
               loading="lazy"
               alt=""
               class="cap__block-gl-rep-icon"
@@ -6366,9 +6350,9 @@
     <div class="cap__grid cc-hidden">
       <div
         style="
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-          opacity: 0;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
           transform-style: preserve-3d;
         "
         class="cap__block gl-first"
@@ -6380,9 +6364,9 @@
       </div>
       <div
         style="
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-          opacity: 0;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
           transform-style: preserve-3d;
         "
         class="cap__block gl-spaces"
@@ -6391,25 +6375,25 @@
           <img
             width="139"
             loading="lazy"
-            src="./Capturedqweqwe_files/638e53ba67fd8f5767697e06_global-space-1@2x.jpg"
+            src="./capt_files/638e53ba67fd8f5767697e06_global-space-1@2x.jpg"
             alt=""
             class="cap__block-gl-space-img"
           /><img
             width="155"
             loading="lazy"
-            src="./Capturedqweqwe_files/638e53baee2e7c105a4e0892_global-space-2@2x.jpg"
+            src="./capt_files/638e53baee2e7c105a4e0892_global-space-2@2x.jpg"
             alt=""
             class="cap__block-gl-space-img _2"
           /><img
             width="155"
             loading="lazy"
-            src="./Capturedqweqwe_files/638e53ba63c36ea7f1fbbc36_global-space-3@2x.jpg"
+            src="./capt_files/638e53ba63c36ea7f1fbbc36_global-space-3@2x.jpg"
             alt=""
             class="cap__block-gl-space-img _3"
           /><img
             width="155"
             loading="lazy"
-            src="./Capturedqweqwe_files/638e53ba8791b7259d446286_global-space-4@2x.jpg"
+            src="./capt_files/638e53ba8791b7259d446286_global-space-4@2x.jpg"
             alt=""
             class="cap__block-gl-space-img _4"
           />
@@ -6418,9 +6402,9 @@
       </div>
       <div
         style="
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-          opacity: 0;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
           transform-style: preserve-3d;
         "
         class="cap__block gl-most-used"
@@ -6436,9 +6420,9 @@
       </div>
       <div
         style="
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-          opacity: 0;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
           transform-style: preserve-3d;
         "
         class="cap__block gl-active-day"
@@ -6482,9 +6466,9 @@
       </div>
       <div
         style="
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-          opacity: 0;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
           transform-style: preserve-3d;
         "
         class="cap__block gl-second-most"
@@ -6500,9 +6484,9 @@
       </div>
       <div
         style="
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-          opacity: 0;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
           transform-style: preserve-3d;
         "
         class="cap__block gl-reposts"
@@ -6511,7 +6495,7 @@
           <div class="cap__block-gl-rep-no-wrap">
             <img
               loading="lazy"
-              src="./Capturedqweqwe_files/638e225691dfa7fe3129a9ee_post-icon.svg"
+              src="./capt_files/638e225691dfa7fe3129a9ee_post-icon.svg"
               alt=""
               class="cap__block-gl-rep-icon"
             />
@@ -6523,7 +6507,7 @@
           <div class="cap__block-gl-rep-no-wrap">
             <img
               loading="lazy"
-              src="./Capturedqweqwe_files/638e22568bb6c5325a511ee8_video-icon.svg"
+              src="./capt_files/638e22568bb6c5325a511ee8_video-icon.svg"
               alt=""
               class="cap__block-gl-rep-icon"
             />
@@ -6534,9 +6518,9 @@
       </div>
       <div
         style="
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-          opacity: 0;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
           transform-style: preserve-3d;
         "
         class="cap__block gl-loved-tools"
@@ -6549,7 +6533,7 @@
               <img
                 id="w-node-_5fcb6876-e3b9-9426-08e1-82fdb3e8ab38-6bc12af1"
                 loading="lazy"
-                src="./Capturedqweqwe_files/638e5c7a8ec38dc5506578fe_grain.svg"
+                src="./capt_files/638e5c7a8ec38dc5506578fe_grain.svg"
                 alt=""
               />
               <div class="cap__tool-item-desc">
@@ -6561,7 +6545,7 @@
               <img
                 id="w-node-_5fcb6876-e3b9-9426-08e1-82fdb3e8ab3f-6bc12af1"
                 loading="lazy"
-                src="./Capturedqweqwe_files/638e5c7a370461b0bd8706e3_hsl.svg"
+                src="./capt_files/638e5c7a370461b0bd8706e3_hsl.svg"
                 alt=""
               />
               <div class="cap__tool-item-desc">
@@ -6573,7 +6557,7 @@
               <img
                 id="w-node-_5fcb6876-e3b9-9426-08e1-82fdb3e8ab46-6bc12af1"
                 loading="lazy"
-                src="./Capturedqweqwe_files/638e5c7afdd5338120c24c2d_dodge.svg"
+                src="./capt_files/638e5c7afdd5338120c24c2d_dodge.svg"
                 alt=""
               />
               <div class="cap__tool-item-desc">
@@ -6586,9 +6570,9 @@
       </div>
       <div
         style="
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-          opacity: 0;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
           transform-style: preserve-3d;
         "
         class="cap__block gl-favorited"
@@ -6596,7 +6580,7 @@
         <div class="cap__block-icon-item">
           <img
             loading="lazy"
-            src="./Capturedqweqwe_files/638e23b29fffbf26969577a8_star-icon.svg"
+            src="./capt_files/638e23b29fffbf26969577a8_star-icon.svg"
             alt=""
             class="cap__block-item-icon"
           />
@@ -6605,16 +6589,16 @@
       </div>
       <div
         style="
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-          opacity: 0;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
           transform-style: preserve-3d;
         "
         class="cap__block gl-sessions"
       >
         <img
           loading="lazy"
-          src="./Capturedqweqwe_files/638e5104f9c7b0356dcb7226_creator-graph.svg"
+          src="./capt_files/638e5104f9c7b0356dcb7226_creator-graph.svg"
           alt=""
           class="cap__block-gl-creator-graph"
         />
@@ -6622,9 +6606,9 @@
       </div>
       <div
         style="
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-          opacity: 0;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
           transform-style: preserve-3d;
         "
         class="cap__block gl-third-most"
@@ -6640,9 +6624,9 @@
       </div>
       <div
         style="
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-          opacity: 0;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
           transform-style: preserve-3d;
         "
         class="cap__block gl-most-loved"
@@ -6660,7 +6644,7 @@
             <div class="cap__block-icon-item">
               <img
                 loading="lazy"
-                src="./Capturedqweqwe_files/638e23b29fffbf26969577a8_star-icon.svg"
+                src="./capt_files/638e23b29fffbf26969577a8_star-icon.svg"
                 alt=""
                 class="cap__block-item-icon"
               />
@@ -6669,7 +6653,7 @@
             <div class="cap__block-icon-item">
               <img
                 loading="lazy"
-                src="./Capturedqweqwe_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
+                src="./capt_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
                 alt=""
                 class="cap__block-item-icon"
               />
@@ -6680,9 +6664,9 @@
       </div>
       <div
         style="
-          opacity: 0;
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
           transform-style: preserve-3d;
         "
         class="cap__block gl-reposted"
@@ -6690,7 +6674,7 @@
         <div class="cap__block-icon-item">
           <img
             loading="lazy"
-            src="./Capturedqweqwe_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
+            src="./capt_files/638e3e5be9575c29fe2991fb_repost-icon.svg"
             alt=""
             class="cap__block-item-icon"
           />
@@ -6699,9 +6683,9 @@
       </div>
       <div
         style="
-          opacity: 0;
-          transform: translate3d(0px, 1.6rem, 0px) scale3d(1, 1, 1)
-            rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          opacity: 1;
+          transform: translate3d(0px, 0rem, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
           transform-style: preserve-3d;
         "
         class="cap__block gl-creative-m"
@@ -6789,11 +6773,11 @@
       </div>
     </div>
     <script
-      src="./Capturedqweqwe_files/jquery-3.5.1.min.dc5e7f18c8.js"
+      src="./capt_files/jquery-3.5.1.min.dc5e7f18c8.js"
       type="text/javascript"
     ></script>
     <script
-      src="./Capturedqweqwe_files/vsco-2022.0c941d461.js"
+      src="./capt_files/vsco-2022.7810aa78b.js"
       type="text/javascript"
     ></script>
     <!--[if lte IE 9
@@ -6890,8 +6874,19 @@
         }
       })();
     </script>
+    <script type="text/javascript" src="./dist/captured.min.js"></script>
+    <script>
+      console.log("HELLO");
+      VSCOCaptured.init({
+        onSuccess: () => {
+          console.log("INIT SUCCESS");
+          // do some code such as hide loader and initialize swiper
+        },
+      });
+    </script>
+
     <!-- [Attributes by Finsweet] Copy to clipboard -->
-    <script defer="" src="./Capturedqweqwe_files/copyclip.js"></script>
+    <script defer="" src="./capt_files/copyclip.js"></script>
 
     <script>
       $(".url-link").text(window.location.href);
@@ -6910,7 +6905,7 @@
     </script>
 
     <!-- swiper 8 JS -->
-    <script src="./Capturedqweqwe_files/swiper-bundle.min.js"></script>
+    <script src="./capt_files/swiper-bundle.min.js"></script>
 
     <script>
       var swiperNodes = "";
@@ -6922,58 +6917,93 @@
         $(this).append(swiperNodes);
       });
 
-      const myCustomSlider = document.querySelectorAll(".cards");
+      let sliderInstances = [];
 
-      for (i = 0; i < myCustomSlider.length; i++) {
-        myCustomSlider[i].classList.add("cards-" + i);
-        $(myCustomSlider[i])
-          .closest(".swiper-holder")
-          .find(".slider-cards-arrow-next")
-          .addClass("cards-arrow-next-" + i);
-        $(myCustomSlider[i])
-          .closest(".swiper-holder")
-          .find(".slider-cards-arrow-prev")
-          .addClass("cards-arrow-prev-" + i);
-        $(myCustomSlider[i])
-          .find(".swiper-navigation")
-          .addClass("swiper-navigation-" + i);
+      const initSliders = () => {
+        const sliderElements = Array.from(document.querySelectorAll(".cards"));
 
-        var slider = new Swiper(".cards-" + i, {
-          /* Options */
-          mousewheel: {
-            invert: false,
-            forceToAxis: true,
-          },
-          // Optional parameters
-          slidesPerView: "auto",
-          spaceBetween: 40,
-          loop: false,
-          speed: 650,
-          observer: true,
-          loopFillGroupBlank: false,
-          centeredSlides: false,
-          navigation: {
-            nextEl: ".cards-arrow-next-" + i,
-            prevEl: ".cards-arrow-prev-" + i,
-          },
-          keyboard: {
-            enabled: true,
-          },
-          breakpoints: {
-            0: {
-              slidesPerView: 1,
-              direction: "vertical",
-              centeredSlides: true,
-              autoHeight: true,
+        for (let i = 0; i < sliderElements.length; i += 1) {
+          const sliderEl = sliderElements[i];
+          sliderEl.classList.add("cards-" + i);
+          $(sliderEl)
+            .closest(".swiper-holder")
+            .find(".slider-cards-arrow-next")
+            .addClass("cards-arrow-next-" + i);
+          $(sliderEl)
+            .closest(".swiper-holder")
+            .find(".slider-cards-arrow-prev")
+            .addClass("cards-arrow-prev-" + i);
+          $(sliderEl)
+            .find(".swiper-navigation")
+            .addClass("swiper-navigation-" + i);
+
+          var slider = new Swiper(".cards-" + i, {
+            /* Options */
+            mousewheel: {
+              invert: false,
+              forceToAxis: true,
             },
-            767: {
-              slidesPerView: "auto",
-              direction: "horizontal",
-              centeredSlides: false,
+            // Optional parameters
+            slidesPerView: "auto",
+            spaceBetween: 40,
+            loop: false,
+            speed: 650,
+            observer: true,
+            loopFillGroupBlank: false,
+            centeredSlides: false,
+            navigation: {
+              nextEl: ".cards-arrow-next-" + i,
+              prevEl: ".cards-arrow-prev-" + i,
             },
-          },
+            keyboard: {
+              enabled: true,
+            },
+            breakpoints: {
+              0: {
+                slidesPerView: 1,
+                direction: "vertical",
+                centeredSlides: true,
+                autoHeight: true,
+                cssMode: true,
+              },
+              767: {
+                slidesPerView: "auto",
+                direction: "horizontal",
+                centeredSlides: false,
+              },
+            },
+          });
+
+          slider.slideTo(0);
+          sliderInstances.push(slider);
+        }
+      };
+
+      initSliders();
+
+      window.addEventListener("resize", () => {
+        sliderInstances.forEach((sliderInstance) => {
+          sliderInstance.destroy();
         });
-      }
+        sliderInstances = [];
+        initSliders();
+      });
+
+      window.addEventListener("scroll", () => {
+        const swipers = document.querySelectorAll(".swiper");
+        const maxRectBottom = Math.max(
+          ...Array.from(swipers).map(
+            (item) => Math.floor(item.getBoundingClientRect().bottom) - 1
+          )
+        );
+        Array.from(swipers).forEach((swiperEl) => {
+          if (window.innerHeight >= maxRectBottom || window.innerWidth > 767) {
+            swiperEl.style.pointerEvents = "auto";
+          } else {
+            swiperEl.style.pointerEvents = "none";
+          }
+        });
+      });
     </script>
     <link
       rel="stylesheet"
@@ -7069,10 +7099,7 @@
         <div class="ot-pc-header">
           <!-- Logo Tag -->
           <div class="ot-pc-logo" role="img" aria-label="Company Logo">
-            <img
-              alt="Company Logo"
-              src="./Capturedqweqwe_files/VSCOSealLockup.png"
-            />
+            <img alt="Company Logo" src="./capt_files/VSCOSealLockup.png" />
           </div>
           <button
             id="close-pc-btn-handler"
@@ -7561,50 +7588,7 @@
             <div class="ot-sdk-row"><div class="ot-sdk-column"></div></div>
           </section>
         </section>
-        <div class="ot-pc-footer">
-          <div class="ot-btn-container">
-            <button class="ot-pc-refuse-all-handler">Reject All</button>
-            <button
-              class="save-preference-btn-handler onetrust-close-btn-handler"
-            >
-              Confirm My Choices
-            </button>
-          </div>
-          <!-- Footer logo -->
-          <div class="ot-pc-footer-logo">
-            <a
-              href="https://www.onetrust.com/products/cookie-consent/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Powered by OneTrust Opens in a new Tab"
-              ><img
-                alt="Powered by Onetrust"
-                src="./Capturedqweqwe_files/powered_by_logo.svg"
-                title="Powered by OneTrust Opens in a new Tab"
-            /></a>
-          </div>
-        </div>
-        <!-- Cookie subgroup container --><!-- Vendor list link --><!-- Cookie lost link --><!-- Toggle HTML element --><!-- Checkbox HTML --><!-- plus minus--><!-- Arrow SVG element --><!-- Accordion basic element --><span
-          class="ot-scrn-rdr"
-          aria-atomic="true"
-          aria-live="polite"
-          >Your Privacy [`dialog closed`]</span
-        ><!-- Vendor Service container and item template --><iframe
-          class="ot-text-resize"
-          title="onetrust-text-resize"
-          style="position: absolute; top: -50000px; width: 100em"
-          aria-hidden="true"
-          src="./Capturedqweqwe_files/saved_resource.html"
-        ></iframe>
       </div>
     </div>
   </body>
-  <script src="./dist/wrapped.min.js"></script>
-  <script>
-    VSCOCaptured.init({
-      onSuccess: () => {
-        console.log("INIT SUCCESS");
-      },
-    });
-  </script>
 </html>
