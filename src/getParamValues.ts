@@ -15,11 +15,14 @@ export const getSearchParamValues = () => {
   const isEncoded = allSearchParams.get("capture_data");
 
   if (isEncoded) {
-    const res = JSON.parse(b64_to_utf8(isEncoded)) as Partial<{
-      [K in UrlParam]: string;
-    }>;
-    console.log(res);
-    return res;
+    try {
+      const res = JSON.parse(b64_to_utf8(isEncoded)) as Partial<{
+        [K in UrlParam]: string;
+      }>;
+      return res;
+    } catch {
+      return {};
+    }
   }
 
   const result = URL_PARAMS.reduce((res, key) => {
