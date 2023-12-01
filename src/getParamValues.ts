@@ -9,6 +9,12 @@ function b64_to_utf8(str: string) {
   return decodeURIComponent(escape(window.atob(str)));
 }
 
+type MappedResult = Record<UrlParam, string>;
+
+type AddSuffixToObject<T, P extends string> = {
+  [K in keyof T as K extends string ? `${K}${P}` : never]: T[K];
+};
+
 export const getSearchParamValues = (shouldEncode = true) => {
   const allSearchParams = new URLSearchParams(window.location.search);
 
@@ -25,19 +31,23 @@ export const getSearchParamValues = (shouldEncode = true) => {
     }
   }
 
-  const result = URL_PARAMS.reduce((res, key) => {
-    const value = allSearchParams.get(key);
-    allSearchParams.delete(key);
-    const validated = getValidatedParamValue(key, value);
-    if (validated !== null) {
-      return {
-        ...res,
-        [key]: validated,
-      };
-    }
+  const result = URL_PARAMS.reduce(
+    (res, key) => {
+      const value = allSearchParams.get(key);
+      allSearchParams.delete(key);
+      const validated = getValidatedParamValue(key, value);
+      if (validated !== null) {
+        return {
+          ...res,
+          [key]: validated,
+          [`${key}_raw`]: value,
+        };
+      }
 
-    return res;
-  }, {} as Partial<{ [K in UrlParam]: string }>);
+      return res;
+    },
+    {} as Partial<MappedResult & AddSuffixToObject<MappedResult, "_raw">>
+  );
 
   if (shouldEncode) {
     try {

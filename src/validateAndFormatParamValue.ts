@@ -51,48 +51,41 @@ export const getValidatedParamValue = (
     return null;
   }
   switch (param) {
-    case "images_posted":
+    case "snapshot23_edits_with_this_filter_1":
+    case "snapshot23_edits_with_this_filter_2":
+    case "snapshot23_edits_with_this_filter_3":
+    case "snapshot23_tool_edits_1":
+    case "snapshot23_tool_edits_2":
+    case "snapshot23_tool_edits_3":
+    case "snapshot23_favorites":
+    case "snapshot23_filter_used":
+    case "snapshot23_follows":
+    case "snapshot23_messages":
+    case "snapshot23_n_images":
+    case "snapshot23_n_videos":
+    case "snapshot23_reposts":
+    case "snapshot23_spaces_created_count":
+    case "snapshot23_spaces_joined":
+    case "snapshot23_webstudio":
+    case "snapshot23_n_captures":
+    case "snapshot23_n_montages":
       return formatInteger(value);
-    case "longest_session":
-      return formatInteger(value);
-    case "most_creative_day_of_week":
+
+    case "snapshot23_most_creative_day_of_week":
       return weekdays.includes(value.toLocaleLowerCase())
         ? value.toUpperCase()
         : null;
-    case "most_creative_month":
+    case "snapshot23_most_creative_month":
       return months.includes(value.toLowerCase()) ? value.toUpperCase() : null;
-    case "number_of_favorites":
-      return formatInteger(value);
-    case "number_of_reposts":
-      return formatInteger(value);
-    case "preset_1":
+    case "snapshot23_filter_1":
+    case "snapshot23_filter_2":
+    case "snapshot23_filter_3":
       return getPresetFormattedValue(value);
-    case "preset_2":
-      return getPresetFormattedValue(value);
-    case "preset_3":
-      return getPresetFormattedValue(value);
-    case "preset_1_used":
-      return formatInteger(value);
-    case "preset_2_used":
-      return formatInteger(value);
-    case "preset_3_used":
-      return formatInteger(value);
-    case "spaces_created":
-      return formatInteger(value);
-    case "spaces_joined":
-      return formatInteger(value);
-    case "tool_1":
+
+    case "snapshot23_tool_1":
+    case "snapshot23_tool_2":
+    case "snapshot23_tool_3":
       return getToolsFormattedValue(value);
-    case "tool_1_used":
-      return formatInteger(value);
-    case "tool_2":
-      return getToolsFormattedValue(value);
-    case "tool_2_used":
-      return formatInteger(value);
-    case "tool_3":
-      return getToolsFormattedValue(value);
-    case "tool_3_used":
-      return formatInteger(value);
     default:
       return value;
   }

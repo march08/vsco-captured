@@ -29,10 +29,6 @@ export const TOOLS = [
   "tone",
 ] as const;
 
-type F = "asd" | "qwe";
-
-type ToolType = typeof TOOLS[number];
-
 type Values = {
   [K in typeof TOOLS[number]]: string;
 };

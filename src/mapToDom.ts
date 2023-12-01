@@ -1,4 +1,4 @@
-import { getPresetConfigByKey } from "./const/PRESETS";
+import { getPresetConfigByKey } from "./const/PRESETS_2023";
 import { displayValueTools, toolsImageSources } from "./const/TOOLS";
 import type { SearchParamKeyValue } from "./getParamValues";
 
@@ -16,12 +16,19 @@ const replaceInnerText = (id: string, value: string) => {
   } catch (e) {}
 };
 
-const replaceTextOrHide = (
+const replaceTextOrHide = (elementTextId: string, value: string) => {
+  if (value) {
+    replaceInnerText(elementTextId, value);
+  } else {
+    removeFromDomById(elementTextId);
+  }
+};
+
+const replaceTextOrHideContainer = (
   containerId: string,
   elementTextId: string,
   value: string
 ) => {
-  console.log("value", containerId, elementTextId, value);
   if (value) {
     replaceInnerText(elementTextId, value);
   } else {
@@ -88,85 +95,36 @@ const hideTab = () => {
 };
 
 export const mapToDom = (data: SearchParamKeyValue) => {
+  console.log("mapToDom", data.username);
+  /**
+   * we hide the username tab from the view if there is no username data
+   */
   if (!data.username) {
     hideTab();
     return;
   }
 
-  // images posted
-  replaceTextOrHide(
-    "card-posted-images",
-    "posted-images-value",
-    data.images_posted
-  );
-  // most active day
-  replaceTextOrHide(
-    "card-active-day",
-    "active-day-value",
-    data.most_creative_day_of_week
-  );
-  // most active month
-  replaceTextOrHide(
-    "card-creative-month",
-    "active-month-value",
-    data.most_creative_month
-  );
-  // session length
-  replaceTextOrHide(
-    "card-longest-session",
-    "longest-session-value",
-    data.longest_session
-  );
-
-  // sharing stats
-  if (!data.number_of_favorites && !data.number_of_reposts) {
-    removeFromDomById("card-images-stats");
-  } else {
-    replaceTextOrHide(
-      "images-stats-favorite",
-      "images-stats-favorite-value",
-      data.number_of_favorites
-    );
-    replaceTextOrHide(
-      "images-stats-reposted",
-      "images-stats-reposted-value",
-      data.number_of_reposts
-    );
-  }
-
-  // spaces
-  if (data.spaces_joined || data.spaces_created) {
-    const rootEl = document.getElementById("space-value");
-    if (rootEl) {
-      if (data.spaces_created) {
-        const nextNode = rootEl.cloneNode(true);
-        nextNode.textContent = data.spaces_created + " SPACES CREATED";
-        (nextNode as any).id = "";
-        rootEl.parentElement.appendChild(nextNode);
-      }
-      if (data.spaces_joined) {
-        const nextNode = rootEl.cloneNode(true);
-        (nextNode as any).id = "";
-        nextNode.textContent = data.spaces_joined + " SPACES JOINED";
-        rootEl.parentElement.appendChild(nextNode);
-      }
-      rootEl.parentElement.removeChild(rootEl);
-    }
-  } else {
-    removeFromDomById("card-spaces");
-  }
-
   /**
+   * 2 - Most used presets
    * presets
    */
-  if (data.preset_1 && data.preset_1_used) {
-    addPresetItem(data.preset_1, data.preset_1_used);
+  if (data.snapshot23_edits_with_this_filter_1 && data.snapshot23_filter_1) {
+    addPresetItem(
+      data.snapshot23_filter_1,
+      data.snapshot23_edits_with_this_filter_1
+    );
   }
-  if (data.preset_2 && data.preset_2_used) {
-    addPresetItem(data.preset_2, data.preset_2_used);
+  if (data.snapshot23_edits_with_this_filter_2 && data.snapshot23_filter_2) {
+    addPresetItem(
+      data.snapshot23_filter_2,
+      data.snapshot23_edits_with_this_filter_2
+    );
   }
-  if (data.preset_3 && data.preset_3_used) {
-    addPresetItem(data.preset_3, data.preset_3_used);
+  if (data.snapshot23_edits_with_this_filter_3 && data.snapshot23_filter_3) {
+    addPresetItem(
+      data.snapshot23_filter_3,
+      data.snapshot23_edits_with_this_filter_3
+    );
   }
   // presets
   const presetItem = document.getElementById("preset-item");
@@ -177,18 +135,19 @@ export const mapToDom = (data: SearchParamKeyValue) => {
   }
 
   /**
+   * 3 - most loved tools
    * tools
    */
-  if (data.tool_1 && data.tool_1_used) {
-    addToolItem(data.tool_1, data.tool_1_used);
+  if (data.snapshot23_tool_1 && data.snapshot23_tool_edits_1) {
+    addToolItem(data.snapshot23_tool_1, data.snapshot23_tool_edits_1);
   }
-  if (data.tool_2 && data.tool_2_used) {
-    addToolItem(data.tool_2, data.tool_2_used);
+  if (data.snapshot23_tool_2 && data.snapshot23_tool_edits_2) {
+    addToolItem(data.snapshot23_tool_2, data.snapshot23_tool_edits_2);
   }
-  if (data.tool_3 && data.tool_3_used) {
-    addToolItem(data.tool_3, data.tool_3_used);
+  if (data.snapshot23_tool_3 && data.snapshot23_tool_edits_3) {
+    addToolItem(data.snapshot23_tool_3, data.snapshot23_tool_edits_3);
   }
-  // presets
+  // tools
   const toolItem = document.getElementById("card-tools-item");
   const toolParent = toolItem.parentElement;
   toolParent.removeChild(toolItem);
@@ -196,10 +155,185 @@ export const mapToDom = (data: SearchParamKeyValue) => {
     removeFromDomById("card-tools");
   }
 
+  /**
+   * 4 - spaces
+   */
+  if (data.snapshot23_spaces_joined || data.snapshot23_spaces_created_count) {
+    replaceTextOrHide(
+      "space-value-created",
+      data.snapshot23_spaces_created_count
+        ? `You created ${data.snapshot23_spaces_created_count} spaces`
+        : null
+    );
+    replaceTextOrHide(
+      "space-value-joined",
+      data.snapshot23_spaces_joined
+        ? `You joined ${data.snapshot23_spaces_joined} spaces`
+        : null
+    );
+  } else {
+    removeFromDomById("card-spaces");
+  }
+
+  /**
+   * 5 - studio edits
+   */
+  replaceTextOrHideContainer(
+    "card-studio",
+    "studio-value",
+    !data.snapshot23_webstudio
+      ? null
+      : data.snapshot23_webstudio === "1"
+        ? "1 STUDIO EDIT ON DESKTOP"
+        : `${data.snapshot23_webstudio} STUDIO EDITS ON DESKTOP`
+  );
+
+  /**
+   * 6 - sharing stats
+   */
+  if (!data.snapshot23_favorites && !data.snapshot23_reposts) {
+    removeFromDomById("card-images-stats");
+  } else {
+    replaceTextOrHideContainer(
+      "images-stats-favorite",
+      "images-stats-favorite-value",
+      data.snapshot23_favorites
+    );
+    replaceTextOrHideContainer(
+      "images-stats-reposted",
+      "images-stats-reposted-value",
+      data.snapshot23_reposts
+    );
+  }
+
+  /**
+   * 7 - messages
+   */
+
+  replaceTextOrHideContainer(
+    "card-messages",
+    "messages-value",
+    !data.snapshot23_messages
+      ? null
+      : data.snapshot23_messages === "1"
+        ? "SENT 1 MESSAGE"
+        : `SENT ${data.snapshot23_messages} MESSAGES`
+  );
+
+  /**
+   * 8 - images posted
+   */
+  replaceTextOrHideContainer(
+    "card-posted-images",
+    "posted-images-value",
+    data.snapshot23_n_images
+  );
+
+  /**
+   * 9 - creators followed
+   */
+
+  replaceTextOrHideContainer(
+    "card-creators",
+    "creators-value",
+    !data.snapshot23_follows
+      ? null
+      : data.snapshot23_follows === "1"
+        ? "1 CREATOR"
+        : `${data.snapshot23_follows} CREATORS`
+  );
+
+  /**
+   * 10 - images posted
+   */
+  replaceTextOrHideContainer(
+    "card-posted-videos",
+    "posted-videos-value",
+    data.snapshot23_n_videos
+  );
+
+  /**
+   * 11 - creative month
+   */
+  replaceTextOrHideContainer(
+    "card-creative-month",
+    "active-month-value",
+    data.snapshot23_most_creative_month
+  );
+
+  /**
+   * 12 - montages captures
+   */
+
+  if (!data.snapshot23_n_montages && !data.snapshot23_n_captures) {
+    removeFromDomById("card-secondary-stats");
+  } else {
+    replaceTextOrHideContainer(
+      "montages-stats-created",
+      "montages-stats-created-value",
+      data.snapshot23_n_montages
+    );
+    replaceTextOrHideContainer(
+      "photos-stats-captured",
+      "photos-stats-captured-value",
+      data.snapshot23_n_captures
+    );
+  }
+
+  /**
+   * 13 - most active day
+   */
+  replaceTextOrHideContainer(
+    "card-active-day",
+    "active-day-value",
+    data.snapshot23_most_creative_day_of_week
+  );
+
+  /**
+   * 14 - presets used
+   */
+
+  replaceTextOrHideContainer(
+    "card-presets-used",
+    "presets-used-value",
+    data.snapshot23_filter_used
+  );
+
+  // session length
+  // replaceTextOrHideContainer(
+  //   "card-longest-session",
+  //   "longest-session-value",
+  //   data.longest_session
+  // );
+
   const swiperWrapperCardsEl = document.querySelector(".swiper-wrapper");
+  /**
+   * 1 - favourite photo image
+   */
+
+  if (data.snapshot23_media_id) {
+    const imageEl = document.getElementById("favorite-photo-img");
+
+    const src = `https://vsco.co/i/${data.snapshot23_media_id}`;
+
+    imageEl.parentElement.style.background = "#000";
+    imageEl.style.transition = "1s all";
+    imageEl.style.opacity = "0";
+
+    imageEl.setAttribute("sizes", "");
+    imageEl.setAttribute("srcset", "");
+    imageEl.setAttribute("src", src);
+    imageEl.onload = (e, ...rest) => {
+      console.log("LOADED", e, rest);
+      imageEl.style.opacity = "1";
+    };
+  } else {
+    removeFromDomById("card-favorite-photo");
+  }
 
   if (swiperWrapperCardsEl.childElementCount === 0) {
     hideTab();
+    return;
   }
 
   // username
