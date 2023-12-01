@@ -6,10 +6,11 @@ const init = (args: {
   onSuccess?: VoidFunction;
   base64?: boolean;
   testImageUrl?: string;
+  testAvatarUrl?: string;
 }) => {
   const params = getSearchParamValues(args.base64);
   mapToDom(params);
-  generateShareImage(params, args.testImageUrl);
+  generateShareImage(params, args);
 
   if (args.onSuccess) {
     args.onSuccess();

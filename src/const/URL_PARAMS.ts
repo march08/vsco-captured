@@ -89,6 +89,9 @@ export const URL_PARAMS = [
 
   "snapshot23_n_montages",
   "snapshot23_n_captures",
+
+  // user image
+  "snapshot23_site_id",
 ] as const;
 
 export type UrlParam = (typeof URL_PARAMS)[number];

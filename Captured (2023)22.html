@@ -603,17 +603,23 @@
 
       <div style="padding: 200px">
         <style>
+          /* 
+           * rendering content to be used with html2canvas
+           * cannot use object-fit property for canvas rendering!
+           */
           #canvas-share {
             position: fixed;
-            top: -200vh;
-            left: -200vw;
+            bottom: -200vh;
+            right: -200vw;
           }
           #toCanvas {
+            position: fixed;
+
+            /* bottom: -200vh;
+            right: -200vw; */
+
             background: #111;
             color: white;
-            position: fixed;
-            /* top: -200vh; */
-            /* left: -200vw; */
             height: 1920px;
             width: 1080px;
             display: flex;
@@ -686,8 +692,14 @@
             font-weight: 500;
             font-size: 26px;
           }
+          #canvas-author-image-container {
+            height: 72px;
+            width: 72px;
+            border-radius: 50%;
+            background-size: cover;
+          }
         </style>
-        <div id="toCanvas" width="1080" height="1920">
+        <div id="toCanvas">
           <div id="canvas-image-container"></div>
           <div id="canvas-content">
             <div id="canvas-activity-items"></div>
@@ -706,8 +718,9 @@
                     fill="white"
                   />
                 </svg>
+                <div id="canvas-author-image-container"></div>
                 <span class="canvas-author-text">vsco.co/</span>
-                <span class="canvas-author-text">nroman_piks</span>
+                <span class="canvas-author-text" id="canvas-username"></span>
               </div>
               <span
                 style="
@@ -3147,6 +3160,8 @@
     <script>
       VSCOCaptured.init({
         base64: false,
+        testAvatarUrl:
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=3276&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         testImageUrl:
           "https://images.unsplash.com/photo-1600350374456-b81d280d7542?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         // testImageUrl:

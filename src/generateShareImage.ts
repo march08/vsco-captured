@@ -1,6 +1,6 @@
 import html2canvas from "html2canvas";
 import type { SearchParamKeyValue } from "./getParamValues";
-import { isTruthy } from "./utils";
+import { getImageUrl, isTruthy, replaceInnerText } from "./utils";
 
 const createLineItem = (title: string, value: string) => {
   const contentEl = document.getElementById("canvas-activity-items");
@@ -24,9 +24,20 @@ const createLineItem = (title: string, value: string) => {
 
 export const generateShareImage = (
   data: SearchParamKeyValue,
-  testImageUrl?: string
+  args: {
+    testImageUrl?: string;
+    testAvatarUrl?: string;
+  }
 ) => {
-  const canvasEl = document.getElementById("toCanvas");
+  /**
+   * username
+   */
+
+  if (!data.username) {
+    return;
+  }
+
+  replaceInnerText("canvas-username", data.username);
 
   /**
    * presets
@@ -95,13 +106,24 @@ export const generateShareImage = (
   if (data.snapshot23_media_id) {
     const imageContainer = document.getElementById("canvas-image-container");
     const imageEl = document.createElement("img");
-    imageEl.src =
-      testImageUrl || `https://vsco.co/i/${data.snapshot23_media_id}`;
+    imageEl.src = args.testImageUrl || getImageUrl(data.snapshot23_media_id);
     imageContainer.appendChild(imageEl);
+  }
+
+  /**
+   * author
+   */
+
+  if (data.snapshot23_site_id) {
+    const imageEl = document.getElementById("canvas-author-image-container");
+    imageEl.style.backgroundImage = `url('${
+      args.testAvatarUrl || getImageUrl(data.snapshot23_site_id)
+    }')`;
   }
 
   html2canvas(document.querySelector("#toCanvas"), {
     useCORS: true,
+    scale: 1.5,
   }).then((canvas) => {
     canvas.id = "canvas-share";
     document.body.appendChild(canvas);

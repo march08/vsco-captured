@@ -1,19 +1,13 @@
 import { getPresetConfigByKey } from "./const/PRESETS_2023";
 import { displayValueTools, toolsImageSources } from "./const/TOOLS";
 import type { SearchParamKeyValue } from "./getParamValues";
+import { getImageUrl, replaceInnerText } from "./utils";
 
 const removeFromDomById = (id: string) => {
   const el = document.getElementById(id);
   if (el) {
     el.parentNode.removeChild(el);
   }
-};
-
-const replaceInnerText = (id: string, value: string) => {
-  const el = document.getElementById(id);
-  try {
-    el.innerText = value;
-  } catch (e) {}
 };
 
 const replaceTextOrHide = (elementTextId: string, value: string) => {
@@ -314,7 +308,7 @@ export const mapToDom = (data: SearchParamKeyValue) => {
   if (data.snapshot23_media_id) {
     const imageEl = document.getElementById("favorite-photo-img");
 
-    const src = `https://vsco.co/i/${data.snapshot23_media_id}`;
+    const src = getImageUrl(data.snapshot23_media_id);
 
     imageEl.parentElement.style.background = "#000";
     imageEl.style.transition = "1s all";
