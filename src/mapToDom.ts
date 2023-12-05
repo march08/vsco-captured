@@ -42,7 +42,7 @@ const addPresetItem = (presetCode: string, usedCount: string) => {
     const nextInnerHtml = presetItem.innerHTML
       .replace("AL1", presetCode)
       .replace("Fluorescent Soften", presetConfig.title)
-      .replace("22", usedCount);
+      .replace("X edits", usedCount + " edits");
 
     presetItem.getElementsByClassName;
     const clonedNode = presetItem.cloneNode(true);
@@ -89,7 +89,6 @@ const hideTab = () => {
 };
 
 export const mapToDom = (data: SearchParamKeyValue) => {
-  console.log("mapToDom", data.username);
   /**
    * we hide the username tab from the view if there is no username data
    */
@@ -318,7 +317,6 @@ export const mapToDom = (data: SearchParamKeyValue) => {
     imageEl.setAttribute("srcset", "");
     imageEl.setAttribute("src", src);
     imageEl.onload = (e, ...rest) => {
-      console.log("LOADED", e, rest);
       imageEl.style.opacity = "1";
     };
   } else {

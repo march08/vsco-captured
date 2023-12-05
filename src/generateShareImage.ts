@@ -34,6 +34,8 @@ export const generateShareImage = (
    */
 
   if (!data.username) {
+    const shareButtonEl = document.getElementById("share-button");
+    shareButtonEl.remove();
     return;
   }
 
@@ -124,17 +126,21 @@ export const generateShareImage = (
   html2canvas(document.querySelector("#toCanvas"), {
     useCORS: true,
     scale: 1.5,
+    logging: false,
   }).then((canvas) => {
     canvas.id = "canvas-share";
     document.body.appendChild(canvas);
 
     // set download
-    const anchorEl = document.getElementById("share-button");
+    const shareButtonEl = document.getElementById("share-button");
 
     const image = (document.getElementById("canvas-share") as any)
       .toDataURL("image/png")
       .replace("image/png", "image/octet-stream");
-    anchorEl.setAttribute("href", image);
-    anchorEl.setAttribute("download", `vsco_captured_${data.username}.png`);
+    shareButtonEl.setAttribute("href", image);
+    shareButtonEl.setAttribute(
+      "download",
+      `vsco_captured_${data.username}.png`
+    );
   });
 };

@@ -9,6 +9,7 @@ const init = (args: {
   testAvatarUrl?: string;
 }) => {
   const params = getSearchParamValues(args.base64);
+
   mapToDom(params);
   generateShareImage(params, args);
 
