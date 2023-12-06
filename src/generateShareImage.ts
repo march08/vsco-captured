@@ -124,7 +124,6 @@ export const generateShareImage = (
   }
 
   html2canvas(document.querySelector("#toCanvas"), {
-    useCORS: true,
     scale: 1.5,
     logging: false,
   }).then((canvas) => {

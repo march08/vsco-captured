@@ -250,7 +250,7 @@ export const mapToDom = (data: SearchParamKeyValue) => {
    */
   replaceTextOrHideContainer(
     "card-creative-month",
-    "active-month-value",
+    "creative-month-value",
     data.snapshot23_most_creative_month
   );
 
