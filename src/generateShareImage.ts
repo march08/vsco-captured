@@ -127,6 +127,7 @@ export const generateShareImage = (
     scale: 1.5,
     useCORS: true,
     allowTaint: false,
+    proxy: args.testImageUrl || getImageUrl(data.snapshot23_media_id),
     // logging: false,
   }).then((canvas) => {
     canvas.id = "canvas-share";
