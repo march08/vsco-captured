@@ -1,4 +1,4 @@
-import html2canvas from "html2canvas";
+import html2canvas from "./html2canvas.js";
 import type { SearchParamKeyValue } from "./getParamValues";
 import { getImageUrl, isTruthy, replaceInnerText } from "./utils";
 
@@ -127,7 +127,6 @@ export const generateShareImage = (
     scale: 1.5,
     useCORS: true,
     allowTaint: false,
-    proxy: args.testImageUrl || getImageUrl(data.snapshot23_media_id),
     // logging: false,
   }).then((canvas) => {
     canvas.id = "canvas-share";
