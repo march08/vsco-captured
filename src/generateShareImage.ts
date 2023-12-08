@@ -125,7 +125,9 @@ export const generateShareImage = (
 
   html2canvas(document.querySelector("#toCanvas"), {
     scale: 1.5,
-    logging: false,
+    useCORS: true,
+    allowTaint: false,
+    // logging: false,
   }).then((canvas) => {
     canvas.id = "canvas-share";
     document.body.appendChild(canvas);
