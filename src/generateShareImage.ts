@@ -186,12 +186,14 @@ export const generateShareImage = async (
 
     // set download
 
-    const image = (document.getElementById("canvas-share") as any).toDataURL();
+    const image = (document.getElementById("canvas-share") as any)
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
 
     const anchorEl =
       document.getElementById("download-anchor") || document.createElement("a");
     anchorEl.setAttribute("href", image);
-    anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
+    anchorEl.setAttribute("download", `vsco_captured_${data.username}.png`);
     anchorEl.click();
   });
 };
