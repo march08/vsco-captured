@@ -26,6 +26,8 @@ async function fetchMedia(mediaID: string) {
 
 export async function getMediaS3ImageUrl(mediaID: string) {
   const media = await fetchMedia(mediaID);
+
+  console.log("media", media);
   if (!media) {
     return;
   }

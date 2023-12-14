@@ -1,7 +1,11 @@
 import html2canvas from "html2canvas";
 import type { SearchParamKeyValue } from "./getParamValues";
 import { isTruthy, replaceInnerText } from "./utils";
-import { getSiteS3ImageUrl, vscoImageResponsiveUrltoS3Path } from "./vscoUtils";
+import {
+  getMediaS3ImageUrl,
+  getSiteS3ImageUrl,
+  vscoImageResponsiveUrltoS3Path,
+} from "./vscoUtils";
 
 const fetchImageUrlAndGetLocalObjectUrl = (url: string) => {
   return fetch(url)
@@ -113,22 +117,24 @@ export const generateShareImage = async (
   //  * author
   //  */
 
-  const authorImageContainer = document.getElementById(
-    "canvas-author-image-container"
-  );
+  try {
+    const authorImageContainer = document.getElementById(
+      "canvas-author-image-container"
+    );
 
-  // if (data.snapshot23_site_id) {
-  //   const imageEl = document.getElementById("canvas-author-image-container");
+    // if (data.snapshot23_site_id) {
+    //   const imageEl = document.getElementById("canvas-author-image-container");
 
-  //   if (args.testAvatarUrl) {
-  //     imageEl.style.backgroundImage = `url('${args.testAvatarUrl}')`;
-  //   } else {
-  //     const s3Src = await getSiteS3ImageUrl(data.snapshot23_site_id);
-  //     const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
-  //     imageEl.style.backgroundImage = `url('${objectUrl}')`;
-  //   }
-  // } else {
-  authorImageContainer.remove();
+    //   if (args.testAvatarUrl) {
+    //     imageEl.style.backgroundImage = `url('${args.testAvatarUrl}')`;
+    //   } else {
+    //     const s3Src = await getSiteS3ImageUrl(data.snapshot23_site_id);
+    //     const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+    //     imageEl.style.backgroundImage = `url('${objectUrl}')`;
+    //   }
+    // } else {
+    authorImageContainer.remove();
+  } catch {}
   // }
 
   /**
@@ -145,16 +151,19 @@ export const generateShareImage = async (
       );
       imageEl.src = objectUrl;
     } else {
+      const srcFetched = await getMediaS3ImageUrl(data.snapshot23_media_id);
+
+      console.log("srcFetched", srcFetched);
       const s3Src = vscoImageResponsiveUrltoS3Path(
         data.snapshot23_media_responsive_url
       );
+
+      console.log("s3Src", s3Src);
       // imageEl.src = s3Src;
       const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
       imageEl.src = objectUrl;
     }
     imageContainer.appendChild(imageEl);
-  } else {
-    imageContainer.remove();
   }
   // const imageContainer = document.getElementById("canvas-image-container");
   // if (data.snapshot23_media_id) {
