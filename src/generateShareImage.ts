@@ -2,6 +2,43 @@ import html2canvas from "./html2canvas.js";
 import type { SearchParamKeyValue } from "./getParamValues";
 import { getImageUrl, isTruthy, replaceInnerText } from "./utils";
 
+async function getS3ImageUrl(mediaID: string) {
+  const media = await fetchMedia(mediaID);
+  if (!media) {
+    return;
+  }
+
+  const s3Path = toS3Path(media.responsive_url);
+  console.log("Media", mediaID, ": s3 path", s3Path);
+  return s3Path;
+}
+
+// fetches the specified media object in order to access its responsive_url property
+async function fetchMedia(mediaID: string) {
+  try {
+    const resp = await fetch(`https://vsco.co/api/2.0/medias/${mediaID}`, {
+      method: "GET",
+      credentials: "same-origin",
+      headers: {
+        authorization: "Bearer 7356455548d0a1d886db010883388d08be84d0c9",
+      },
+    });
+
+    const result = await resp.json();
+    return result.media;
+  } catch (err) {
+    console.error("[fetchMedia] err: ", err);
+  }
+}
+
+// Converts the responsive_url to URL that points directly to the asset in S3.
+function toS3Path(url: string) {
+  const segments = url.split("/");
+  const partialUrl = segments.slice(2).join("/");
+
+  return `https://image-${segments[1]}.vsco.co/${partialUrl}`;
+}
+
 const createLineItem = (title: string, value: string) => {
   const contentEl = document.getElementById("canvas-activity-items");
 
@@ -22,7 +59,7 @@ const createLineItem = (title: string, value: string) => {
   contentEl.appendChild(rowEl);
 };
 
-export const generateShareImage = (
+export const generateShareImage = async (
   data: SearchParamKeyValue,
   args: {
     testImageUrl?: string;
@@ -108,7 +145,12 @@ export const generateShareImage = (
   if (data.snapshot23_media_id) {
     const imageContainer = document.getElementById("canvas-image-container");
     const imageEl = document.createElement("img");
-    imageEl.src = args.testImageUrl || getImageUrl(data.snapshot23_media_id);
+
+    if (args.testImageUrl) {
+      imageEl.src = args.testImageUrl;
+    } else {
+      imageEl.src = await getS3ImageUrl(data.snapshot23_media_id);
+    }
     imageContainer.appendChild(imageEl);
   }
 
@@ -119,14 +161,14 @@ export const generateShareImage = (
   if (data.snapshot23_site_id) {
     const imageEl = document.getElementById("canvas-author-image-container");
     imageEl.style.backgroundImage = `url('${
-      args.testAvatarUrl || getImageUrl(data.snapshot23_site_id)
+      args.testAvatarUrl || (await getS3ImageUrl(data.snapshot23_site_id))
     }')`;
   }
 
   html2canvas(document.querySelector("#toCanvas"), {
     scale: 1.5,
-    useCORS: true,
-    allowTaint: false,
+    // useCORS: true,
+    // allowTaint: false,
     // logging: false,
   }).then((canvas) => {
     canvas.id = "canvas-share";
@@ -134,6 +176,8 @@ export const generateShareImage = (
 
     // set download
     const shareButtonEl = document.getElementById("share-button");
+
+    console.log("shareButtonEl", shareButtonEl);
 
     const image = (document.getElementById("canvas-share") as any)
       .toDataURL("image/png")
