@@ -190,7 +190,9 @@ export const generateShareImage = async (
       "image/png"
     );
 
-    const anchorEl = document.createElement("a");
+    const anchorEl =
+      document.getElementById("download-anchor") || document.createElement("a");
+    anchorEl.setAttribute("id", "download-anchor");
     anchorEl.setAttribute("href", image);
     anchorEl.setAttribute("download", `vsco_captured_${data.username}.png`);
     anchorEl.click();

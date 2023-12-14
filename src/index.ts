@@ -13,7 +13,12 @@ const init = (args: {
 
   const shareButtonEl = document.getElementById("share-button");
   shareButtonEl.addEventListener("click", () => {
-    generateShareImage(params, args);
+    const downloadAnchor = document.getElementById("download-anchor");
+    if (downloadAnchor) {
+      downloadAnchor.click();
+    } else {
+      generateShareImage(params, args);
+    }
   });
 
   if (args.onSuccess) {
