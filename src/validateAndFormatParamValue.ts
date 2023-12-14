@@ -68,8 +68,10 @@ export const getValidatedParamValue = (
     case "snapshot23_spaces_joined":
     case "snapshot23_webstudio":
     case "snapshot23_n_captures":
-    case "snapshot23_n_montages":
-      return formatInteger(value);
+    case "snapshot23_n_montages": {
+      const integer = parseInt(value);
+      return integer ? formatInteger(value) : null;
+    }
 
     case "snapshot23_most_creative_day_of_week":
       return weekdays.includes(value.toLocaleLowerCase())

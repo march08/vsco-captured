@@ -109,7 +109,7 @@ export const generateShareImage = async (
   const totalImagesAndVideos = totalImages + totalVideos;
   if (totalImagesAndVideos) {
     createLineItem(
-      "POSTS",
+      "IMAGES EDITED",
       `POSTED ${totalImagesAndVideos} IMAGES and VIDEOS ON VSCO`
     );
   }

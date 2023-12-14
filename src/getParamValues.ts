@@ -21,7 +21,20 @@ export const getSearchParamValues = (shouldEncode = true) => {
       const res = JSON.parse(b64_to_utf8(isEncoded)) as Partial<{
         [K in UrlParam]: string;
       }>;
-      return res;
+
+      const parsed = Object.entries(res).reduce((res, [key, value]) => {
+        const validated = getValidatedParamValue(key as any, value);
+        console.log("validated", key, validated, value);
+        if (validated) {
+          return {
+            ...res,
+            [key]: validated,
+          };
+        }
+        return res;
+      }, {});
+
+      return parsed;
     } catch {
       return {};
     }

@@ -237,7 +237,7 @@ export const mapToDom = (data: SearchParamKeyValue) => {
   );
 
   /**
-   * 10 - images posted
+   * 10 - videos edited
    */
   replaceTextOrHideContainer(
     "card-posted-videos",
