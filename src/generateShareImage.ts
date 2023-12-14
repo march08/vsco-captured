@@ -151,12 +151,19 @@ export const generateShareImage = async (
     const imageEl = document.createElement("img");
 
     if (args.testImageUrl) {
-      imageEl.src = args.testImageUrl;
+      const imageBlob = await fetchImage(args.testImageUrl);
+      console.log("imageBlob", imageBlob);
+      const blobUrl = URL.createObjectURL(imageBlob);
+      console.log("blobUrl", blobUrl);
+      imageEl.src = blobUrl;
     } else {
       const s3Src = await getS3ImageUrl(data.snapshot23_media_id);
-      imageEl.src = s3Src;
+      // imageEl.src = s3Src;
       const imageBlob = await fetchImage(s3Src);
       console.log("imageBlob", imageBlob);
+      const blobUrl = URL.createObjectURL(imageBlob);
+      console.log("blobUrl", blobUrl);
+      imageEl.src = URL.createObjectURL(imageBlob);
     }
     imageContainer.appendChild(imageEl);
   }
