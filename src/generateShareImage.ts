@@ -1,6 +1,6 @@
-import html2canvas from "./html2canvas.js";
+import html2canvas from "html2canvas";
 import type { SearchParamKeyValue } from "./getParamValues";
-import { getImageUrl, isTruthy, replaceInnerText } from "./utils";
+import { isTruthy, replaceInnerText } from "./utils";
 
 async function getS3ImageUrl(mediaID: string) {
   const media = await fetchMedia(mediaID);
@@ -38,6 +38,10 @@ function toS3Path(url: string) {
 
   return `https://image-${segments[1]}.vsco.co/${partialUrl}`;
 }
+
+const fetchImage = (url: string) => {
+  return fetch(url).then((res) => res.blob());
+};
 
 const createLineItem = (title: string, value: string) => {
   const contentEl = document.getElementById("canvas-activity-items");
@@ -149,7 +153,10 @@ export const generateShareImage = async (
     if (args.testImageUrl) {
       imageEl.src = args.testImageUrl;
     } else {
-      imageEl.src = await getS3ImageUrl(data.snapshot23_media_id);
+      const s3Src = await getS3ImageUrl(data.snapshot23_media_id);
+      imageEl.src = s3Src;
+      const imageBlob = await fetchImage(s3Src);
+      console.log("imageBlob", imageBlob);
     }
     imageContainer.appendChild(imageEl);
   }
@@ -176,8 +183,6 @@ export const generateShareImage = async (
 
     // set download
     const shareButtonEl = document.getElementById("share-button");
-
-    console.log("shareButtonEl", shareButtonEl);
 
     const image = (document.getElementById("canvas-share") as any)
       .toDataURL("image/png")
