@@ -11,10 +11,6 @@ function b64_to_utf8(str: string) {
 
 type MappedResult = Record<UrlParam, string>;
 
-type AddSuffixToObject<T, P extends string> = {
-  [K in keyof T as K extends string ? `${K}${P}` : never]: T[K];
-};
-
 export const getSearchParamValues = (shouldEncode = true) => {
   const allSearchParams = new URLSearchParams(window.location.search);
 

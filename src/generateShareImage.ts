@@ -1,13 +1,12 @@
 import html2canvas from "html2canvas";
 import type { SearchParamKeyValue } from "./getParamValues";
 import { isTruthy, replaceInnerText } from "./utils";
-import { getMediaS3ImageUrl, getSiteS3ImageUrl } from "./vscoUtils";
+import { getSiteS3ImageUrl, vscoImageResponsiveUrltoS3Path } from "./vscoUtils";
 
 const fetchImageUrlAndGetLocalObjectUrl = (url: string) => {
   return fetch(url)
     .then((res) => res.blob())
     .then((blob) => {
-      console.log("bbb", blob);
       return URL.createObjectURL(blob);
     });
 };
@@ -110,31 +109,6 @@ export const generateShareImage = async (
       `POSTED ${totalImagesAndVideos} IMAGES and VIDEOS ON VSCO`
     );
   }
-
-  /**
-   * image
-   */
-
-  const imageContainer = document.getElementById("canvas-image-container");
-  if (data.snapshot23_media_id) {
-    const imageEl = document.createElement("img");
-
-    if (args.testImageUrl) {
-      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
-        args.testImageUrl
-      );
-      imageEl.src = objectUrl;
-    } else {
-      const s3Src = await getMediaS3ImageUrl(data.snapshot23_media_id);
-      // imageEl.src = s3Src;
-      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
-      imageEl.src = objectUrl;
-    }
-    imageContainer.appendChild(imageEl);
-  } else {
-    imageContainer.remove();
-  }
-
   // /**
   //  * author
   //  */
@@ -150,7 +124,6 @@ export const generateShareImage = async (
       imageEl.style.backgroundImage = `url('${args.testAvatarUrl}')`;
     } else {
       const s3Src = await getSiteS3ImageUrl(data.snapshot23_site_id);
-      console.log("site s3", s3Src);
       const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
       imageEl.style.backgroundImage = `url('${objectUrl}')`;
     }
@@ -158,11 +131,54 @@ export const generateShareImage = async (
     authorImageContainer.remove();
   }
 
+  /**
+   * image
+   */
+
+  const imageContainer = document.getElementById("canvas-image-container");
+  if (data.snapshot23_media_responsive_url) {
+    const imageEl = document.createElement("img");
+
+    if (args.testImageUrl) {
+      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
+        args.testImageUrl
+      );
+      imageEl.src = objectUrl;
+    } else {
+      const s3Src = vscoImageResponsiveUrltoS3Path(
+        data.snapshot23_media_responsive_url
+      );
+      // imageEl.src = s3Src;
+      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+      imageEl.src = objectUrl;
+    }
+    imageContainer.appendChild(imageEl);
+  } else {
+    imageContainer.remove();
+  }
+  // const imageContainer = document.getElementById("canvas-image-container");
+  // if (data.snapshot23_media_id) {
+  //   const imageEl = document.createElement("img");
+
+  //   if (args.testImageUrl) {
+  //     const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
+  //       args.testImageUrl
+  //     );
+  //     imageEl.src = objectUrl;
+  //   } else {
+  //     const s3Src = await getMediaS3ImageUrl(data.snapshot23_media_id);
+  //     // imageEl.src = s3Src;
+  //     const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+  //     imageEl.src = objectUrl;
+  //   }
+  //   imageContainer.appendChild(imageEl);
+  // } else {
+  //   imageContainer.remove();
+  // }
+
   html2canvas(document.querySelector("#toCanvas"), {
     scale: 1.5,
-    // useCORS: true,
-    // allowTaint: false,
-    // logging: false,
+    logging: false,
   }).then((canvas) => {
     canvas.id = "canvas-share";
     document.body.appendChild(canvas);

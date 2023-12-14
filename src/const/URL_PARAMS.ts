@@ -81,6 +81,7 @@ export const URL_PARAMS = [
   "snapshot23_webstudio",
   // fav image id
   "snapshot23_media_id",
+  "snapshot23_media_responsive_url",
   // follows
   "snapshot23_follows",
   // messages

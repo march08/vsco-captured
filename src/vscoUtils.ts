@@ -31,6 +31,7 @@ export async function getMediaS3ImageUrl(mediaID: string) {
   }
 
   const s3Path = vscoImageResponsiveUrltoS3Path(media.responsive_url);
+
   return s3Path;
 }
 
@@ -46,7 +47,7 @@ async function fetchSiteImage(siteId: string) {
     });
 
     const result = await resp.json();
-    return result.media;
+    return result.site;
   } catch (err) {
     console.error("[fetchMedia] err: ", err);
   }
@@ -57,8 +58,6 @@ export async function getSiteS3ImageUrl(siteId: string) {
   if (!site) {
     return;
   }
-
-  console.log("site", site);
 
   const s3Path = vscoImageResponsiveUrltoS3Path(site.responsive_url);
   return s3Path;
