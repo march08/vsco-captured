@@ -1,42 +1,7 @@
 import html2canvas from "html2canvas";
 import type { SearchParamKeyValue } from "./getParamValues";
 import { isTruthy, replaceInnerText } from "./utils";
-
-async function getS3ImageUrl(mediaID: string) {
-  const media = await fetchMedia(mediaID);
-  if (!media) {
-    return;
-  }
-
-  const s3Path = toS3Path(media.responsive_url);
-  return s3Path;
-}
-
-// fetches the specified media object in order to access its responsive_url property
-async function fetchMedia(mediaID: string) {
-  try {
-    const resp = await fetch(`https://vsco.co/api/2.0/medias/${mediaID}`, {
-      method: "GET",
-      credentials: "same-origin",
-      headers: {
-        authorization: "Bearer 7356455548d0a1d886db010883388d08be84d0c9",
-      },
-    });
-
-    const result = await resp.json();
-    return result.media;
-  } catch (err) {
-    console.error("[fetchMedia] err: ", err);
-  }
-}
-
-// Converts the responsive_url to URL that points directly to the asset in S3.
-function toS3Path(url: string) {
-  const segments = url.split("/");
-  const partialUrl = segments.slice(2).join("/");
-
-  return `https://image-${segments[1]}.vsco.co/${partialUrl}`;
-}
+import { getMediaS3ImageUrl, getSiteS3ImageUrl } from "./vscoUtils";
 
 const fetchImageUrlAndGetLocalObjectUrl = (url: string) => {
   return fetch(url)
@@ -157,7 +122,7 @@ export const generateShareImage = async (
       );
       imageEl.src = objectUrl;
     } else {
-      const s3Src = await getS3ImageUrl(data.snapshot23_media_id);
+      const s3Src = await getMediaS3ImageUrl(data.snapshot23_media_id);
       // imageEl.src = s3Src;
       const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
       imageEl.src = objectUrl;
@@ -175,14 +140,14 @@ export const generateShareImage = async (
     "canvas-author-image-container"
   );
 
-  // if (data.snapshot23_site_id) {
-  //   const imageEl = document.getElementById("canvas-author-image-container");
-  //   imageEl.style.backgroundImage = `url('${
-  //     args.testAvatarUrl || (await getS3ImageUrl(data.snapshot23_site_id))
-  //   }')`;
-  // } else {
-  authorImageContainer.remove();
-  // }
+  if (data.snapshot23_site_id) {
+    const imageEl = document.getElementById("canvas-author-image-container");
+    imageEl.style.backgroundImage = `url('${
+      args.testAvatarUrl || (await getSiteS3ImageUrl(data.snapshot23_site_id))
+    }')`;
+  } else {
+    authorImageContainer.remove();
+  }
 
   html2canvas(document.querySelector("#toCanvas"), {
     scale: 1.5,
