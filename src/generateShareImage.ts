@@ -191,7 +191,7 @@ export const generateShareImage = async (
     // set download
 
     const image = (document.getElementById("canvas-share") as any).toDataURL(
-      "image/jpg"
+      "image/jpeg"
     );
     // .replace("image/png", "image/octet-stream");
 
