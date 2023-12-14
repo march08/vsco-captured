@@ -105,8 +105,8 @@ export const generateShareImage = async (
   const totalImagesAndVideos = totalImages + totalVideos;
   if (totalImagesAndVideos) {
     createLineItem(
-      "IMAGES EDITED",
-      `POSTED ${totalImagesAndVideos} IMAGES and VIDEOS ON VSCO`
+      "EDITS",
+      `${totalImagesAndVideos} IMAGES and VIDEOS ON VSCO`
     );
   }
   // /**
@@ -186,9 +186,9 @@ export const generateShareImage = async (
 
     // set download
 
-    const image = (document.getElementById("canvas-share") as any)
-      .toDataURL("image/png")
-      .replace("image/png", "image/octet-stream");
+    const image = (document.getElementById("canvas-share") as any).toDataURL(
+      "image/png"
+    );
 
     const anchorEl = document.createElement("a");
     anchorEl.setAttribute("href", image);
