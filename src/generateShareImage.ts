@@ -142,9 +142,14 @@ export const generateShareImage = async (
 
   if (data.snapshot23_site_id) {
     const imageEl = document.getElementById("canvas-author-image-container");
-    imageEl.style.backgroundImage = `url('${
-      args.testAvatarUrl || (await getSiteS3ImageUrl(data.snapshot23_site_id))
-    }')`;
+
+    if (args.testAvatarUrl) {
+      imageEl.style.backgroundImage = `url('${args.testAvatarUrl}')`;
+    } else {
+      const s3Src = await getSiteS3ImageUrl(data.snapshot23_site_id);
+      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+      imageEl.style.backgroundImage = `url('${objectUrl}')`;
+    }
   } else {
     authorImageContainer.remove();
   }
