@@ -9,7 +9,6 @@ async function getS3ImageUrl(mediaID: string) {
   }
 
   const s3Path = toS3Path(media.responsive_url);
-  console.log("Media", mediaID, ": s3 path", s3Path);
   return s3Path;
 }
 
@@ -39,8 +38,10 @@ function toS3Path(url: string) {
   return `https://image-${segments[1]}.vsco.co/${partialUrl}`;
 }
 
-const fetchImage = (url: string) => {
-  return fetch(url).then((res) => res.blob());
+const fetchImageUrlAndGetLocalObjectUrl = (url: string) => {
+  return fetch(url)
+    .then((res) => res.blob())
+    .then((blob) => URL.createObjectURL(blob));
 };
 
 const createLineItem = (title: string, value: string) => {
@@ -146,38 +147,42 @@ export const generateShareImage = async (
    * image
    */
 
+  const imageContainer = document.getElementById("canvas-image-container");
   if (data.snapshot23_media_id) {
-    const imageContainer = document.getElementById("canvas-image-container");
     const imageEl = document.createElement("img");
 
     if (args.testImageUrl) {
-      const imageBlob = await fetchImage(args.testImageUrl);
-      console.log("imageBlob", imageBlob);
-      const blobUrl = URL.createObjectURL(imageBlob);
-      console.log("blobUrl", blobUrl);
-      imageEl.src = blobUrl;
+      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
+        args.testImageUrl
+      );
+      imageEl.src = objectUrl;
     } else {
       const s3Src = await getS3ImageUrl(data.snapshot23_media_id);
       // imageEl.src = s3Src;
-      const imageBlob = await fetchImage(s3Src);
-      console.log("imageBlob", imageBlob);
-      const blobUrl = URL.createObjectURL(imageBlob);
-      console.log("blobUrl", blobUrl);
-      imageEl.src = URL.createObjectURL(imageBlob);
+      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+      imageEl.src = objectUrl;
     }
     imageContainer.appendChild(imageEl);
+  } else {
+    imageContainer.remove();
   }
 
-  /**
-   * author
-   */
+  // /**
+  //  * author
+  //  */
 
-  if (data.snapshot23_site_id) {
-    const imageEl = document.getElementById("canvas-author-image-container");
-    imageEl.style.backgroundImage = `url('${
-      args.testAvatarUrl || (await getS3ImageUrl(data.snapshot23_site_id))
-    }')`;
-  }
+  const authorImageContainer = document.getElementById(
+    "canvas-author-image-container"
+  );
+
+  // if (data.snapshot23_site_id) {
+  //   const imageEl = document.getElementById("canvas-author-image-container");
+  //   imageEl.style.backgroundImage = `url('${
+  //     args.testAvatarUrl || (await getS3ImageUrl(data.snapshot23_site_id))
+  //   }')`;
+  // } else {
+  authorImageContainer.remove();
+  // }
 
   html2canvas(document.querySelector("#toCanvas"), {
     scale: 1.5,
@@ -189,15 +194,14 @@ export const generateShareImage = async (
     document.body.appendChild(canvas);
 
     // set download
-    const shareButtonEl = document.getElementById("share-button");
 
     const image = (document.getElementById("canvas-share") as any)
       .toDataURL("image/png")
       .replace("image/png", "image/octet-stream");
-    shareButtonEl.setAttribute("href", image);
-    shareButtonEl.setAttribute(
-      "download",
-      `vsco_captured_${data.username}.png`
-    );
+
+    const anchorEl = document.createElement("a");
+    anchorEl.setAttribute("href", image);
+    anchorEl.setAttribute("download", `vsco_captured_${data.username}.png`);
+    anchorEl.click();
   });
 };

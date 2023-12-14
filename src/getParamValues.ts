@@ -31,23 +31,19 @@ export const getSearchParamValues = (shouldEncode = true) => {
     }
   }
 
-  const result = URL_PARAMS.reduce(
-    (res, key) => {
-      const value = allSearchParams.get(key);
-      allSearchParams.delete(key);
-      const validated = getValidatedParamValue(key, value);
-      if (validated !== null) {
-        return {
-          ...res,
-          [key]: validated,
-          [`${key}_raw`]: value,
-        };
-      }
+  const result = URL_PARAMS.reduce((res, key) => {
+    const value = allSearchParams.get(key);
+    allSearchParams.delete(key);
+    const validated = getValidatedParamValue(key, value);
+    if (validated !== null) {
+      return {
+        ...res,
+        [key]: validated,
+      };
+    }
 
-      return res;
-    },
-    {} as Partial<MappedResult & AddSuffixToObject<MappedResult, "_raw">>
-  );
+    return res;
+  }, {} as Partial<MappedResult>);
 
   if (shouldEncode) {
     try {

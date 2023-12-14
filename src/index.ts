@@ -11,7 +11,11 @@ const init = (args: {
   const params = getSearchParamValues(args.base64);
 
   mapToDom(params);
-  generateShareImage(params, args);
+
+  const shareButtonEl = document.getElementById("share-button");
+  shareButtonEl.addEventListener("click", () => {
+    generateShareImage(params, args);
+  });
 
   if (args.onSuccess) {
     args.onSuccess();

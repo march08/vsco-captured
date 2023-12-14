@@ -64,14 +64,14 @@ const addToolItem = (tool: string, usedCount: string) => {
       imgEl.style.filter =
         "invert(85%) sepia(100%) saturate(733%) hue-rotate(0deg) brightness(80%) contrast(100%)";
       if (imgEl) {
-        imgEl.src = "___IMG_SRC___";
+        imgEl.src = "";
       }
     }
 
     const nextInnerHtml = presetItem.innerHTML
       .replace("Grain", displayValueTools[tool] || tool)
       .replace("58", usedCount)
-      .replace("___IMG_SRC___", imgSrc);
+      .replace('src=""', `src="${imgSrc}"`);
 
     presetItem.getElementsByClassName;
     const clonedNode = presetItem.cloneNode(true);
