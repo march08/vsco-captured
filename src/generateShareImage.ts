@@ -1,4 +1,4 @@
-import html2canvas from "html2canvas";
+import html2canvas from "./html2canvas.js";
 import type { SearchParamKeyValue } from "./getParamValues";
 import { isTruthy, replaceInnerText } from "./utils";
 import { vscoImageResponsiveUrltoS3Path } from "./vscoUtils";
@@ -141,12 +141,15 @@ export const generateShareImage = async (
   if (data.snapshot23_media_responsive_url) {
     const imageEl = document.createElement("img");
 
+    imageEl.onload = () => {};
+
     // if (args.testImageUrl) {
     //   const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
     //     args.testImageUrl
     //   );
-    imageEl.src =
-      "https://images.unsplash.com/photo-1600350374456-b81d280d7542?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+    imageEl.src = await fetchImageUrlAndGetLocalObjectUrl(
+      "https://images.unsplash.com/photo-1600350374456-b81d280d7542?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    );
     // } else {
     //   const s3Src = vscoImageResponsiveUrltoS3Path(
     //     data.snapshot23_media_responsive_url
@@ -156,6 +159,7 @@ export const generateShareImage = async (
     //   const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
     //   imageEl.src = objectUrl;
     // }
+    console.log("imageEl", imageEl);
     imageContainer.appendChild(imageEl);
   }
   // const imageContainer = document.getElementById("canvas-image-container");
@@ -179,8 +183,10 @@ export const generateShareImage = async (
   // }
 
   html2canvas(document.querySelector("#toCanvas"), {
-    scale: 1.5,
-    logging: false,
+    scale: 1,
+    logging: true,
+    allowTaint: false,
+    // useCORS: true,
   }).then((canvas) => {
     canvas.id = "canvas-share";
     document.body.appendChild(canvas);
@@ -191,10 +197,11 @@ export const generateShareImage = async (
       .toDataURL("image/png")
       .replace("image/png", "image/octet-stream");
 
-    const anchorEl =
-      document.getElementById("download-anchor") || document.createElement("a");
+    // const anchorEl =
+    //   document.getElementById("download-anchor") || document.createElement("a");
+    const anchorEl = document.getElementById("share-button");
     anchorEl.setAttribute("href", image);
     anchorEl.setAttribute("download", `vsco_captured_${data.username}.png`);
-    anchorEl.click();
+    // anchorEl.click();
   });
 };

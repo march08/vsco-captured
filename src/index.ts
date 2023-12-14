@@ -12,14 +12,15 @@ const init = (args: {
   mapToDom(params);
 
   const shareButtonEl = document.getElementById("share-button");
-  shareButtonEl.addEventListener("click", () => {
-    const downloadAnchor = document.getElementById("download-anchor");
-    if (downloadAnchor) {
-      downloadAnchor.click();
-    } else {
-      generateShareImage(params, args);
-    }
-  });
+  generateShareImage(params, args);
+  // shareButtonEl.addEventListener("click", () => {
+  //   const downloadAnchor = document.getElementById("download-anchor");
+  //   if (downloadAnchor) {
+  //     downloadAnchor.click();
+  //   } else {
+  //     generateShareImage(params, args);
+  //   }
+  // });
 
   if (args.onSuccess) {
     args.onSuccess();
