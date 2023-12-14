@@ -9,7 +9,6 @@ const init = (args: {
   testAvatarUrl?: string;
 }) => {
   const params = getSearchParamValues(args.base64);
-  console.log("params", params);
   mapToDom(params);
 
   const shareButtonEl = document.getElementById("share-button");

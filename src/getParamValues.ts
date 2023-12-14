@@ -24,7 +24,6 @@ export const getSearchParamValues = (shouldEncode = true) => {
 
       const parsed = Object.entries(res).reduce((res, [key, value]) => {
         const validated = getValidatedParamValue(key as any, value);
-        console.log("validated", key, validated, value);
         if (validated) {
           return {
             ...res,
@@ -32,7 +31,7 @@ export const getSearchParamValues = (shouldEncode = true) => {
           };
         }
         return res;
-      }, {});
+      }, {} as Partial<MappedResult>);
 
       return parsed;
     } catch {

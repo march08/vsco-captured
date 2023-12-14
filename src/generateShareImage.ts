@@ -1,11 +1,7 @@
 import html2canvas from "html2canvas";
 import type { SearchParamKeyValue } from "./getParamValues";
 import { isTruthy, replaceInnerText } from "./utils";
-import {
-  getMediaS3ImageUrl,
-  getSiteS3ImageUrl,
-  vscoImageResponsiveUrltoS3Path,
-} from "./vscoUtils";
+import { vscoImageResponsiveUrltoS3Path } from "./vscoUtils";
 
 const fetchImageUrlAndGetLocalObjectUrl = (url: string) => {
   return fetch(url)
@@ -151,14 +147,10 @@ export const generateShareImage = async (
       );
       imageEl.src = objectUrl;
     } else {
-      const srcFetched = await getMediaS3ImageUrl(data.snapshot23_media_id);
-
-      console.log("srcFetched", srcFetched);
       const s3Src = vscoImageResponsiveUrltoS3Path(
         data.snapshot23_media_responsive_url
       );
 
-      console.log("s3Src", s3Src);
       // imageEl.src = s3Src;
       const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
       imageEl.src = objectUrl;

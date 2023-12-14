@@ -1,6 +1,5 @@
 // Converts the responsive_url to URL that points directly to the asset in S3.
 export function vscoImageResponsiveUrltoS3Path(url: string) {
-  console.log("vscoImageResponsiveUrltoS3Path", url);
   const segments = new URL(url).pathname.split("/");
   const partialUrl = segments.slice(2).join("/");
 
@@ -28,7 +27,6 @@ async function fetchMedia(mediaID: string) {
 export async function getMediaS3ImageUrl(mediaID: string) {
   const media = await fetchMedia(mediaID);
 
-  console.log("media", media);
   if (!media) {
     return;
   }
