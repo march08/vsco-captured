@@ -143,23 +143,20 @@ export const generateShareImage = async (
 
     imageEl.onload = () => {};
 
-    // if (args.testImageUrl) {
-    //   const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
-    //     args.testImageUrl
-    //   );
-    imageEl.src = await fetchImageUrlAndGetLocalObjectUrl(
-      "https://images.unsplash.com/photo-1600350374456-b81d280d7542?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    );
-    // } else {
-    //   const s3Src = vscoImageResponsiveUrltoS3Path(
-    //     data.snapshot23_media_responsive_url
-    //   );
+    if (args.testImageUrl) {
+      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
+        args.testImageUrl
+      );
+      imageEl.src = objectUrl;
+    } else {
+      const s3Src = vscoImageResponsiveUrltoS3Path(
+        data.snapshot23_media_responsive_url
+      );
 
-    //   // imageEl.src = s3Src;
-    //   const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
-    //   imageEl.src = objectUrl;
-    // }
-    console.log("imageEl", imageEl);
+      // imageEl.src = s3Src;
+      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+      imageEl.src = objectUrl;
+    }
     imageContainer.appendChild(imageEl);
   }
   // const imageContainer = document.getElementById("canvas-image-container");
@@ -183,7 +180,7 @@ export const generateShareImage = async (
   // }
 
   html2canvas(document.querySelector("#toCanvas"), {
-    scale: 1,
+    scale: 1.5,
     logging: true,
     allowTaint: false,
     // useCORS: true,
