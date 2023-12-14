@@ -179,23 +179,21 @@ export const generateShareImage = async (
 
   html2canvas(document.querySelector("#toCanvas"), {
     scale: 1.5,
-    logging: true,
+    logging: false,
   }).then((canvas) => {
     canvas.id = "canvas-share";
     document.body.appendChild(canvas);
 
+    // set download
+
+    const image = (document.getElementById("canvas-share") as any)
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+
     const anchorEl =
       document.getElementById("download-anchor") || document.createElement("a");
-    anchorEl.setAttribute("id", "download-anchor");
-    // anchorEl.setAttribute("href", image);
-    anchorEl.setAttribute("download", `vsco_captured_${data.username}.png`);
-
-    canvas.toBlob((blob) => {
-      // do something with the blob here...
-      console.log("blob", blob, URL.createObjectURL(blob));
-      anchorEl.setAttribute("href", URL.createObjectURL(blob));
-      console.log("anchor", anchorEl);
-      anchorEl.click();
-    }, "image/png");
+    anchorEl.setAttribute("href", image);
+    anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
+    anchorEl.click();
   });
 };
