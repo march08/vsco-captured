@@ -179,7 +179,7 @@ export const generateShareImage = async (
 
   html2canvas(document.querySelector("#toCanvas"), {
     scale: 1.5,
-    logging: false,
+    logging: true,
   }).then((canvas) => {
     canvas.id = "canvas-share";
     document.body.appendChild(canvas);
@@ -192,6 +192,7 @@ export const generateShareImage = async (
     canvas.toBlob(
       (blob) => {
         // do something with the blob here...
+        console.log("blob", blob);
         anchorEl.setAttribute("href", URL.createObjectURL(blob));
       },
       "image/jpeg",
