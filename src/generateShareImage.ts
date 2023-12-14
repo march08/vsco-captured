@@ -6,7 +6,10 @@ import { getMediaS3ImageUrl, getSiteS3ImageUrl } from "./vscoUtils";
 const fetchImageUrlAndGetLocalObjectUrl = (url: string) => {
   return fetch(url)
     .then((res) => res.blob())
-    .then((blob) => URL.createObjectURL(blob));
+    .then((blob) => {
+      console.log("bbb", blob);
+      return URL.createObjectURL(blob);
+    });
 };
 
 const createLineItem = (title: string, value: string) => {
@@ -147,6 +150,7 @@ export const generateShareImage = async (
       imageEl.style.backgroundImage = `url('${args.testAvatarUrl}')`;
     } else {
       const s3Src = await getSiteS3ImageUrl(data.snapshot23_site_id);
+      console.log("site s3", s3Src);
       const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
       imageEl.style.backgroundImage = `url('${objectUrl}')`;
     }

@@ -58,6 +58,8 @@ export async function getSiteS3ImageUrl(siteId: string) {
     return;
   }
 
+  console.log("site", site);
+
   const s3Path = vscoImageResponsiveUrltoS3Path(site.responsive_url);
   return s3Path;
 }
