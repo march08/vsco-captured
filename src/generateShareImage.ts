@@ -190,9 +190,10 @@ export const generateShareImage = async (
 
     // set download
 
-    const image = (document.getElementById("canvas-share") as any)
-      .toDataURL("image/png")
-      .replace("image/png", "image/octet-stream");
+    const image = (document.getElementById("canvas-share") as any).toDataURL(
+      "image/png"
+    );
+    // .replace("image/png", "image/octet-stream");
 
     // const anchorEl =
     //   document.getElementById("download-anchor") || document.createElement("a");
