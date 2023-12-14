@@ -117,19 +117,19 @@ export const generateShareImage = async (
     "canvas-author-image-container"
   );
 
-  if (data.snapshot23_site_id) {
-    const imageEl = document.getElementById("canvas-author-image-container");
+  // if (data.snapshot23_site_id) {
+  //   const imageEl = document.getElementById("canvas-author-image-container");
 
-    if (args.testAvatarUrl) {
-      imageEl.style.backgroundImage = `url('${args.testAvatarUrl}')`;
-    } else {
-      const s3Src = await getSiteS3ImageUrl(data.snapshot23_site_id);
-      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
-      imageEl.style.backgroundImage = `url('${objectUrl}')`;
-    }
-  } else {
-    authorImageContainer.remove();
-  }
+  //   if (args.testAvatarUrl) {
+  //     imageEl.style.backgroundImage = `url('${args.testAvatarUrl}')`;
+  //   } else {
+  //     const s3Src = await getSiteS3ImageUrl(data.snapshot23_site_id);
+  //     const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+  //     imageEl.style.backgroundImage = `url('${objectUrl}')`;
+  //   }
+  // } else {
+  authorImageContainer.remove();
+  // }
 
   /**
    * image
