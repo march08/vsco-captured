@@ -192,13 +192,14 @@ export const generateShareImage = async (
     canvas.toBlob(
       (blob) => {
         // do something with the blob here...
-        console.log("blob", blob);
+        console.log("blob", blob, URL.createObjectURL(blob));
         anchorEl.setAttribute("href", URL.createObjectURL(blob));
       },
       "image/jpeg",
       1
     );
     anchorEl.setAttribute("download", `vsco_captured_${data.username}.png`);
+    console.log("anchor", anchorEl);
     anchorEl.click();
   });
 };
