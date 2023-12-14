@@ -141,20 +141,20 @@ export const generateShareImage = async (
   if (data.snapshot23_media_responsive_url) {
     const imageEl = document.createElement("img");
 
-    if (args.testImageUrl) {
-      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
-        args.testImageUrl
-      );
-      imageEl.src = objectUrl;
-    } else {
-      const s3Src = vscoImageResponsiveUrltoS3Path(
-        data.snapshot23_media_responsive_url
-      );
+    // if (args.testImageUrl) {
+    //   const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
+    //     args.testImageUrl
+    //   );
+    imageEl.src = args.testImageUrl;
+    // } else {
+    //   const s3Src = vscoImageResponsiveUrltoS3Path(
+    //     data.snapshot23_media_responsive_url
+    //   );
 
-      // imageEl.src = s3Src;
-      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
-      imageEl.src = objectUrl;
-    }
+    //   // imageEl.src = s3Src;
+    //   const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+    //   imageEl.src = objectUrl;
+    // }
     imageContainer.appendChild(imageEl);
   }
   // const imageContainer = document.getElementById("canvas-image-container");
