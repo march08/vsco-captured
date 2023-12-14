@@ -190,16 +190,12 @@ export const generateShareImage = async (
     // anchorEl.setAttribute("href", image);
     anchorEl.setAttribute("download", `vsco_captured_${data.username}.png`);
 
-    canvas.toBlob(
-      (blob) => {
-        // do something with the blob here...
-        console.log("blob", blob, URL.createObjectURL(blob));
-        anchorEl.setAttribute("href", URL.createObjectURL(blob));
-        console.log("anchor", anchorEl);
-        anchorEl.click();
-      },
-      "image/jpeg",
-      1
-    );
+    canvas.toBlob((blob) => {
+      // do something with the blob here...
+      console.log("blob", blob, URL.createObjectURL(blob));
+      anchorEl.setAttribute("href", URL.createObjectURL(blob));
+      console.log("anchor", anchorEl);
+      anchorEl.click();
+    }, "image/png");
   });
 };
