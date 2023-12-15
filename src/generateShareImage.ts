@@ -188,12 +188,14 @@ export const generateShareImage = async (
     canvas.id = "canvas-share";
     document.body.appendChild(canvas);
 
-    share(canvas)
+    await share(canvas)
       .then((data) => {
-        navigator.share(data);
+        return navigator.share(data);
       })
       .catch(() => {
         // set download
+
+        console.log("REGULAR DOWNLOAD");
 
         const image = canvas.toDataURL("image/jpeg");
         // .replace("image/png", "image/octet-stream"); // probably not necessary
@@ -213,9 +215,10 @@ const getCanvasBlob = (canvas: HTMLCanvasElement) => {
 };
 
 const share = async (canvas: HTMLCanvasElement) => {
+  console.log("navigator.canShare", navigator.canShare);
   if (navigator.canShare) {
     const blob = await getCanvasBlob(canvas);
-
+    console.log("blob", blob);
     if (blob) {
       const filesArray = [
         new File([blob], `snapshot_2023.png`, {
@@ -228,6 +231,11 @@ const share = async (canvas: HTMLCanvasElement) => {
         files: filesArray,
       };
 
+      console.log("shareData", shareData);
+      console.log(
+        "navigator.canShare(shareData)",
+        navigator.canShare(shareData)
+      );
       if (navigator.canShare(shareData)) {
         return shareData;
       }
