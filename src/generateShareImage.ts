@@ -181,25 +181,20 @@ export const generateShareImage = async (
 
   html2canvas(document.querySelector("#toCanvas"), {
     scale: 1.5,
-    logging: true,
+    logging: false,
     allowTaint: false,
     // useCORS: true,
-  }).then((canvas) => {
+  }).then((canvas: HTMLCanvasElement) => {
     canvas.id = "canvas-share";
     document.body.appendChild(canvas);
 
     // set download
 
-    const image = (document.getElementById("canvas-share") as any).toDataURL(
-      "image/jpeg"
-    );
-    // .replace("image/png", "image/octet-stream");
+    const image = canvas.toDataURL("image/jpeg");
+    // .replace("image/png", "image/octet-stream"); // probably not necessary
 
-    // const anchorEl =
-    //   document.getElementById("download-anchor") || document.createElement("a");
     const anchorEl = document.getElementById("share-button");
     anchorEl.setAttribute("href", image);
     anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
-    // anchorEl.click();
   });
 };
