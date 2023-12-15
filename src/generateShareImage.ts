@@ -167,7 +167,7 @@ export const generateShareImage = async (
       imageContainer.appendChild(imageEl);
     }
   } catch (e) {
-    console.log("cannot render image", e);
+    console.log("cannot render image", e, e.message);
   }
   // const imageContainer = document.getElementById("canvas-image-container");
   // if (data.snapshot23_media_id) {
