@@ -1,4 +1,4 @@
-import html2canvas from "./html2canvas.js";
+import html2canvas from "html2canvas";
 import type { SearchParamKeyValue } from "./getParamValues";
 import { isTruthy, replaceInnerText } from "./utils";
 import { vscoImageResponsiveUrltoS3Path } from "./vscoUtils";
