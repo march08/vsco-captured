@@ -91,7 +91,7 @@ export const generateShareImage = async (
 
   if (data.snapshot23_most_creative_day_of_week) {
     createLineItem(
-      "Creative month",
+      "Creative day",
       `${data.snapshot23_most_creative_day_of_week}s`
     );
   }
