@@ -197,28 +197,28 @@ export const generateShareImage = async (
     const image = canvas.toDataURL("image/jpeg");
     // .replace("image/png", "image/octet-stream"); // probably not necessary
 
-    anchorEl.setAttribute("href", image);
-    anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
+    // anchorEl.setAttribute("href", image);
+    // anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
 
-    // await share(canvas)
-    //   .then((data) => {
-    //     console.log("Share", data);
-    //     anchorEl.addEventListener("click", () => {
-    //       console.log("click", data);
-    //       navigator.share(data);
-    //     });
-    //   })
-    //   .catch(() => {
-    //     // set download
+    await share(canvas)
+      .then((data) => {
+        console.log("Share", data);
+        anchorEl.addEventListener("click", () => {
+          console.log("click", data);
+          navigator.share(data);
+        });
+      })
+      .catch(() => {
+        // set download
 
-    //     console.log("REGULAR DOWNLOAD");
+        console.log("REGULAR DOWNLOAD");
 
-    //     const image = canvas.toDataURL("image/jpeg");
-    //     // .replace("image/png", "image/octet-stream"); // probably not necessary
+        const image = canvas.toDataURL("image/jpeg");
+        // .replace("image/png", "image/octet-stream"); // probably not necessary
 
-    //     anchorEl.setAttribute("href", image);
-    //     anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
-    //   });
+        anchorEl.setAttribute("href", image);
+        anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
+      });
   });
 };
 
@@ -230,6 +230,14 @@ const getCanvasBlob = (canvas: HTMLCanvasElement) => {
 
 const share = async (canvas: HTMLCanvasElement) => {
   console.log("navigator.canShare", navigator.canShare);
+
+  if (!/Android|iPhone/i.test(navigator.userAgent)) {
+    console.log("Desktop device");
+    return Promise.reject("Desktop device");
+  }
+
+  console.log("Mobile device");
+
   if (navigator.canShare) {
     const blob = await getCanvasBlob(canvas);
     console.log("blob", blob);

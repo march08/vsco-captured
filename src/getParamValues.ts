@@ -53,7 +53,7 @@ export const getSearchParamValues = (shouldEncode = true) => {
     return res;
   }, {} as Partial<MappedResult>);
 
-  if (shouldEncode) {
+  if (shouldEncode && Object.keys(result).length > 0) {
     try {
       const encoded = utf8_to_b64(JSON.stringify(result));
       allSearchParams.set("capture_data", encoded);

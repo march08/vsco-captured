@@ -3013,8 +3013,8 @@
       #toCanvas {
         position: fixed;
 
-        top: 10%;
-        left: 10%;
+        top: -210%;
+        left: -210%;
         z-index: 1000;
 
         background: #111;
@@ -3108,6 +3108,12 @@
         border-radius: 50%;
         background-size: cover;
       }
+      #canvas-footer-snapshot-text {
+        color: white;
+        font-size: 95px;
+        line-height: 70px;
+        font-weight: 500;
+      }
     </style>
     <div id="toCanvas">
       <div id="canvas-image-container"></div>
@@ -3132,15 +3138,7 @@
             <span class="canvas-author-text">vsco.co/</span>
             <span class="canvas-author-text" id="canvas-username"></span>
           </div>
-          <span
-            style="
-              color: white;
-              font-size: 95px;
-              line-height: 70px;
-              font-weight: 500;
-            "
-            >SNAPSHOT – 2023</span
-          >
+          <span id="canvas-footer-snapshot-text">SNAPSHOT – 2023</span>
         </div>
       </div>
     </div>
