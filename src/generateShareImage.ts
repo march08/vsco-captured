@@ -186,8 +186,8 @@ export const generateShareImage = async (
   // }
 
   html2canvas(document.querySelector("#toCanvas"), {
-    scale: 1.5,
-    logging: false,
+    scale: 1,
+    logging: true,
     allowTaint: false,
     // useCORS: true,
   }).then(async (canvas: HTMLCanvasElement) => {
