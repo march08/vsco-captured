@@ -7,7 +7,9 @@ const fetchImageUrlAndGetLocalObjectUrl = (url: string) => {
   return fetch(url)
     .then((res) => res.blob())
     .then((blob) => {
-      return URL.createObjectURL(blob);
+      const objectUrl = URL.createObjectURL(blob);
+      console.log("URL.createObjectURL(blob)", objectUrl);
+      return objectUrl;
     });
 };
 
@@ -153,16 +155,15 @@ export const generateShareImage = async (
         const s3Src = vscoImageResponsiveUrltoS3Path(
           data.snapshot23_media_responsive_url
         );
-        console.log("Image url", s3Src);
+        console.log("Image urllll", s3Src);
 
-        // imageEl.src = s3Src;
         const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
         imageEl.src = objectUrl;
       }
       imageContainer.appendChild(imageEl);
     }
-  } catch {
-    console.log("cannot render image");
+  } catch (e) {
+    console.log("cannot render image", e);
   }
   // const imageContainer = document.getElementById("canvas-image-container");
   // if (data.snapshot23_media_id) {
@@ -190,11 +191,11 @@ export const generateShareImage = async (
     allowTaint: false,
     // useCORS: true,
   }).then(async (canvas: HTMLCanvasElement) => {
-    canvas.id = "canvas-share";
-    document.body.appendChild(canvas);
+    // canvas.id = "canvas-share";
+    // document.body.appendChild(canvas);
     const anchorEl = document.getElementById("share-button");
 
-    const image = canvas.toDataURL("image/jpeg");
+    // const image = canvas.toDataURL("image/jpeg");
     // .replace("image/png", "image/octet-stream"); // probably not necessary
 
     // anchorEl.setAttribute("href", image);
@@ -205,7 +206,14 @@ export const generateShareImage = async (
         console.log("Share", data);
         anchorEl.addEventListener("click", () => {
           console.log("click", data);
-          navigator.share(data);
+          navigator
+            .share(data)
+            .then(() => {
+              console.log("DOWNLOADED");
+            })
+            .catch((e) => {
+              console.log("share err", e);
+            });
         });
       })
       .catch(() => {
