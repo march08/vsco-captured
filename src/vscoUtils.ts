@@ -63,6 +63,3 @@ export async function getSiteS3ImageUrl(siteId: string) {
   const s3Path = vscoImageResponsiveUrltoS3Path(site.responsive_url);
   return s3Path;
 }
-
-snapshot23_media_responsive_url: "https://im.vsco.co/aws-us-west-2/7eb273/119110438/642833f3dfa40b0b23386e7f/vsco_040123.jpg";
-("im.vsco.co/aws-us-west-2/7eb273/119110438/642833f3dfa40b0b23386e7f/vsco_040123.jpg");

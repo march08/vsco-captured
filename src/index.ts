@@ -9,10 +9,12 @@ const init = (args: {
   testAvatarUrl?: string;
 }) => {
   const params = getSearchParamValues(args.base64);
-  mapToDom(params);
 
-  const shareButtonEl = document.getElementById("share-button");
+  console.log("params", params);
+
+  mapToDom(params);
   generateShareImage(params, args);
+  // const shareButtonEl = document.getElementById("share-button");
   // shareButtonEl.addEventListener("click", () => {
   //   const downloadAnchor = document.getElementById("download-anchor");
   //   if (downloadAnchor) {

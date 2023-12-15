@@ -70,7 +70,7 @@ const addToolItem = (tool: string, usedCount: string) => {
 
     const nextInnerHtml = presetItem.innerHTML
       .replace("Grain", displayValueTools[tool] || tool)
-      .replace("58", usedCount)
+      .replace("X edits", usedCount + " edits")
       .replace('src=""', `src="${imgSrc}"`);
 
     presetItem.getElementsByClassName;

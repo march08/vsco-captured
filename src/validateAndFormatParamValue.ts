@@ -1,4 +1,4 @@
-import { PRESET_KEYS } from "./const/PRESETS";
+import { getPresetConfigByKey } from "./const/PRESETS_2023";
 import { TOOLS } from "./const/TOOLS";
 import type { UrlParam } from "./const/URL_PARAMS";
 
@@ -37,7 +37,8 @@ const months = [
 ];
 
 const getPresetFormattedValue = (val: string) => {
-  return PRESET_KEYS.includes(val.toLowerCase()) ? val : null;
+  const presetConfig = getPresetConfigByKey(val);
+  return presetConfig.key;
 };
 const getToolsFormattedValue = (val: string) => {
   return TOOLS.includes(val.toLowerCase() as any) ? val : null;
