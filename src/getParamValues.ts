@@ -14,6 +14,8 @@ type MappedResult = Record<UrlParam, string>;
 export const getSearchParamValues = (shouldEncode = true) => {
   const allSearchParams = new URLSearchParams(window.location.search);
 
+  console.log("PARAMS RAW", window.location.search);
+
   const isEncoded = allSearchParams.get("capture_data");
 
   if (isEncoded) {

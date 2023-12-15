@@ -10,6 +10,8 @@ const init = (args: {
 }) => {
   const params = getSearchParamValues(args.base64);
 
+  console.log("PARSED PARAMS");
+
   mapToDom(params);
   generateShareImage(params, args);
   // const shareButtonEl = document.getElementById("share-button");
