@@ -4,7 +4,11 @@ import { isTruthy, replaceInnerText } from "./utils";
 import { vscoImageResponsiveUrltoS3Path } from "./vscoUtils";
 
 const fetchImageUrlAndGetLocalObjectUrl = (url: string) => {
-  return fetch(url)
+  return fetch(url, {
+    headers: {
+      "Content-Type": "image/jpeg",
+    },
+  })
     .then((res) => res.blob())
     .then((blob) => {
       const objectUrl = URL.createObjectURL(blob);
