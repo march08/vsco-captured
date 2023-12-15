@@ -3,18 +3,22 @@ import type { SearchParamKeyValue } from "./getParamValues";
 import { isTruthy, replaceInnerText } from "./utils";
 import { vscoImageResponsiveUrltoS3Path } from "./vscoUtils";
 
-const fetchImageUrlAndGetLocalObjectUrl = (url: string) => {
-  return fetch(url, {
+const fetchImageUrlAndGetLocalObjectUrl = async (url: string) => {
+  console.log("fetchImageUrlAndGetLocalObjectUrl");
+  const response = await fetch(url, {
     headers: {
       "Content-Type": "image/jpeg",
     },
-  })
-    .then((res) => res.blob())
-    .then((blob) => {
-      const objectUrl = URL.createObjectURL(blob);
-      console.log("URL.createObjectURL(blob)", objectUrl);
-      return objectUrl;
-    });
+  });
+  console.log("response", response);
+
+  const blob = await response.blob();
+
+  console.log("blob", blob);
+
+  const objectUrl = URL.createObjectURL(blob);
+  console.log("URL.createObjectURL(blob)", objectUrl);
+  return objectUrl;
 };
 
 const createLineItem = (title: string, value: string) => {
