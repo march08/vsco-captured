@@ -42,7 +42,7 @@ const addPresetItem = (presetCode: string, usedCount: string) => {
     const nextInnerHtml = presetItem.innerHTML
       .replace("AL1", presetCode)
       .replace("Fluorescent Soften", presetConfig.title)
-      .replace("X edits", usedCount + " edits");
+      .replace("X edits", usedCount + (usedCount === "1" ? " edit" : " edits"));
 
     presetItem.getElementsByClassName;
     const clonedNode = presetItem.cloneNode(true);
@@ -70,7 +70,7 @@ const addToolItem = (tool: string, usedCount: string) => {
 
     const nextInnerHtml = presetItem.innerHTML
       .replace("Grain", displayValueTools[tool] || tool)
-      .replace("X edits", usedCount + " edits")
+      .replace("X edits", usedCount + (usedCount === "1" ? " edit" : " edits"))
       .replace('src=""', `src="${imgSrc}"`);
 
     presetItem.getElementsByClassName;
@@ -155,13 +155,17 @@ export const mapToDom = (data: SearchParamKeyValue) => {
     replaceTextOrHide(
       "space-value-created",
       data.snapshot23_spaces_created_count
-        ? `You created ${data.snapshot23_spaces_created_count} spaces`
+        ? `You created ${data.snapshot23_spaces_created_count} ${
+            data.snapshot23_spaces_created_count === "1" ? "space" : "spaces"
+          }`
         : null
     );
     replaceTextOrHide(
       "space-value-joined",
       data.snapshot23_spaces_joined
-        ? `You joined ${data.snapshot23_spaces_joined} spaces`
+        ? `You joined ${data.snapshot23_spaces_joined} ${
+            data.snapshot23_spaces_joined === "1" ? "space" : "spaces"
+          }`
         : null
     );
   } else {
