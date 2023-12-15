@@ -105,8 +105,8 @@ export const generateShareImage = async (
   const totalImagesAndVideos = totalImages + totalVideos;
   if (totalImagesAndVideos) {
     createLineItem(
-      "EDITS",
-      `${totalImagesAndVideos} IMAGES and VIDEOS ON VSCO`
+      "POSTS",
+      `EDITED ${totalImagesAndVideos} IMAGES and VIDEOS ON VSCO`
     );
   }
   // /**
@@ -137,27 +137,32 @@ export const generateShareImage = async (
    * image
    */
 
-  const imageContainer = document.getElementById("canvas-image-container");
-  if (data.snapshot23_media_responsive_url) {
-    const imageEl = document.createElement("img");
+  try {
+    const imageContainer = document.getElementById("canvas-image-container");
+    if (data.snapshot23_media_responsive_url) {
+      const imageEl = document.createElement("img");
 
-    imageEl.onload = () => {};
+      imageEl.onload = () => {};
 
-    if (args.testImageUrl) {
-      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
-        args.testImageUrl
-      );
-      imageEl.src = objectUrl;
-    } else {
-      const s3Src = vscoImageResponsiveUrltoS3Path(
-        data.snapshot23_media_responsive_url
-      );
+      if (args.testImageUrl) {
+        const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
+          args.testImageUrl
+        );
+        imageEl.src = objectUrl;
+      } else {
+        const s3Src = vscoImageResponsiveUrltoS3Path(
+          data.snapshot23_media_responsive_url
+        );
+        console.log("Image url", s3Src);
 
-      // imageEl.src = s3Src;
-      const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
-      imageEl.src = objectUrl;
+        // imageEl.src = s3Src;
+        const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+        imageEl.src = objectUrl;
+      }
+      imageContainer.appendChild(imageEl);
     }
-    imageContainer.appendChild(imageEl);
+  } catch {
+    console.log("cannot render image");
   }
   // const imageContainer = document.getElementById("canvas-image-container");
   // if (data.snapshot23_media_id) {
@@ -189,25 +194,31 @@ export const generateShareImage = async (
     document.body.appendChild(canvas);
     const anchorEl = document.getElementById("share-button");
 
-    await share(canvas)
-      .then((data) => {
-        console.log("ADD", data);
-        anchorEl.addEventListener("click", () => {
-          console.log("click", data);
-          navigator.share(data);
-        });
-      })
-      .catch(() => {
-        // set download
+    const image = canvas.toDataURL("image/jpeg");
+    // .replace("image/png", "image/octet-stream"); // probably not necessary
 
-        console.log("REGULAR DOWNLOAD");
+    anchorEl.setAttribute("href", image);
+    anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
 
-        const image = canvas.toDataURL("image/jpeg");
-        // .replace("image/png", "image/octet-stream"); // probably not necessary
+    // await share(canvas)
+    //   .then((data) => {
+    //     console.log("Share", data);
+    //     anchorEl.addEventListener("click", () => {
+    //       console.log("click", data);
+    //       navigator.share(data);
+    //     });
+    //   })
+    //   .catch(() => {
+    //     // set download
 
-        anchorEl.setAttribute("href", image);
-        anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
-      });
+    //     console.log("REGULAR DOWNLOAD");
+
+    //     const image = canvas.toDataURL("image/jpeg");
+    //     // .replace("image/png", "image/octet-stream"); // probably not necessary
+
+    //     anchorEl.setAttribute("href", image);
+    //     anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
+    //   });
   });
 };
 

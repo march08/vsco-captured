@@ -3013,8 +3013,9 @@
       #toCanvas {
         position: fixed;
 
-        top: -110%;
-        left: -130%;
+        top: 10%;
+        left: 10%;
+        z-index: 1000;
 
         background: #111;
         color: white;
@@ -3023,7 +3024,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 145px 40px;
+        padding: 145px 40px 128px 40px;
         gap: 40px;
       }
       #canvas-activity-items {
@@ -3036,7 +3037,7 @@
         gap: 40px;
         font-size: 32px;
         line-height: 44px;
-        letter-spacing: 5%;
+        letter-spacing: 1.6px;
         text-transform: uppercase;
       }
       .canvas-activity-item-title {
@@ -3051,7 +3052,8 @@
 
       #canvas-image-container {
         height: 795px;
-        height: 50%;
+        flex-grow: 0;
+        flex-shrink: 0;
         display: flex;
         justify-content: flex-start;
         align-items: flex-end;
@@ -3072,7 +3074,7 @@
       #canvas-footer {
         display: flex;
         flex-direction: column;
-        gap: 40px;
+        gap: 30px;
         justify-content: flex-end;
       }
       #canvas-logo {
@@ -3088,7 +3090,17 @@
 
       .canvas-author-text {
         font-weight: 500;
-        font-size: 26px;
+        font-size: 27px;
+        color: #fff;
+
+        font-feature-settings:
+          "clig" off,
+          "liga" off;
+        font-family: VSCO Gothic;
+        font-size: 1.6865rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.38888rem; /* 82.353% */
       }
       #canvas-author-image-container {
         height: 72px;
@@ -3123,10 +3135,9 @@
           <span
             style="
               color: white;
-              font-size: 60px;
-              line-height: 44px;
-              letter-spacing: 4px;
-              font-weight: 600;
+              font-size: 95px;
+              line-height: 70px;
+              font-weight: 500;
             "
             >SNAPSHOT – 2023</span
           >
