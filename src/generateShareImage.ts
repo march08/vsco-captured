@@ -200,7 +200,7 @@ export const generateShareImage = async (
     // anchorEl.setAttribute("href", image);
     // anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
 
-    await share(canvas)
+    await share(canvas, data.username)
       .then((data) => {
         console.log("Share", data);
         anchorEl.addEventListener("click", () => {
@@ -217,7 +217,10 @@ export const generateShareImage = async (
         // .replace("image/png", "image/octet-stream"); // probably not necessary
 
         anchorEl.setAttribute("href", image);
-        anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
+        anchorEl.setAttribute(
+          "download",
+          `vsco_snapshot_2023_${data.username}`
+        );
       });
   });
 };
@@ -228,7 +231,7 @@ const getCanvasBlob = (canvas: HTMLCanvasElement) => {
   });
 };
 
-const share = async (canvas: HTMLCanvasElement) => {
+const share = async (canvas: HTMLCanvasElement, username: string) => {
   console.log("navigator.canShare", navigator.canShare);
 
   if (!/Android|iPhone/i.test(navigator.userAgent)) {
@@ -243,13 +246,13 @@ const share = async (canvas: HTMLCanvasElement) => {
     console.log("blob", blob);
     if (blob) {
       const filesArray = [
-        new File([blob], `snapshot_2023.png`, {
+        new File([blob], `vsco_snapshot_2023_${username}.png`, {
           type: "image/png",
           lastModified: new Date().getTime(),
         }),
       ];
       const shareData = {
-        title: `snapshot_2023.png`,
+        title: `vsco_snapshot_2023_${username}.png`,
         files: filesArray,
       };
 
