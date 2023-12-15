@@ -10,7 +10,7 @@ const init = (args: {
 }) => {
   const params = getSearchParamValues(args.base64);
 
-  console.log("PARSED PARAMS");
+  console.log("PARSED PARAMS", params);
 
   mapToDom(params);
   generateShareImage(params, args);
