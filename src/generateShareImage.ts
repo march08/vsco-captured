@@ -184,17 +184,55 @@ export const generateShareImage = async (
     logging: false,
     allowTaint: false,
     // useCORS: true,
-  }).then((canvas: HTMLCanvasElement) => {
+  }).then(async (canvas: HTMLCanvasElement) => {
     canvas.id = "canvas-share";
     document.body.appendChild(canvas);
 
-    // set download
+    share(canvas)
+      .then((data) => {
+        navigator.share(data);
+      })
+      .catch(() => {
+        // set download
 
-    const image = canvas.toDataURL("image/jpeg");
-    // .replace("image/png", "image/octet-stream"); // probably not necessary
+        const image = canvas.toDataURL("image/jpeg");
+        // .replace("image/png", "image/octet-stream"); // probably not necessary
 
-    const anchorEl = document.getElementById("share-button");
-    anchorEl.setAttribute("href", image);
-    anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
+        const anchorEl = document.getElementById("share-button");
+
+        anchorEl.setAttribute("href", image);
+        anchorEl.setAttribute("download", `vsco_captured_${data.username}`);
+      });
   });
+};
+
+const getCanvasBlob = (canvas: HTMLCanvasElement) => {
+  return new Promise<Blob | null>((resolve) => {
+    canvas.toBlob(resolve);
+  });
+};
+
+const share = async (canvas: HTMLCanvasElement) => {
+  if (navigator.canShare) {
+    const blob = await getCanvasBlob(canvas);
+
+    if (blob) {
+      const filesArray = [
+        new File([blob], `snapshot_2023.png`, {
+          type: "image/png",
+          lastModified: new Date().getTime(),
+        }),
+      ];
+      const shareData = {
+        title: `snapshot_2023.png`,
+        files: filesArray,
+      };
+
+      if (navigator.canShare(shareData)) {
+        return shareData;
+      }
+    }
+  }
+
+  return Promise.reject();
 };
