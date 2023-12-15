@@ -5,11 +5,7 @@ import { vscoImageResponsiveUrltoS3Path } from "./vscoUtils";
 
 const fetchImageUrlAndGetLocalObjectUrl = async (url: string) => {
   console.log("fetchImageUrlAndGetLocalObjectUrl");
-  const response = await fetch(url, {
-    headers: {
-      "Content-Type": "image/jpeg",
-    },
-  });
+  const response = await fetch(url);
   console.log("response", response);
 
   const blob = await response.blob();
