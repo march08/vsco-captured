@@ -5,7 +5,11 @@ import { vscoImageResponsiveUrltoS3Path } from "./vscoUtils";
 
 const fetchImageUrlAndGetLocalObjectUrl = async (url: string) => {
   console.log("fetchImageUrlAndGetLocalObjectUrl");
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      "Content-Type": "image/jpeg",
+    },
+  });
   console.log("response", response);
 
   const blob = await response.blob();
@@ -44,6 +48,8 @@ export const generateShareImage = async (
     testAvatarUrl?: string;
   }
 ) => {
+  const downloadAnchor =
+    document.getElementById("download-anchor") || document.createElement("a");
   /**
    * username
    */
@@ -159,15 +165,15 @@ export const generateShareImage = async (
         const s3Src = vscoImageResponsiveUrltoS3Path(
           data.snapshot23_media_responsive_url
         );
-        console.log("Image urllll", s3Src);
+        // console.log("Image urllll", s3Src);
 
-        const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
-        imageEl.src = objectUrl;
+        // const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+        imageEl.src = s3Src;
       }
       imageContainer.appendChild(imageEl);
     }
   } catch (e) {
-    console.log("cannot render image", e, e.message);
+    console.log("cannot render image", e);
   }
   // const imageContainer = document.getElementById("canvas-image-container");
   // if (data.snapshot23_media_id) {
