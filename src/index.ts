@@ -1,27 +1,18 @@
-import { generateShareImage } from "./generateShareImage";
 import { getSearchParamValues } from "./getParamValues";
 import { mapToDom } from "./mapToDom";
+import { handleShare } from "./shareImage";
+import type { VscoSnapshotConfig } from "./types";
 
-const init = (args: {
-  onSuccess?: VoidFunction;
-  base64?: boolean;
-  testImageUrl?: string;
-  testAvatarUrl?: string;
-}) => {
+const init = (args: VscoSnapshotConfig) => {
   const params = getSearchParamValues(args.base64);
 
   console.log("PARSED PARAMS", params);
 
   mapToDom(params);
-  generateShareImage(params, args);
   const shareButtonEl = document.getElementById("share-button");
-  shareButtonEl.addEventListener("click", () => {
-    const downloadAnchor = document.getElementById("download-anchor");
-    if (downloadAnchor) {
-      downloadAnchor.click();
-    } else {
-      generateShareImage(params, args);
-    }
+
+  shareButtonEl.addEventListener("click", async () => {
+    handleShare(params, args);
   });
 
   if (args.onSuccess) {

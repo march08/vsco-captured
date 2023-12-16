@@ -308,7 +308,7 @@ export const mapToDom = (data: SearchParamKeyValue) => {
    * 1 - favourite photo image
    */
 
-  if (data.snapshot23_media_id) {
+  if (data.snapshot23_media_responsive_url) {
     const imageEl = document.getElementById("favorite-photo-img");
 
     const src = getImageUrl(data.snapshot23_media_id);
