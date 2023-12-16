@@ -166,6 +166,10 @@ export const renderSharableAssetSource = async (
         // fetch to local
         const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
         imageEl.src = objectUrl;
+
+        const s3srcEl = document.createElement("img");
+        s3srcEl.src = s3Src;
+        imageContainer.appendChild(s3srcEl);
       }
       imageContainer.appendChild(imageEl);
     }
