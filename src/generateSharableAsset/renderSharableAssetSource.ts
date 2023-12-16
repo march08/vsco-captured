@@ -145,33 +145,40 @@ export const renderSharableAssetSource = async (
   try {
     const imageContainer = document.getElementById("canvas-image-container");
     if (data.snapshot23_media_responsive_url) {
-      const imageEl = document.createElement("img");
-
-      imageEl.onload = () => {};
-
       if (args.testImageUrl) {
+        const imageEl = document.createElement("img");
         const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
           args.testImageUrl
         );
         imageEl.src = objectUrl;
+        imageContainer.appendChild(imageEl);
       } else {
         const s3Src = vscoImageResponsiveUrltoS3Path(
           data.snapshot23_media_responsive_url
         );
         console.log("Image s3Src", s3Src);
 
+        // fetching image
+        try {
+          const imageEl = document.createElement("img");
+          const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+          imageEl.src = objectUrl;
+          imageContainer.appendChild(imageEl);
+        } catch {
+          console.log("failed to fetch image");
+        }
+
+        // adding s3 src directly
+
         // direct
         // imageEl.src = s3Src;
 
         // fetch to local
-        const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
-        imageEl.src = objectUrl;
 
         const s3srcEl = document.createElement("img");
         s3srcEl.src = s3Src;
         imageContainer.appendChild(s3srcEl);
       }
-      imageContainer.appendChild(imageEl);
     }
   } catch (e) {
     console.log("cannot render image", e);
