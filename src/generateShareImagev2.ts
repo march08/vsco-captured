@@ -161,10 +161,15 @@ export const generateShareImageV2 = async (
         const s3Src = vscoImageResponsiveUrltoS3Path(
           data.snapshot23_media_responsive_url
         );
-        // console.log("Image urllll", s3Src);
+        console.log("Image s3Src", s3Src);
 
-        // const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+        // direct
+        imageEl.crossOrigin = "anonymous";
         imageEl.src = s3Src;
+
+        // fetch to local
+        // const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
+        // imageEl.src = objectUrl;
       }
       imageContainer.appendChild(imageEl);
     }
@@ -197,8 +202,8 @@ export const generateShareImageV2 = async (
       {
         scale: 1,
         logging: true,
-        // allowTaint: false,
-        // useCORS: true,
+        allowTaint: false,
+        useCORS: true,
       }
     ).then((canvas) => {
       canvas.id = "canvas-share";
