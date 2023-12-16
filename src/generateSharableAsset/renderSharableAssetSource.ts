@@ -161,7 +161,6 @@ export const renderSharableAssetSource = async (
         console.log("Image s3Src", s3Src);
 
         // direct
-        imageEl.crossOrigin = "anonymous";
         imageEl.src = s3Src;
 
         // fetch to local
