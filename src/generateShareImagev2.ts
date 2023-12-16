@@ -9,19 +9,24 @@ export const generateShareImageV2 = async (
     testAvatarUrl?: string;
   }
 ) => {
+  console.log("generateShareImageV2");
   const sourceEl = await renderSharableAssetSource(data, args);
   console.log("sourceEl", sourceEl);
+  const html2canvasConfig = {
+    scale: 1.5,
+    logging: true,
+    allowTaint: false,
+    useCORS: true,
+  };
+  console.log("html2canvasConfig", html2canvasConfig);
   try {
-    const generatedCanvas = await html2canvas(sourceEl, {
-      scale: 1,
-      logging: true,
-      allowTaint: false,
-      useCORS: true,
-    }).then((canvas: HTMLCanvasElement) => {
-      canvas.id = "canvas-share";
-      document.body.appendChild(canvas);
-      return canvas;
-    });
+    const generatedCanvas = await html2canvas(sourceEl, html2canvasConfig).then(
+      (canvas: HTMLCanvasElement) => {
+        canvas.id = "canvas-share";
+        document.body.appendChild(canvas);
+        return canvas;
+      }
+    );
 
     return generatedCanvas;
   } catch (e) {

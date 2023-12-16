@@ -1,7 +1,6 @@
 import { getSearchParamValues } from "./getParamValues";
 import { mapToDom } from "./mapToDom";
 import { handleShare } from "./shareImage";
-import { handleShareV2 } from "./shareImageV2";
 import type { VscoSnapshotConfig } from "./types";
 
 const init = (args: VscoSnapshotConfig) => {
