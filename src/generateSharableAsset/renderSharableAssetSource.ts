@@ -174,13 +174,14 @@ export const renderSharableAssetSource = async (
         loggerSharableImage.log("Built s3 url", s3Src);
 
         // fetch to local
-        loggerSharableImage.log("Append <img /> with s3 url");
-        const imageElWithS3Src = document.createElement("img");
-        imageElWithS3Src.src = s3Src;
-        if (config.imageCrossOrigin) {
-          imageElWithS3Src.crossOrigin = config.imageCrossOrigin;
-        }
-        imageContainer.appendChild(imageElWithS3Src);
+        // loggerSharableImage.log("Append <img /> with s3 url");
+        // const imageElWithS3Src = document.createElement("img");
+        // imageElWithS3Src.src = s3Src;
+
+        // if (config.imageCrossOrigin) {
+        //   imageElWithS3Src.crossOrigin = config.imageCrossOrigin;
+        // }
+        // imageContainer.appendChild(imageElWithS3Src);
 
         // fetching image
         try {
