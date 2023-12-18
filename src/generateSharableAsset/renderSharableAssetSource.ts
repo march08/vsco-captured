@@ -6,9 +6,7 @@ import { vscoImageResponsiveUrltoS3Path } from "../vscoUtils";
 const fetchImageUrlAndGetLocalObjectUrl = async (url: string) => {
   const logger = createSimpleLogger("IMAGE PREFETCH");
   logger.log("start");
-  const response = await fetch(url, {
-    credentials: "include",
-  });
+  const response = await fetch(url);
   logger.log("response", response);
 
   const blob = await response.blob();
@@ -156,6 +154,7 @@ export const renderSharableAssetSource = async (
 
   try {
     const imageContainer = document.getElementById("canvas-image-container");
+    console.log("args", args);
     if (data.snapshot23_media_responsive_url) {
       if (args.testImageUrl) {
         const imageEl = document.createElement("img");
