@@ -40,13 +40,19 @@ const initiateDownload = (
   triggerEl.click();
 };
 
+let isGenerating = false;
+
 export const handleShare = async (
   data: SearchParamKeyValue,
   args: VscoSnapshotConfig
 ) => {
   const triggerEl = getTriggerElementId();
 
-  console.log("triggerEl", triggerEl);
+  if (isGenerating) {
+    console.log("Image generator running");
+    return;
+  }
+
   if (triggerEl.getAttribute("data-sharable-initialized") === "true") {
     console.log("ALREADY GENERATED");
     triggerEl.click();
@@ -54,6 +60,7 @@ export const handleShare = async (
   }
 
   console.log("GENERATE DATA");
+  isGenerating = true;
 
   const canvas = await generateShareImageV2(data, args);
 
@@ -99,6 +106,7 @@ export const handleShare = async (
             });
         });
         triggerEl.click();
+        isGenerating = false;
         return;
       }
     }
@@ -107,4 +115,5 @@ export const handleShare = async (
   // if above checks fails
 
   initiateDownload(canvas, triggerEl, data.username);
+  isGenerating = false;
 };
