@@ -312,9 +312,10 @@ export const mapToDom = (data: SearchParamKeyValue) => {
   if (data.snapshot23_media_responsive_url) {
     const imageEl = document.getElementById("favorite-photo-img");
 
-    const src = vscoImageResponsiveUrltoS3Path(
-      data.snapshot23_media_responsive_url
-    );
+    // const src = vscoImageResponsiveUrltoS3Path(
+    //   data.snapshot23_media_responsive_url
+    // );
+    const src = data.snapshot23_media_responsive_url;
 
     imageEl.parentElement.style.background = "#000";
     imageEl.style.transition = "1s all";
