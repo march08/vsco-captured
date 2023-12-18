@@ -4,16 +4,19 @@ import { isTruthy, replaceInnerText } from "../utils";
 import { vscoImageResponsiveUrltoS3Path } from "../vscoUtils";
 
 const fetchImageUrlAndGetLocalObjectUrl = async (url: string) => {
-  console.log("fetchImageUrlAndGetLocalObjectUrl");
-  const response = await fetch(url);
-  console.log("response", response);
+  const logger = createSimpleLogger("IMAGE PREFETCH");
+  logger.log("start");
+  const response = await fetch(url, {
+    credentials: "include",
+  });
+  logger.log("response", response);
 
   const blob = await response.blob();
 
-  console.log("blob", blob);
+  logger.log("blob", blob);
 
   const objectUrl = URL.createObjectURL(blob);
-  console.log("URL.createObjectURL(blob)", objectUrl);
+  logger.log("object URL", objectUrl);
   return objectUrl;
 };
 
