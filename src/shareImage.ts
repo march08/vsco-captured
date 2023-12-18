@@ -92,6 +92,10 @@ export const handleShare = async (
             })
             .catch((e) => {
               console.log("share err", e);
+              console.log("Not allowed", e.name === "NotAllowedError");
+              if (e.name === "NotAllowedError") {
+                initiateDownload(canvas, triggerEl, data.username);
+              }
             });
         });
         triggerEl.click();
