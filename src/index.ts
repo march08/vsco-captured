@@ -6,6 +6,7 @@ import type { VscoSnapshotConfig } from "./types";
 const init = (args: VscoSnapshotConfig) => {
   const params = getSearchParamValues(args.base64);
 
+  console.log("CUSTOM UNSPLASH IMAGE");
   console.log("PARSED PARAMS", params);
 
   mapToDom(params);
