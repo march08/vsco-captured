@@ -2,6 +2,7 @@ import { getPresetConfigByKey } from "./const/PRESETS_2023";
 import { displayValueTools, toolsImageSources } from "./const/TOOLS";
 import type { SearchParamKeyValue } from "./getParamValues";
 import { getImageUrl, replaceInnerText } from "./utils";
+import { vscoImageResponsiveUrltoS3Path } from "./vscoUtils";
 
 const removeFromDomById = (id: string) => {
   const el = document.getElementById(id);
@@ -311,7 +312,9 @@ export const mapToDom = (data: SearchParamKeyValue) => {
   if (data.snapshot23_media_responsive_url) {
     const imageEl = document.getElementById("favorite-photo-img");
 
-    const src = getImageUrl(data.snapshot23_media_id);
+    const src = vscoImageResponsiveUrltoS3Path(
+      data.snapshot23_media_responsive_url
+    );
 
     imageEl.parentElement.style.background = "#000";
     imageEl.style.transition = "1s all";

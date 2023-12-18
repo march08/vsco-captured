@@ -11,8 +11,6 @@ const HTML2CANVAS_CONFIG = {
   useCORS: false,
 };
 
-const logger = createSimpleLogger("Sharable asset");
-
 export const generateShareImageV2 = async (
   data: SearchParamKeyValue,
   args: {
@@ -20,11 +18,11 @@ export const generateShareImageV2 = async (
     testAvatarUrl?: string;
   }
 ) => {
+  const logger = createSimpleLogger("SHARABLE ASSET");
   const sourceEl = await renderSharableAssetSource(data, args, {
     imageCrossOrigin: HTML2CANVAS_CONFIG.useCORS ? "anonymous" : undefined,
   });
-  logger.log("Start generating");
-  logger.log("canvas config", HTML2CANVAS_CONFIG);
+  logger.log("Start generating with config", HTML2CANVAS_CONFIG);
   try {
     const generatedCanvas = await html2canvas(
       sourceEl,
@@ -35,10 +33,10 @@ export const generateShareImageV2 = async (
       return canvas;
     });
 
-    logger.log("canvas done");
+    logger.log("DONE");
 
     return generatedCanvas;
   } catch (e) {
-    console.log("eeee", e);
+    logger.log("ERROR");
   }
 };

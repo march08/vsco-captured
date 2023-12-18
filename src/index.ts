@@ -15,8 +15,8 @@ const init = (args: VscoSnapshotConfig) => {
   shareButtonEl.addEventListener("click", async () => {
     handleShare(params, {
       ...args,
-      testImageUrl:
-        "https://images.unsplash.com/photo-1588599467405-aadcd12aa047?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      // testImageUrl:
+      // "https://images.unsplash.com/photo-1588599467405-aadcd12aa047?q=80&w=3408&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     });
   });
 

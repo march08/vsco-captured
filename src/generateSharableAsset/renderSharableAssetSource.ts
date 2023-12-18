@@ -6,7 +6,9 @@ import { vscoImageResponsiveUrltoS3Path } from "../vscoUtils";
 const fetchImageUrlAndGetLocalObjectUrl = async (url: string) => {
   const logger = createSimpleLogger("IMAGE PREFETCH");
   logger.log("start");
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    credentials: "include",
+  });
   logger.log("response", response);
 
   const blob = await response.blob();
@@ -38,8 +40,6 @@ const createLineItem = (title: string, value: string) => {
   contentEl.appendChild(rowEl);
 };
 
-const renderLogger = createSimpleLogger("Prepare HTML before render");
-
 export const renderSharableAssetSource = async (
   data: SearchParamKeyValue,
   args: {
@@ -50,7 +50,8 @@ export const renderSharableAssetSource = async (
     imageCrossOrigin?: "anonymous";
   }
 ) => {
-  renderLogger.log("Start");
+  const renderLogger = createSimpleLogger("Prepare HTML before render");
+  renderLogger.log("START");
   /**
    * username
    */
@@ -154,15 +155,16 @@ export const renderSharableAssetSource = async (
 
   try {
     const imageContainer = document.getElementById("canvas-image-container");
-    console.log("args", args);
     if (data.snapshot23_media_responsive_url) {
       if (args.testImageUrl) {
+        loggerSharableImage.log("Loading custom test image", args.testImageUrl);
         const imageEl = document.createElement("img");
         const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
           args.testImageUrl
         );
         imageEl.src = objectUrl;
         imageContainer.appendChild(imageEl);
+        loggerSharableImage.log("Custom image loaded");
       } else {
         loggerSharableImage.log(
           "Raw responsive image url",
@@ -200,26 +202,7 @@ export const renderSharableAssetSource = async (
   } catch (e) {
     loggerSharableImage.log("FAILED rendering image", e);
   }
-  // const imageContainer = document.getElementById("canvas-image-container");
-  // if (data.snapshot23_media_id) {
-  //   const imageEl = document.createElement("img");
 
-  //   if (args.testImageUrl) {
-  //     const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
-  //       args.testImageUrl
-  //     );
-  //     imageEl.src = objectUrl;
-  //   } else {
-  //     const s3Src = await getMediaS3ImageUrl(data.snapshot23_media_id);
-  //     // imageEl.src = s3Src;
-  //     const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
-  //     imageEl.src = objectUrl;
-  //   }
-  //   imageContainer.appendChild(imageEl);
-  // } else {
-  //   imageContainer.remove();
-  // }
-
-  renderLogger.log("Finished");
+  renderLogger.log("FINISHED");
   return document.querySelector("#toCanvas") as HTMLDivElement;
 };

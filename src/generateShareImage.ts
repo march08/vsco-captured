@@ -175,25 +175,6 @@ export const generateShareImage = async (
   } catch (e) {
     console.log("cannot render image", e);
   }
-  // const imageContainer = document.getElementById("canvas-image-container");
-  // if (data.snapshot23_media_id) {
-  //   const imageEl = document.createElement("img");
-
-  //   if (args.testImageUrl) {
-  //     const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(
-  //       args.testImageUrl
-  //     );
-  //     imageEl.src = objectUrl;
-  //   } else {
-  //     const s3Src = await getMediaS3ImageUrl(data.snapshot23_media_id);
-  //     // imageEl.src = s3Src;
-  //     const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
-  //     imageEl.src = objectUrl;
-  //   }
-  //   imageContainer.appendChild(imageEl);
-  // } else {
-  //   imageContainer.remove();
-  // }
 
   html2canvas(document.querySelector("#toCanvas"), {
     scale: 1,
