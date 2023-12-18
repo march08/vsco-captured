@@ -6,9 +6,8 @@ import { createSimpleLogger } from "./logger";
 const HTML2CANVAS_CONFIG = {
   scale: 1.5,
   logging: true,
-  // allowTaint: false,
-  // useCORS: true,
-  useCORS: false,
+  allowTaint: false,
+  useCORS: true,
 };
 
 const logger = createSimpleLogger("Sharable asset");
