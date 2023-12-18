@@ -1,16 +1,7 @@
 import type { SearchParamKeyValue } from "../getParamValues";
+import { createSimpleLogger } from "../logger";
 import { isTruthy, replaceInnerText } from "../utils";
 import { vscoImageResponsiveUrltoS3Path } from "../vscoUtils";
-
-const createSimpleLogger = (prefix: string) => ({
-  log: (...rest: any[]) => {
-    try {
-      console.log(prefix, ...rest);
-    } catch (e) {
-      console.error(e);
-    }
-  },
-});
 
 const fetchImageUrlAndGetLocalObjectUrl = async (url: string) => {
   console.log("fetchImageUrlAndGetLocalObjectUrl");
@@ -46,13 +37,19 @@ const createLineItem = (title: string, value: string) => {
   contentEl.appendChild(rowEl);
 };
 
+const renderLogger = createSimpleLogger("Prepare HTML before render");
+
 export const renderSharableAssetSource = async (
   data: SearchParamKeyValue,
   args: {
     testImageUrl?: string;
     testAvatarUrl?: string;
+  },
+  config: {
+    imageCrossOrigin?: "anonymous";
   }
 ) => {
+  renderLogger.log("Start");
   /**
    * username
    */
@@ -176,17 +173,23 @@ export const renderSharableAssetSource = async (
 
         // fetch to local
         loggerSharableImage.log("Append <img /> with s3 url");
-        const s3srcEl = document.createElement("img");
-        s3srcEl.src = s3Src;
-        imageContainer.appendChild(s3srcEl);
+        const imageElWithS3Src = document.createElement("img");
+        imageElWithS3Src.src = s3Src;
+        if (config.imageCrossOrigin) {
+          imageElWithS3Src.crossOrigin = config.imageCrossOrigin;
+        }
+        imageContainer.appendChild(imageElWithS3Src);
 
         // fetching image
         try {
           loggerSharableImage.log("Prefetch image");
-          const imageEl = document.createElement("img");
+          const imageElWithPrefetched = document.createElement("img");
           const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
-          imageEl.src = objectUrl;
-          imageContainer.appendChild(imageEl);
+          imageElWithPrefetched.src = objectUrl;
+          if (config.imageCrossOrigin) {
+            imageElWithPrefetched.crossOrigin = config.imageCrossOrigin;
+          }
+          imageContainer.appendChild(imageElWithPrefetched);
         } catch (e) {
           loggerSharableImage.log("Failed to preload image", e, ...e);
         }
@@ -215,5 +218,6 @@ export const renderSharableAssetSource = async (
   //   imageContainer.remove();
   // }
 
+  renderLogger.log("Finished");
   return document.querySelector("#toCanvas") as HTMLDivElement;
 };
