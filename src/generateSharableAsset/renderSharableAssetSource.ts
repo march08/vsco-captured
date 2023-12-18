@@ -2,6 +2,16 @@ import type { SearchParamKeyValue } from "../getParamValues";
 import { isTruthy, replaceInnerText } from "../utils";
 import { vscoImageResponsiveUrltoS3Path } from "../vscoUtils";
 
+const createSimpleLogger = (prefix: string) => ({
+  log: (...rest: any[]) => {
+    try {
+      console.log(prefix, ...rest);
+    } catch (e) {
+      console.error(e);
+    }
+  },
+});
+
 const fetchImageUrlAndGetLocalObjectUrl = async (url: string) => {
   console.log("fetchImageUrlAndGetLocalObjectUrl");
   const response = await fetch(url);
@@ -142,6 +152,8 @@ export const renderSharableAssetSource = async (
    * image
    */
 
+  const loggerSharableImage = createSimpleLogger("Sharable asset image");
+
   try {
     const imageContainer = document.getElementById("canvas-image-container");
     if (data.snapshot23_media_responsive_url) {
@@ -153,35 +165,35 @@ export const renderSharableAssetSource = async (
         imageEl.src = objectUrl;
         imageContainer.appendChild(imageEl);
       } else {
+        loggerSharableImage.log(
+          "Raw responsive image url",
+          data.snapshot23_media_responsive_url
+        );
         const s3Src = vscoImageResponsiveUrltoS3Path(
           data.snapshot23_media_responsive_url
         );
-        console.log("Image s3Src", s3Src);
+        loggerSharableImage.log("Built s3 url", s3Src);
+
+        // fetch to local
+        loggerSharableImage.log("Append <img /> with s3 url");
+        const s3srcEl = document.createElement("img");
+        s3srcEl.src = s3Src;
+        imageContainer.appendChild(s3srcEl);
 
         // fetching image
         try {
+          loggerSharableImage.log("Prefetch image");
           const imageEl = document.createElement("img");
           const objectUrl = await fetchImageUrlAndGetLocalObjectUrl(s3Src);
           imageEl.src = objectUrl;
           imageContainer.appendChild(imageEl);
-        } catch {
-          console.log("failed to fetch image");
+        } catch (e) {
+          loggerSharableImage.log("Failed to preload image", e, ...e);
         }
-
-        // adding s3 src directly
-
-        // direct
-        // imageEl.src = s3Src;
-
-        // fetch to local
-
-        const s3srcEl = document.createElement("img");
-        s3srcEl.src = s3Src;
-        imageContainer.appendChild(s3srcEl);
       }
     }
   } catch (e) {
-    console.log("cannot render image", e);
+    loggerSharableImage.log("FAILED rendering image", e);
   }
   // const imageContainer = document.getElementById("canvas-image-container");
   // if (data.snapshot23_media_id) {
