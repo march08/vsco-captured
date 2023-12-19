@@ -108,9 +108,6 @@ export const shareAsset = async (
     return;
   }
 
-  console.log("GENERATE DATA");
-  isGenerating = true;
-
   if (!storedCanvas) {
     storedCanvas =
       document.getElementById(CANVAS_ID) ||
