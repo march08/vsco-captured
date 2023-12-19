@@ -1423,6 +1423,19 @@ export const PRESETS_2023 = [
     color: "#FFFFFF",
     borderColor: "#EDBA58",
   },
+  { key: "CG1", title: "Duotone Low", background: "#EF1500", color: "#FFFFFF" },
+  {
+    key: "CG2",
+    title: "Duotone High",
+    background: "#EF1500",
+    color: "#FFFFFF",
+  },
+  { key: "CG3", title: "Blue Low", background: "#EF1500", color: "#FFFFFF" },
+  { key: "CG4", title: "Blue High", background: "#EF1500", color: "#FFFFFF" },
+  { key: "CG5", title: "Gold Low", background: "#EF1500", color: "#FFFFFF" },
+  { key: "CG6", title: "Gold High", background: "#EF1500", color: "#FFFFFF" },
+  { key: "CG7", title: "Green Low", background: "#EF1500", color: "#FFFFFF" },
+  { key: "CG8", title: "Green High", background: "#EF1500", color: "#FFFFFF" },
 ];
 
 export const getPresetConfigByKey = (key: string) => {

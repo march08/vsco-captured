@@ -1,8 +1,7 @@
 import { getPresetConfigByKey } from "./const/PRESETS_2023";
 import { displayValueTools, toolsImageSources } from "./const/TOOLS";
 import type { SearchParamKeyValue } from "./getParamValues";
-import { getImageUrl, replaceInnerText } from "./utils";
-import { vscoImageResponsiveUrltoS3Path } from "./vscoUtils";
+import { replaceInnerText } from "./utils";
 
 const removeFromDomById = (id: string) => {
   const el = document.getElementById(id);
@@ -35,10 +34,17 @@ const addPresetItem = (presetCode: string, usedCount: string) => {
   try {
     const presetItem = document.getElementById("preset-item");
     const presetConfig = getPresetConfigByKey(presetCode);
-    const codeEl = presetItem.querySelector(".cap__us-filter-code");
+    const codeEl = presetItem.querySelector(
+      ".cap__us-filter-code"
+    ) as HTMLDivElement;
     if (codeEl) {
-      (codeEl as any).style.background = presetConfig.background;
-      (codeEl as any).style.color = presetConfig.color;
+      codeEl.style.background = presetConfig.background;
+      codeEl.style.color = presetConfig.color;
+      if (presetConfig.borderColor) {
+        codeEl.style.boxShadow = `inset 0px 2px 0px 0px ${presetConfig.borderColor}, inset 0px -2px 0px 0px ${presetConfig.borderColor}`;
+      } else {
+        codeEl.style.boxShadow = "none";
+      }
     }
     const nextInnerHtml = presetItem.innerHTML
       .replace("AL1", presetCode)

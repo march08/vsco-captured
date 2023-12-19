@@ -8,15 +8,19 @@ const init = (args: VscoSnapshotConfig) => {
   const params = getSearchParamValues(args.base64);
 
   mapToDom(params);
-  const shareButtonEl = document.getElementById("share-button");
+  if (params.username) {
+    const shareButtonEl = document.getElementById("share-button");
 
-  setTimeout(() => {
-    generateShareImageV2(params, args);
-  }, 500);
+    setTimeout(async () => {
+      shareButtonEl.style.opacity = "0";
+      await generateShareImageV2(params, args);
+      shareButtonEl.style.opacity = "1";
+    }, 1500);
 
-  shareButtonEl.addEventListener("click", async () => {
-    shareAsset(params, args);
-  });
+    shareButtonEl.addEventListener("click", async () => {
+      shareAsset(params, args);
+    });
+  }
 
   if (args.onSuccess) {
     args.onSuccess();
