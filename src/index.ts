@@ -1,3 +1,4 @@
+import { generateShareImageV2 } from "./generateShareImagev2";
 import { getSearchParamValues } from "./getParamValues";
 import { mapToDom } from "./mapToDom";
 import { shareAsset } from "./shareImage2";
@@ -8,6 +9,10 @@ const init = (args: VscoSnapshotConfig) => {
 
   mapToDom(params);
   const shareButtonEl = document.getElementById("share-button");
+
+  setTimeout(() => {
+    generateShareImageV2(params, args);
+  }, 500);
 
   shareButtonEl.addEventListener("click", async () => {
     shareAsset(params, args);

@@ -1,3 +1,4 @@
+import { CANVAS_ID } from "./constants";
 import { generateShareImageV2 } from "./generateShareImagev2";
 import type { SearchParamKeyValue } from "./getParamValues";
 import type { VscoSnapshotConfig } from "./types";
@@ -41,6 +42,7 @@ const initiateDownload = (
 };
 
 let isGenerating = false;
+let storedCanvas: HTMLCanvasElement | undefined = undefined;
 
 const shareWithNavigator = async (
   canvas: HTMLCanvasElement,
@@ -89,8 +91,6 @@ const shareWithNavigator = async (
   throw new Error("Not a mobile device");
 };
 
-let storedCanvas: HTMLCanvasElement | undefined = undefined;
-
 export const shareAsset = async (
   data: SearchParamKeyValue,
   args: VscoSnapshotConfig
@@ -112,7 +112,9 @@ export const shareAsset = async (
   isGenerating = true;
 
   if (!storedCanvas) {
-    storedCanvas = await generateShareImageV2(data, args);
+    storedCanvas =
+      document.getElementById(CANVAS_ID) ||
+      (await generateShareImageV2(data, args));
   }
 
   if (storedCanvas) {

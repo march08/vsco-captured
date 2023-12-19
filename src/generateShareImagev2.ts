@@ -2,6 +2,7 @@ import html2canvas from "./html2canvas/html2canvas";
 import type { SearchParamKeyValue } from "./getParamValues";
 import { renderSharableAssetSource } from "./generateSharableAsset/renderSharableAssetSource";
 import { createSimpleLogger } from "./logger";
+import { CANVAS_ID } from "./constants";
 
 const HTML2CANVAS_CONFIG = {
   scale: 1.5,
@@ -28,7 +29,7 @@ export const generateShareImageV2 = async (
       sourceEl,
       HTML2CANVAS_CONFIG
     ).then((canvas: HTMLCanvasElement) => {
-      canvas.id = "canvas-share";
+      canvas.id = CANVAS_ID;
       document.body.appendChild(canvas);
       return canvas;
     });
