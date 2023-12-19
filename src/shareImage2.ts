@@ -42,30 +42,10 @@ const initiateDownload = (
 
 let isGenerating = false;
 
-export const handleShare = async (
-  data: SearchParamKeyValue,
-  args: VscoSnapshotConfig
+const shareWithNavigator = async (
+  canvas: HTMLCanvasElement,
+  filename: string
 ) => {
-  const triggerEl = getTriggerElementId();
-
-  if (isGenerating) {
-    console.log("Image generator running");
-    return;
-  }
-
-  if (triggerEl.getAttribute("data-sharable-initialized") === "true") {
-    console.log("ALREADY GENERATED");
-    triggerEl.click();
-    return;
-  }
-
-  console.log("GENERATE DATA");
-  isGenerating = true;
-
-  const canvas = await generateShareImageV2(data, args);
-
-  const filename = `vsco_snapshot_2023_${data.username}.jpg`;
-
   if (navigator.canShare && /Android|iPhone/i.test(navigator.userAgent)) {
     const blob = await getCanvasBlob(canvas);
     if (blob) {
@@ -86,36 +66,66 @@ export const handleShare = async (
         navigator.canShare(shareData)
       );
       if (navigator.canShare(shareData)) {
-        // initiale share dialog
-        triggerEl.setAttribute("data-sharable-initialized", "true");
-
-        const handleClick = () => {
-          console.log("click", shareData);
-          navigator
-            .share(shareData)
-            .then(() => {
-              console.log("DOWNLOADED");
-            })
-            .catch((e) => {
-              console.log("share err", e);
-              console.log("Not allowed", e.name === "NotAllowedError");
-              if (e.name === "NotAllowedError") {
-                triggerEl.removeEventListener("click", handleClick);
-                initiateDownload(canvas, triggerEl, data.username);
-              }
-            });
-        };
-
-        triggerEl.addEventListener("click", handleClick);
-        triggerEl.click();
-        isGenerating = false;
-        return;
+        console.log("click", shareData);
+        navigator
+          .share(shareData)
+          .then(() => {
+            console.log("DOWNLOADED");
+          })
+          .catch((e) => {
+            console.log("share err", e);
+            console.log("Not allowed", e.name === "NotAllowedError");
+            if (e.name === "NotAllowedError") {
+              throw e;
+            }
+          });
       }
+
+      isGenerating = false;
+      return;
     }
   }
 
-  // if above checks fails
+  throw new Error("Not a mobile device");
+};
 
-  initiateDownload(canvas, triggerEl, data.username);
-  isGenerating = false;
+let storedCanvas: HTMLCanvasElement | undefined = undefined;
+
+export const shareAsset = async (
+  data: SearchParamKeyValue,
+  args: VscoSnapshotConfig
+) => {
+  const triggerEl = getTriggerElementId();
+
+  if (isGenerating) {
+    console.log("Image generator running");
+    return;
+  }
+
+  if (triggerEl.getAttribute("data-sharable-initialized") === "true") {
+    console.log("ALREADY GENERATED");
+    triggerEl.click();
+    return;
+  }
+
+  console.log("GENERATE DATA");
+  isGenerating = true;
+
+  if (!storedCanvas) {
+    storedCanvas = await generateShareImageV2(data, args);
+  }
+
+  if (storedCanvas) {
+    const filename = `vsco_snapshot_2023_${data.username}.jpg`;
+
+    // if above checks fails
+
+    try {
+      await shareWithNavigator(storedCanvas, filename);
+    } catch (e) {
+      console.log("eee", e);
+      initiateDownload(storedCanvas, triggerEl, data.username);
+    }
+    isGenerating = false;
+  }
 };
