@@ -15,7 +15,11 @@ const init = (args: VscoSnapshotConfig) => {
       shareButtonEl.style.opacity = "0";
       await generateShareImageV2(params, args);
       shareButtonEl.style.opacity = "1";
-    }, 1500);
+      /**
+       * big delay because we need to wait for fonts to load
+       * html2canvas doesn't load them automatically unfortunately
+       */
+    }, 2500);
 
     shareButtonEl.addEventListener("click", async () => {
       shareAsset(params, args);
