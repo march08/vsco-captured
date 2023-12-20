@@ -31,7 +31,7 @@ const init = (args: VscoSnapshotConfig) => {
       hideUsernameTab();
 
       const loginButtonEl = document.getElementById("login-button");
-      loginButtonEl.style.display = "inline-block";
+      loginButtonEl.style.display = "inline-flex";
       loginButtonEl.style.opacity = "1";
     } catch {}
   }
