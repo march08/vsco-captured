@@ -7,8 +7,8 @@ import type { VscoSnapshotConfig } from "./types";
 const init = (args: VscoSnapshotConfig) => {
   const params = getSearchParamValues(args.base64);
 
-  mapToDom(params);
   if (params.username) {
+    mapToDom(params);
     const shareButtonEl = document.getElementById("share-button");
 
     setTimeout(async () => {
@@ -24,6 +24,13 @@ const init = (args: VscoSnapshotConfig) => {
     shareButtonEl.addEventListener("click", async () => {
       shareAsset(params, args);
     });
+  } else {
+    // no username, display login button instead
+    try {
+      const loginButtonEl = document.getElementById("login-button");
+      loginButtonEl.style.display = "inline-block";
+      loginButtonEl.style.opacity = "1";
+    } catch {}
   }
 
   if (args.onSuccess) {

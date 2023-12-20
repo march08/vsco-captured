@@ -1,6 +1,6 @@
 import { CANVAS_ID } from "./constants";
-import { generateShareImageV2 } from "./generateShareImagev2";
 import type { SearchParamKeyValue } from "./getParamValues";
+import { createSimpleLogger } from "./logger";
 import type { VscoSnapshotConfig } from "./types";
 
 const TRIGGER_EL_ID = "download-anchor";
@@ -33,6 +33,8 @@ const initiateDownload = (canvas: HTMLCanvasElement, username: string) => {
 let storedCanvas: HTMLCanvasElement | undefined = undefined;
 let canvasBlob: Blob | undefined = undefined;
 
+const logger = createSimpleLogger("SHARE ACTION");
+
 const shareWithNavigator = async (
   canvas: HTMLCanvasElement,
   filename: string
@@ -53,11 +55,11 @@ const shareWithNavigator = async (
       };
 
       if (navigator.canShare(shareData)) {
-        console.log("click", shareData);
+        logger.log("navigator.share data", shareData);
         navigator
           .share(shareData)
           .then(() => {
-            console.log("DOWNLOADED");
+            logger.log("Downloaded");
           })
           .catch((e) => {
             if (e.name === "NotAllowedError") {
@@ -72,14 +74,27 @@ const shareWithNavigator = async (
   throw new Error("Not a mobile device");
 };
 
+let retries = 0;
+
 export const shareAsset = async (
   data: SearchParamKeyValue,
   args: VscoSnapshotConfig
 ) => {
   if (!storedCanvas) {
-    storedCanvas =
-      document.getElementById(CANVAS_ID) ||
-      (await generateShareImageV2(data, args));
+    // check if the canvas was rendered already
+    const domCanvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
+    if (!domCanvas) {
+      if (retries < 10) {
+        setTimeout(() => {
+          retries += 1;
+          shareAsset(data, args);
+        }, 500);
+      } else {
+        throw new Error("Cannot load canvas");
+      }
+    } else {
+      storedCanvas = domCanvas;
+    }
   }
 
   if (storedCanvas) {
@@ -87,7 +102,6 @@ export const shareAsset = async (
     try {
       await shareWithNavigator(storedCanvas, filename);
     } catch (e) {
-      console.log("eee", e);
       initiateDownload(storedCanvas, data.username);
     }
   }
