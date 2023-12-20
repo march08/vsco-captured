@@ -3,10 +3,11 @@ import type { SearchParamKeyValue } from "./getParamValues";
 import { renderSharableAssetSource } from "./generateSharableAsset/renderSharableAssetSource";
 import { createSimpleLogger } from "./logger";
 import { CANVAS_ID } from "./constants";
+import { shouldLog } from "./utils";
 
 const HTML2CANVAS_CONFIG = {
   scale: 1.5,
-  logging: true,
+  logging: shouldLog(),
   // allowTaint: false,
   // useCORS: true,
   useCORS: false,

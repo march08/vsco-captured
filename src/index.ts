@@ -3,6 +3,7 @@ import { getSearchParamValues } from "./getParamValues";
 import { mapToDom } from "./mapToDom";
 import { shareAsset } from "./shareImage2";
 import type { VscoSnapshotConfig } from "./types";
+import { hideUsernameTab } from "./utils";
 
 const init = (args: VscoSnapshotConfig) => {
   const params = getSearchParamValues(args.base64);
@@ -27,6 +28,8 @@ const init = (args: VscoSnapshotConfig) => {
   } else {
     // no username, display login button instead
     try {
+      hideUsernameTab();
+
       const loginButtonEl = document.getElementById("login-button");
       loginButtonEl.style.display = "inline-block";
       loginButtonEl.style.opacity = "1";

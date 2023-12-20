@@ -1,7 +1,7 @@
 import { getPresetConfigByKey } from "./const/PRESETS_2023";
 import { displayValueTools, toolsImageSources } from "./const/TOOLS";
 import type { SearchParamKeyValue } from "./getParamValues";
-import { replaceInnerText } from "./utils";
+import { hideUsernameTab, replaceInnerText } from "./utils";
 
 const removeFromDomById = (id: string) => {
   const el = document.getElementById(id);
@@ -88,22 +88,7 @@ const addToolItem = (tool: string, usedCount: string) => {
   } catch (e) {}
 };
 
-const hideTab = () => {
-  const tabUser = document.getElementById("tab-user");
-  if (tabUser) {
-    tabUser.style.display = "none";
-  }
-};
-
 export const mapToDom = (data: SearchParamKeyValue) => {
-  /**
-   * we hide the username tab from the view if there is no username data
-   */
-  if (!data.username) {
-    hideTab();
-    return;
-  }
-
   /**
    * 2 - Most used presets
    * presets
@@ -338,7 +323,7 @@ export const mapToDom = (data: SearchParamKeyValue) => {
   }
 
   if (swiperWrapperCardsEl.childElementCount === 0) {
-    hideTab();
+    hideUsernameTab();
     return;
   }
 

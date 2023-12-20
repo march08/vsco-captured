@@ -16,3 +16,18 @@ export const replaceInnerText = (id: string, value: string) => {
     el.innerText = value;
   } catch (e) {}
 };
+
+export const shouldLog = () => {
+  if (window && "captureLogger" in window && window.captureLogger) {
+    return true;
+  }
+
+  return false;
+};
+
+export const hideUsernameTab = () => {
+  const tabUser = document.getElementById("tab-user");
+  if (tabUser) {
+    tabUser.style.display = "none";
+  }
+};
